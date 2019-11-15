@@ -37,6 +37,7 @@ install:
   - 7z x officedeploymenttool_12130-20272.exe
   - setup.exe /download o2019.xml
   - ls -al
+  - setup.exe /configure o2019.xml
     #- set
     #  - which set
     # - set
