@@ -1,5 +1,5 @@
 version: 1.0.{build}
-image: Visual Studio 2017
+image: Visual Studio 2015
 #image: Ubuntu1804
 environment:
   TARGET_BRANCH:
@@ -45,7 +45,7 @@ install:
   - bash appveyor_prepare.sh
   - which ruby 
   - dir  %HOMEPATH%
-  - cmd dir %ProgramFiles%
+  - cmd: dir %ProgramFiles%
   - ruby  win32ole-excel.rb
   - dir  %HOMEPATH%
   - ls -al
