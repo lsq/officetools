@@ -2,7 +2,7 @@
 require 'WIN32OLE'
 
 excel = WIN32OLE::new('excel.application')
-excel.visible =true
+#excel.visible =true
 wb = excel.workbooks.add
 sheet = wb.sheets(1)
 sheet.cells(1,1).value = "abc|123.3"
