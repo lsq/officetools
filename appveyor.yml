@@ -53,6 +53,8 @@ install:
   - which ruby 
   - dir  %HOMEPATH%
   - cmd: cd %ProgramFiles%
+  - ls -al
+  - pwd
   - ruby  win32ole-excel.rb
   - dir  %HOMEPATH%
   - ls -al
