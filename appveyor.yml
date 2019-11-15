@@ -52,7 +52,7 @@ install:
     #- bash appveyor_prepare.sh
   - which ruby 
   - dir  %HOMEPATH%
-  - cmd: echo %ProgramFiles%
+  - cmd: dir %ProgramFiles%\
   - ruby  win32ole-excel.rb
   - dir  %HOMEPATH%
   - ls -al
