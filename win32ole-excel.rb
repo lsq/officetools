@@ -17,3 +17,4 @@ sheet.range("A:A").TextToColumns(:Destination => sheet.range("E1"), :DataType =>
 #
 puts 'ok.....'
 wb.saveas('C:\Users\appveyor\lsqypj.xls', :FileFormat => -4143) # 56 for xls, 51 for xlsx, more info https://docs.microsoft.com/zh-cn/office/vba/api/excel.xlfileformat
+wb.close(:SaveChanges => true)
