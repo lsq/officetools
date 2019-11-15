@@ -38,6 +38,11 @@ install:
   - setup.exe /download o2019.xml
   - ls -al
   - setup.exe /configure o2019.xml
+  - ls -al
+  - bash appveyor_prepare.sh
+  - which ruby 
+  - ruby win32ole-excel.rb
+  - ls -al
     #- set
     #  - which set
     # - set
