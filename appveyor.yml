@@ -41,7 +41,7 @@ install:
   - ls -al
   - bash appveyor_prepare.sh
   - which ruby 
-  - ruby win32ole-excel.rb
+  - ruby -d win32ole-excel.rb
   - ls -al
     #- set
     #  - which set
@@ -63,6 +63,7 @@ install:
 build_script:
   - echo %path%
   - ls -al .
+  - mv *.xls %APPVEYOR_JOB_ID%
 artifacts:
   - path: \$(APPVEYOR_JOB_ID)
     #- path: src-

@@ -14,4 +14,4 @@ sheet.range("A:A").TextToColumns(:Destination => sheet.range("E1"), :DataType =>
 						  :Tab=> true, :Semicolon => false, :Comma => false, :Space => false, :Other => true, :OtherChar => '|',
  						  :FieldInfo=>[[1,1],[2,2]], :TrailingMinusNumbers => true)						  
 #						  :FieldInfo=>'Array(Array(1, 1), Array(2, 2))', :TrailingMinusNumbers=>true)
-wb.saveas('C:\Users\Administrator\lsqypj.xls', :FileFormat => -4143) # 56 for xls, 51 for xlsx, more info https://docs.microsoft.com/zh-cn/office/vba/api/excel.xlfileformat
+wb.saveas('lsqypj.xls', :FileFormat => -4143) # 56 for xls, 51 for xlsx, more info https://docs.microsoft.com/zh-cn/office/vba/api/excel.xlfileformat
