@@ -51,7 +51,7 @@ install:
   - ls -al
   - cd %APPVEYOR_BUILD_FOLDER%
   - bash -x appveyor_prepare.sh
-  - which ruby 
+  - which ruby| cygpath -w -f -
   - ls -al
   - pwd
   - dir  %HOMEPATH%
