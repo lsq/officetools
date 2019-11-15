@@ -40,6 +40,7 @@ install:
   - 7z x officedeploymenttool_12130-20272.exe
   - setup.exe /download o2019.xml
   - ls -al
+  - df -h
   - setup.exe /configure o2019.xml
   - ls -al
   - bash appveyor_prepare.sh
