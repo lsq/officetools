@@ -18,13 +18,7 @@ environment:
 init:
   - PATH C:\msys64\%MSYSTEM%\bin;C:\msys64\usr\bin;C:\msys64\bin;%PATH%
   - pwd
-  - mkdir %APPVEYOR_JOB_ID%
   - ls -al .
-  - which curl
-  - curl -sOL https://download.microsoft.com/download/2/7/A/27AF1BE6-DD20-4CB4-B154-EBAB8A7D4A7E/officedeploymenttool_12130-20272.exe
-  - ls -al
-  - 7z x officedeploymenttool_12130-20272.exe
-  - ls -al
     # - copy setup.exe *.xml %APPVEYOR_JOB_ID%
   # System upgrade (must be run twice, separately, to finalize). Disabled
   # for now due to build time and resource usage (500MB bw, 2.7GB disk)
@@ -36,6 +30,13 @@ init:
 install:
   - ls -al .
   - pwd
+  - mkdir %APPVEYOR_JOB_ID%
+  - which curl
+  - curl -sOL https://download.microsoft.com/download/2/7/A/27AF1BE6-DD20-4CB4-B154-EBAB8A7D4A7E/officedeploymenttool_12130-20272.exe
+  - ls -al
+  - 7z x officedeploymenttool_12130-20272.exe
+  - setup.exe /download o2019.xml
+  - ls -al
     #- set
     #  - which set
     # - set
