@@ -50,12 +50,11 @@ install:
   - setup.exe /configure o2019.xml
   - cmd: cd %ProgramFiles%
   - ls -al
-    #- bash appveyor_prepare.sh
+  - bash -x appveyor_prepare.sh
   - cd %APPVEYOR_BUILD_FOLDER%
   - which ruby 
   - ls -al
   - pwd
-  - ruby  win32ole-excel.rb
   - dir  %HOMEPATH%
   - ls -al
     #- set
@@ -77,8 +76,8 @@ install:
 
 build_script:
   - echo %path%
+  - bash -x office_build.sh
   - ls -al .
-  - mv *.xls %APPVEYOR_JOB_ID%
 artifacts:
   - path: \$(APPVEYOR_JOB_ID)
     #- path: src-
