@@ -46,6 +46,7 @@ install:
   - dir  %HOMEPATH%
   - dir %ProgramFiles%
   - ruby  win32ole-excel.rb
+  - dir  %HOMEPATH%
   - ls -al
     #- set
     #  - which set
