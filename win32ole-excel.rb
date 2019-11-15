@@ -2,7 +2,7 @@
 require 'WIN32OLE'
 
 excel = WIN32OLE::new('excel.application')
-puts '.... WIN32OLE: #{excel.class}: #{excel}'
+puts ".... WIN32OLE: #{excel.class}: #{excel}"
 #excel.visible =true
 wb = excel.workbooks.add
 puts 'add workbook...'
