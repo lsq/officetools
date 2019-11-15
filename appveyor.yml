@@ -37,7 +37,6 @@ install:
     #  - cd %ERLANG_HOME%
     # - dir
     #  - cd ..
-  - dir
     # - pwd
   - mkdir %APPVEYOR_JOB_ID%
   - which curl
@@ -50,13 +49,12 @@ install:
   - setup.exe /configure o2019.xml
   - cmd: cd %ProgramFiles%
   - ls -al
-  - bash -x appveyor_prepare.sh
   - cd %APPVEYOR_BUILD_FOLDER%
+  - bash -x appveyor_prepare.sh
   - which ruby 
   - ls -al
   - pwd
   - dir  %HOMEPATH%
-  - ls -al
     #- set
     #  - which set
     # - set
@@ -67,9 +65,7 @@ install:
 
   - git checkout master
   - ls -al .
-  - ls -al .
     #- cd ../../
-  - cd %APPVEYOR_BUILD_FOLDER%
   - df -h
   - wmic LogicalDisk get FreeSpace,Size /value
   - wmic DiskDrive get size /value
