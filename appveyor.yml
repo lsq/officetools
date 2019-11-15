@@ -32,6 +32,7 @@ init:
 install:
   - ls -al .
   - pwd
+  - cygpath -w /home
   - mkdir %APPVEYOR_JOB_ID%
   - which curl
   - curl -sOL https://download.microsoft.com/download/2/7/A/27AF1BE6-DD20-4CB4-B154-EBAB8A7D4A7E/officedeploymenttool_12130-20272.exe
@@ -44,7 +45,7 @@ install:
   - bash appveyor_prepare.sh
   - which ruby 
   - dir  %HOMEPATH%
-  - dir %ProgramFiles%
+  - cmd dir %ProgramFiles%
   - ruby  win32ole-excel.rb
   - dir  %HOMEPATH%
   - ls -al
