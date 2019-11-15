@@ -43,6 +43,8 @@ install:
   - ls -al
   - bash appveyor_prepare.sh
   - which ruby 
+  - dir  %HOMEPATH%
+  - dir %ProgramFiles%
   - ruby  win32ole-excel.rb
   - ls -al
     #- set
