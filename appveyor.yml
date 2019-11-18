@@ -86,6 +86,7 @@ before_test:
   - ruby -v
   - gem -v
   - bundle -v
+  - ridk use list
 
     #test_script:
   #  - bundle exec rake
