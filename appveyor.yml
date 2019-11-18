@@ -20,7 +20,6 @@ environment:
 init:
   # - PATH C:\msys64\%MSYSTEM%\bin;C:\msys64\usr\bin;C:\msys64\bin;%PATH%
   - set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
-  - bundle install
   - pwd
   - ls -al .
   - set
@@ -35,6 +34,7 @@ init:
 install:
   - ls -al .
   - pwd
+  - bundle install
   - cygpath -w /home
   - echo %path%
     #  - cd %ERLANG_HOME%
