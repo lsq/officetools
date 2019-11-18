@@ -18,8 +18,8 @@ environment:
  #     MSYSTEM: MINGW32
 # Set path for msys
 init:
-  # - PATH C:\msys64\%MSYSTEM%\bin;C:\msys64\usr\bin;C:\msys64\bin;%PATH%
-  - set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
+  - PATH C:\Ruby%RUBY_VERSION%\bin;C:\Ruby%RUBY_VERSION%\msys64\%MSYSTEM%\bin;C:\Ruby%RUBY_VERSION%\msys64\usr\bin;C:\Ruby%RUBY_VERSION%\msys64\bin;%PATH%
+    #- set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
   - pwd
   - ls -al .
   - set
@@ -37,6 +37,7 @@ install:
     #- bundle install
   - cygpath -w /home
   - echo %path%
+  - which pacman
     #  - cd %ERLANG_HOME%
     # - dir
     #  - cd ..
@@ -75,7 +76,7 @@ install:
 
 build_script:
   - echo %path%
-    # - bash -x office_build.sh
+    #   - bash -x office_build.sh
   - ls -al .
 
 before_test:
@@ -83,8 +84,8 @@ before_test:
   - gem -v
   - bundle -v
 
-test_script:
-  - bundle exec rake
+    #test_script:
+  #  - bundle exec rake
 
 artifacts:
   - path: \$(APPVEYOR_JOB_ID)
