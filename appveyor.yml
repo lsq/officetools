@@ -37,6 +37,7 @@ install:
     #- bundle install
   - cygpath -w /home
   - echo %path%
+  - ls /c/Ruby%RUBY_VERSION%/
   - which pacman
     #  - cd %ERLANG_HOME%
     # - dir
