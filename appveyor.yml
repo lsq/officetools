@@ -34,7 +34,7 @@ init:
 install:
   - ls -al .
   - pwd
-  - bundle install
+    #- bundle install
   - cygpath -w /home
   - echo %path%
     #  - cd %ERLANG_HOME%
