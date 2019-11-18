@@ -18,7 +18,7 @@ environment:
  #     MSYSTEM: MINGW32
 # Set path for msys
 init:
-  - PATH C:\Ruby%RUBY_VERSION%\bin;C:\Ruby%RUBY_VERSION%\msys64\%MSYSTEM%\bin;C:\Ruby%RUBY_VERSION%\msys64\usr\bin;C:\Ruby%RUBY_VERSION%\msys64\bin;%PATH%
+  - PATH C:\Ruby%RUBY_VERSION%\bin;C:\msys64\%MSYSTEM%\bin;C:\msys64\usr\bin;C:\msys64\bin;%PATH%
     #- set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
   - pwd
   - ls -al .
@@ -39,6 +39,7 @@ install:
   - echo %path%
   - ls /c/Ruby%RUBY_VERSION%/
   - ls /c/Ruby%RUBY_VERSION%/ridk_use
+  - cat /c/Ruby%RUBY_VERSION%/ridk_use/*
   - which pacman
     #  - cd %ERLANG_HOME%
     # - dir
