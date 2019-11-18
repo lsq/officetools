@@ -86,6 +86,7 @@ before_test:
   - ruby -v
   - gem -v
   - bundle -v
+  - which ridk
   - ridk use list
 
     #test_script:
