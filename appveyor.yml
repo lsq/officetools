@@ -10,6 +10,7 @@ environment:
     secure: wX822g4t5xXPI86jW/Oy7g==
     #secure: zt43vh97KFrDRrWr0I4KT435t2Qkqckh33yDFzyMUoJcWY0p+nJiLbt+b4egl34n
     #secure: 855kciMXrCGEcKW+P87C5nMrvYN47FH/Zjz9yHjZ53yeijLyb6/0oZ4CVv7j0VbE
+  RUBY_VERSION: 26-x64
   matrix:
     - MSYS2_ARCH: x86_64
       MSYSTEM: MINGW64
@@ -17,7 +18,9 @@ environment:
  #     MSYSTEM: MINGW32
 # Set path for msys
 init:
-  - PATH C:\msys64\%MSYSTEM%\bin;C:\msys64\usr\bin;C:\msys64\bin;%PATH%
+  # - PATH C:\msys64\%MSYSTEM%\bin;C:\msys64\usr\bin;C:\msys64\bin;%PATH%
+  - set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
+  - bundle install
   - pwd
   - ls -al .
   - set
@@ -39,18 +42,18 @@ install:
     #  - cd ..
     # - pwd
   - mkdir %APPVEYOR_JOB_ID%
-  - which curl
-  - curl -sOL https://download.microsoft.com/download/2/7/A/27AF1BE6-DD20-4CB4-B154-EBAB8A7D4A7E/officedeploymenttool_12130-20272.exe
-  - ls -al
-  - 7z x officedeploymenttool_12130-20272.exe
-  - setup.exe /download o2019.xml
-  - ls -al
-  - df -h
-  - setup.exe /configure o2019.xml
-  - cmd: cd %ProgramFiles%
-  - ls -al
-  - cd %APPVEYOR_BUILD_FOLDER%
-  - bash -x appveyor_prepare.sh
+    #  - which curl
+    #  - curl -sOL https://download.microsoft.com/download/2/7/A/27AF1BE6-DD20-4CB4-B154-EBAB8A7D4A7E/officedeploymenttool_12130-20272.exe
+    #  - ls -al
+    #  - 7z x officedeploymenttool_12130-20272.exe
+    #  - setup.exe /download o2019.xml
+    #  - ls -al
+    #  - df -h
+    #  - setup.exe /configure o2019.xml
+    #  - cmd: cd %ProgramFiles%
+    #  - ls -al
+    #  - cd %APPVEYOR_BUILD_FOLDER%
+    #  - bash -x appveyor_prepare.sh
   - which ruby| cygpath -w -f -
   - ls -al
   - pwd
@@ -72,8 +75,17 @@ install:
 
 build_script:
   - echo %path%
-  - bash -x office_build.sh
+    # - bash -x office_build.sh
   - ls -al .
+
+before_test:
+  - ruby -v
+  - gem -v
+  - bundle -v
+
+test_script:
+  - bundle exec rake
+
 artifacts:
   - path: \$(APPVEYOR_JOB_ID)
     #- path: src-
