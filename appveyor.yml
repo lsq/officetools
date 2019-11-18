@@ -38,7 +38,7 @@ install:
   - cygpath -w /home
   - echo %path%
   - ls /c/Ruby%RUBY_VERSION%/
-  - ls /c/Ruby%RUBY_VERSION%/ridk
+  - ls /c/Ruby%RUBY_VERSION%/ridk_use
   - which pacman
     #  - cd %ERLANG_HOME%
     # - dir
