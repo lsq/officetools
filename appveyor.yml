@@ -40,7 +40,8 @@ install:
     #  - ls /c/Ruby%RUBY_VERSION%/
     #  - ls /c/Ruby%RUBY_VERSION%/ridk_use
     #  - cat /c/Ruby%RUBY_VERSION%/ridk_use/*
-  - which pacman
+    #- which pacman
+  - which pacman| cygpath -w -f -
     #  - cd %ERLANG_HOME%
     # - dir
     #  - cd ..
@@ -79,6 +80,7 @@ install:
 
 build_script:
   - echo %path%
+  - which gem| cygpath -w -f -
   - bash -x office_build.sh
   - ls -al .
 
