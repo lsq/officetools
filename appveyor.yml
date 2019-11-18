@@ -37,9 +37,9 @@ install:
     #- bundle install
   - cygpath -w /home
   - echo %path%
-  - ls /c/Ruby%RUBY_VERSION%/
-  - ls /c/Ruby%RUBY_VERSION%/ridk_use
-  - cat /c/Ruby%RUBY_VERSION%/ridk_use/*
+    #  - ls /c/Ruby%RUBY_VERSION%/
+    #  - ls /c/Ruby%RUBY_VERSION%/ridk_use
+    #  - cat /c/Ruby%RUBY_VERSION%/ridk_use/*
   - which pacman
     #  - cd %ERLANG_HOME%
     # - dir
@@ -47,17 +47,17 @@ install:
     # - pwd
   - mkdir %APPVEYOR_JOB_ID%
     #  - which curl
-    #  - curl -sOL https://download.microsoft.com/download/2/7/A/27AF1BE6-DD20-4CB4-B154-EBAB8A7D4A7E/officedeploymenttool_12130-20272.exe
-    #  - ls -al
-    #  - 7z x officedeploymenttool_12130-20272.exe
-    #  - setup.exe /download o2019.xml
-    #  - ls -al
-    #  - df -h
-    #  - setup.exe /configure o2019.xml
-    #  - cmd: cd %ProgramFiles%
-    #  - ls -al
-    #  - cd %APPVEYOR_BUILD_FOLDER%
-    #  - bash -x appveyor_prepare.sh
+  - curl -sOL https://download.microsoft.com/download/2/7/A/27AF1BE6-DD20-4CB4-B154-EBAB8A7D4A7E/officedeploymenttool_12130-20272.exe
+  - ls -al
+  - 7z x officedeploymenttool_12130-20272.exe
+  - setup.exe /download o2019.xml
+  - ls -al
+  - df -h
+  - setup.exe /configure o2019.xml
+  - cmd: cd %ProgramFiles%
+  - ls -al
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - bash -x appveyor_prepare.sh
   - which ruby| cygpath -w -f -
   - ls -al
   - pwd
@@ -79,14 +79,13 @@ install:
 
 build_script:
   - echo %path%
-    #   - bash -x office_build.sh
+  - bash -x office_build.sh
   - ls -al .
 
 before_test:
   - ruby -v
   - gem -v
   - bundle -v
-  - which ridk
   - ridk use list
 
     #test_script:
