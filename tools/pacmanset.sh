@@ -48,8 +48,8 @@ mp=$(wmic ENVIRONMENT where "name='path' and username='<system>'"  get VariableV
 # setx "Path" "${mp};C:\\${msysbin};C:\\${mingw64bin};" /M
 echo $mp---- 
 # mp="e:\\f\\"
-mp=$(echo -n "${p7z};${mp};C:\\${mingw64bin};C:\\${msysbin};"|gawk -F';' '{for (i=1; i<=NF; i++) if (! arr[$i]++)  printf "%s;",$i }' |
-sed 's#;*[ ]*;\{1,\}#;#g;s#\(\\\)\{2\}#\\#g')
+mp=$(echo -n "${p7z};${mp};C:\\${mingw64bin};C:\\${msysbin};"|sed 's#\(\\\)\{2\}#\\#g' |gawk -F';' '{for (i=1; i<=NF; i++) if (! arr[$i]++)  printf "%s;",$i }' |
+sed 's#;*[ ]*;\{1,\}#;#g')
 #echo ++$mp | iconv -f gb2312 -t gbk
 #echo $mp > mp.txt
 #
