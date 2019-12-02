@@ -3,8 +3,8 @@
 trap 'exit' INT QUIT
 #pacman -Syu
 pacman -Syu
-pacman -S bash man pacman msys2-runtime base-devel --noconfirm --needed
-pacman -S mingw64/mingw-w64-x86_64-clang mingw64/mingw-w64-x86_64-sqlite3 \
+pacman -Sy bash man pacman msys2-runtime base-devel --noconfirm --needed
+pacman -Sy mingw64/mingw-w64-x86_64-clang mingw64/mingw-w64-x86_64-sqlite3 \
 		  mingw64/mingw-w64-x86_64-libxml2 msys/libxml2-devel mingw64/mingw-w64-x86_64-libxslt msys/libxslt-devel\
 		  mingw64/mingw-w64-x86_64-sqlcipher msys/libsqlite-devel mingw64/mingw-w64-x86_64-ruby \
 		  mingw64/mingw-w64-x86_64-polipo 
@@ -13,7 +13,7 @@ pacman -Sy mingw64/mingw-w64-x86_64-python2 mingw-w64-x86_64-make\
 		  mingw-w64-x86_64-cmake mingw-w64-x86_64-gcc mingw64/mingw-w64-x86_64-python3-pip mingw64/mingw-w64-x86_64-python2-pip \
 		  --noconfirm --needed
 # pacman -S git subversion mingw64/mingw-w64-x86_64-ruby --noconfirm
-pacman -S git subversion  --noconfirm
+pacman -Sy git subversion  --noconfirm
 pip2 install requests
 cat >~/.polipo <<EOF
 socksParentProxy="127.0.0.1:10808"
