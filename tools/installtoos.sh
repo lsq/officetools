@@ -46,4 +46,4 @@ gem sources -l
 cd /c/Users/Administrator/github/robust_excel_ole && gem build robust_excel_ole.gemspec && gem install robust_excel_ole*.gem
 # cd /c/Users/Administrator/github/prawn && gem build prawn.gemspec && gem install prawn*.gem
 cd /c/Users/Administrator/github/pdfkit && gem build pdfkit.gemspec && gem install pdfkit*.gem
-gem install mechanize pry watir pincers
+gem install mechanize pry watir pincers ffi
