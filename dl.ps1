@@ -55,7 +55,7 @@ curl.exe -sLSO "https://download-ssl.firefox.com.cn/releases-sha2/stub/official/
 (Test-Path Firefox-latest.exe)  -and (Start-Process .\Firefox-latest.exe )
 curl.exe -sLSO  "https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7B20C5A533-0647-7599-741A-D8AD97BBC271%7D%26lang%3Dzh-CN%26browser%3D4%26usagestats%3D1%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dx64-stable-statsdef_1%26installdataindex%3Ddefaultbrowser/update2/installers/ChromeSetup.exe"
 (Test-Path ChromeSetup.exe)  -and  (Start-Process .\ChromeSetup.exe )
-curl.exe -sSLO https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-win64.zip
+wget.exe -c -t 3 -d https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-win64.zip
 unzip.exe -o geckodriver-v0.26.0-win64.zip
 cp geckodriver*.exe C:\Windows\System32
 curl.exe  -vSL https://raw.githubusercontent.com/lsq/officetools/master/tools/pacmanset.sh -o $pacmanset
