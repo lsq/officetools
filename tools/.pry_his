@@ -1,0 +1,497 @@
+require 'watir'
+profile = Selenium::WebDriver::Firefox::Profile.new
+profile['browser.download.dir'] = 'C:\Users\Administrator\Downloads'
+profile['browser.download.folderList'] = 2
+profile['browser.helperApps.neverAsk.saveToDisk'] = 'application/pdf'
+browser = Watir::Browser.new :firefox, profile: profile
+browser.goto 'http://www.lanzou.com/u'
+browser.show_frames
+browser.frames
+browser.frame
+browser.frame.id
+browser.frames.first
+browser.frames.first.elements
+browser.frames(id: 'usename').exists?
+browser.frames(id: 'usename')
+browser.frame.first
+browser.frame.id
+browser.element(:xpath=>".//*[local-name()='frame'][@id='usename']").click
+browser.goto ' https://up.woozooo.com/account.php?action=login&ref=/mydisk.php'
+browser.element(id: 'username').exists?
+browser.element(id: 'username').set('1311360225')
+browser.text_field(name: 'username').exists?
+username = browser.text_field(name: 'username')
+username.set('13113602265')
+browser.text_field(name: 'password').exists?
+password = browser.text_field(name: 'password')
+password.set('lsq1213LAN')
+browser.element(id:'s3').exists?
+button = browser.element(id:'s3')
+button.click
+browser.as
+ls
+browser.iframes
+browser.iframe(id:'mainframe').link(text:'魔兽争霸3')
+browser.iframe(id:'mainframe').div.text
+browser.iframe(id:'mainframe').link(text:'魔兽争霸3').link
+browser.iframe(id:'mainframe').link(text:'魔兽争霸3').url
+browser.iframe(id:'mainframe').link(text:'魔兽争霸3').href
+browser.iframe(id:'mainframe').link(text:'魔兽争霸3').attribute_value("href")
+browser.iframe(id:'mainframe').link(text:'魔兽争霸3').attribute_values
+browser.iframe(id:'mainframe').div.text
+browser.iframe(id:'mainframe').a.text
+browser.iframe(id:'mainframe').as.text
+browser.iframe(id:'mainframe').a.text
+browser.iframe(id:'mainframe').links.text
+browser.iframe(id:'mainframe').link_entry
+browser.iframe(id:'mainframe').a(text:'tools')
+browser.iframe(id:'mainframe').a(text:'tools').exists?
+browser.iframe(id:'mainframe').div(class: 'f_name2').text
+browser.iframe(id:'mainframe').div(class: 'f_tb').text
+browser.iframe(id:'mainframe').divs(class: 'f_tb').text
+browser.iframe(id:'mainframe').div(class: 'f_tb').text
+browser.iframe(id:'mainframe').frame(name:'file_form').div.text
+browser.iframe(id:'mainframe').frame(name:'file_form').div(class: 'f_tb')
+browser.iframe(id:'mainframe').frame(name:'file_form').div(class: 'f_tb').text
+browser.iframe(id:'mainframe').iframe(name:'file_form').div(class: 'f_tb').text
+browser.iframe(id:'mainframe').frame(name:'file_form').div(class: 'f_tb').text
+browser.iframe(id:'mainframe').frame(name:'file_form')
+browser.iframe(id:'mainframe').frame(name:'file_form').class
+browser.iframe(id:'mainframe').frame(name:'file_form').div(id:'f9774217')
+browser.iframe(id:'mainframe').frame(name:'file_form').div(id:'f9774217').text
+browser.iframe(id:'mainframe').frame(name:'file_form').div(id:'f9774217').class
+browser.iframe(id:'mainframe').frame(name:'file_form').element(text:' 魔兽争霸3修改器_new.exe')
+browser.iframe(id:'mainframe').frame(name:'file_form').element(text:' 魔兽争霸3修改器_new.exe').class
+browser.iframe(id:'mainframe').frame(name:'file_form').element(text:' 魔兽争霸3修改器_new.exe').text
+browser.iframe(id:'mainframe').frame(name:'file_form').element(text:' 魔兽争霸3修改器_new.exe').methods
+browser.iframe(id:'mainframe').frame(name:'file_form').element(text:' 魔兽争霸3修改器_new.exe').click
+browser.iframe(id:'mainframe').div.text
+browser.iframe(id:'mainframe').link(text:'上传文件').click
+browser.iframe(id:'mainframe').link(text:' tools').click
+browser.iframe(id:'mainframe').element(text:' tools').class
+browser.iframe(id:'mainframe').element(text:' tools').exists?
+browser.iframe(id:'mainframe').frame(name:'file_form').element(text:' tools').exists?
+browser.iframe(id:'mainframe').exists?
+browser.iframe(id:'mainframe').div.text
+browser.link(text: /tools/).exists?
+browser.iframe(id:'mainframe').div.text
+browser.iframe(id:'mainframe').link(text: /tool/).exists?
+browser.iframe(id:'mainframe').link(text: /tool/)
+browser.iframe(id:'mainframe').form(name:'file_form').exists?
+browser.iframe(id:'mainframe').form(name:'file_form').link(text: /v2rayN_2.29.7z/).exists?
+browser.iframe(id:'mainframe').form(name:'file_form').link(text: /v2rayN_2.29.7z/).click
+browser.iframe(id:'mainframe').div(id:'f_sha').exisits?
+browser.iframe(id:'mainframe').div(id:'f_sha').exists?
+dataform=browser.iframe(id:'mainframe').form(name:'file_form')
+dldiv = browser.iframe(id:'mainframe').div(id:'f_sha')
+dldiv.div(id:'f_sha1').text
+filelink = dldiv.div(id:'f_sha1').text
+dataform.link(text: /v2rayN-Core/).exists?
+dataform.link(text: /v2rayN-Core/).click
+filelink
+filelink = dldiv.div(id:'f_sha1').text
+browser.windows
+browser.windows[0].title
+browser.windows[1].title
+browser.windows[1].use.button(id:'close').click
+browser.window(title:'').use.button(id:'close').click
+browser.window(title:'').use
+browser.button(id:'close').click
+browser.window(title:'').exists?
+browser.window(title:'').close
+browser.goto ' https://up.woozooo.com/account.php?action=login&ref=/mydisk.php'
+browser = Watir::Browser.new :firefox, profile: profile
+browser.goto ' https://up.woozooo.com/account.php?action=login&ref=/mydisk.php'
+hist
+!23-27
+hist -n -T
+hist --replay 23..27
+hist
+hist --replay 28..30
+dataform
+dataform.div.text
+dataform.div(id:'filelist').exists?
+dataform.element(id:'filelist').exists?
+hist --grep dataform
+hist --replay 85
+dataform.div(id:'filelist').exists?
+dataform.div.text
+dataform.div(id:'sub_folder_list').text
+dataform.div(id:'filelist').text
+dataform.div(id:'filelist').div(id:'f_name').text
+dataform.div(id:'filelist').div(class:'f_name').text
+dataform.div(id:'filelist').div(class:'f_name').link
+dataform.div(id:'filelist').div(class:'f_name').link.click
+browser.windows
+browser.windows[0].title
+browser.title
+browser.window[1].title
+browser.windows
+browser.windows.class
+browser.windows.class[1].title
+browser.windows[1].title
+browser.windows[1].button
+browser.windows[1].buttons
+browser.window[1].use
+browser.window(title:'').class
+browser.window(title:'').exists?
+browser.window(title:'').title
+browser.window(title:"").title
+browser.window(title:"").use
+browser.window(title:"").title
+browser.windows
+browser.windows(title:"").title
+browser.windows.name
+browser.windows.names
+browser.windows[0].title
+browser.windows[1].title
+browser.windows[1].name
+browser.windows[1].names
+browser.windows.size
+b1=browser.windows[1].use
+b1.title
+b1.close
+b1
+browser.title
+browser.windows[1].names
+browser.windows[0].names
+browser.windows
+browser.execute_script("return arguments[0].click();", dataform.div(id:'filelist').div(class:'f_name').link)
+browser.windows
+ls
+hist --grep dldiv
+hist --replay 86..88
+hist --grep sub_folder
+hist -n --replay --grep sub_folder
+hist --replay 119
+dataform.div(id:'sub_folder_list').link(text:/tool/).click
+dataform.div(id:'filemore').exists?
+dataform.div(id:'filemore').span(class:'btn').click
+dataform.div(id:'filelist')
+dataform.div(id:'filelist').div.text
+dataform.div(id:'filelist').text
+dataform.div(id:'filelist').text.clas
+dataform.div(id:'filelist').text.class
+hist --grep dldiv
+hist --replay 86..88
+browser.windows.size
+browser.title
+browser.window[1].use
+browser.windows[1].use
+browser.windows[0].use
+browser.windows[1].use
+dataform.element(text: /i7t3s9g/).class
+dataform.element(text: /i7t3s9g/).click(:control)
+dataform.element(text: /i7t3s9g/).attributes
+dataform.element(text: /i7t3s9g/).attribute
+dataform.element(text: /i7t3s9g/).class
+dataform.element(text: /i7t3s9g/)
+browser.windows[1].use
+browser.windows[0].use
+require 'watir'
+profile = Selenium::WebDriver::Firefox::Profile.new
+profile['browser.download.dir'] = 'C:\Users\Administrator\Downloads'
+profile['browser.download.folderList'] = 2
+profile['browser.helperApps.neverAsk.saveToDisk'] = 'application/pdf'
+browser = Watir::Browser.new :firefox, profile: profile
+browser.goto 'http://www.lanzou.com/u'
+browser.show_frames
+browser.frames
+browser.frame
+browser.frame.id
+browser.frames.first
+browser.frames.first.elements
+browser.frames(id: 'usename').exists?
+browser.frames(id: 'usename')
+browser.frame.first
+browser.frame.id
+browser.element(:xpath=>".//*[local-name()='frame'][@id='usename']").click
+browser.goto ' https://up.woozooo.com/account.php?action=login&ref=/mydisk.php'
+browser.element(id: 'username').exists?
+browser.element(id: 'username').set('1311360225')
+browser.text_field(name: 'username').exists?
+username = browser.text_field(name: 'username')
+username.set('13113602265')
+browser.text_field(name: 'password').exists?
+password = browser.text_field(name: 'password')
+password.set('lsq1213LAN')
+browser.element(id:'s3').exists?
+button = browser.element(id:'s3')
+button.click
+browser.as
+ls
+browser.iframes
+browser.iframe(id:'mainframe').link(text:'魔兽争霸3')
+browser.iframe(id:'mainframe').div.text
+browser.iframe(id:'mainframe').link(text:'魔兽争霸3').link
+browser.iframe(id:'mainframe').link(text:'魔兽争霸3').url
+browser.iframe(id:'mainframe').link(text:'魔兽争霸3').href
+browser.iframe(id:'mainframe').link(text:'魔兽争霸3').attribute_value("href")
+browser.iframe(id:'mainframe').link(text:'魔兽争霸3').attribute_values
+browser.iframe(id:'mainframe').div.text
+browser.iframe(id:'mainframe').a.text
+browser.iframe(id:'mainframe').as.text
+browser.iframe(id:'mainframe').a.text
+browser.iframe(id:'mainframe').links.text
+browser.iframe(id:'mainframe').link_entry
+browser.iframe(id:'mainframe').a(text:'tools')
+browser.iframe(id:'mainframe').a(text:'tools').exists?
+browser.iframe(id:'mainframe').div(class: 'f_name2').text
+browser.iframe(id:'mainframe').div(class: 'f_tb').text
+browser.iframe(id:'mainframe').divs(class: 'f_tb').text
+browser.iframe(id:'mainframe').div(class: 'f_tb').text
+browser.iframe(id:'mainframe').frame(name:'file_form').div.text
+browser.iframe(id:'mainframe').frame(name:'file_form').div(class: 'f_tb')
+browser.iframe(id:'mainframe').frame(name:'file_form').div(class: 'f_tb').text
+browser.iframe(id:'mainframe').iframe(name:'file_form').div(class: 'f_tb').text
+browser.iframe(id:'mainframe').frame(name:'file_form').div(class: 'f_tb').text
+browser.iframe(id:'mainframe').frame(name:'file_form')
+browser.iframe(id:'mainframe').frame(name:'file_form').class
+browser.iframe(id:'mainframe').frame(name:'file_form').div(id:'f9774217')
+browser.iframe(id:'mainframe').frame(name:'file_form').div(id:'f9774217').text
+browser.iframe(id:'mainframe').frame(name:'file_form').div(id:'f9774217').class
+browser.iframe(id:'mainframe').frame(name:'file_form').element(text:' 魔兽争霸3修改器_new.exe')
+browser.iframe(id:'mainframe').frame(name:'file_form').element(text:' 魔兽争霸3修改器_new.exe').class
+browser.iframe(id:'mainframe').frame(name:'file_form').element(text:' 魔兽争霸3修改器_new.exe').text
+browser.iframe(id:'mainframe').frame(name:'file_form').element(text:' 魔兽争霸3修改器_new.exe').methods
+browser.iframe(id:'mainframe').frame(name:'file_form').element(text:' 魔兽争霸3修改器_new.exe').click
+browser.iframe(id:'mainframe').div.text
+browser.iframe(id:'mainframe').link(text:'上传文件').click
+browser.iframe(id:'mainframe').link(text:' tools').click
+browser.iframe(id:'mainframe').element(text:' tools').class
+browser.iframe(id:'mainframe').element(text:' tools').exists?
+browser.iframe(id:'mainframe').frame(name:'file_form').element(text:' tools').exists?
+browser.iframe(id:'mainframe').exists?
+browser.iframe(id:'mainframe').div.text
+browser.link(text: /tools/).exists?
+browser.iframe(id:'mainframe').div.text
+browser.iframe(id:'mainframe').link(text: /tool/).exists?
+browser.iframe(id:'mainframe').link(text: /tool/)
+browser.iframe(id:'mainframe').form(name:'file_form').exists?
+browser.iframe(id:'mainframe').form(name:'file_form').link(text: /v2rayN_2.29.7z/).exists?
+browser.iframe(id:'mainframe').form(name:'file_form').link(text: /v2rayN_2.29.7z/).click
+browser.iframe(id:'mainframe').div(id:'f_sha').exisits?
+browser.iframe(id:'mainframe').div(id:'f_sha').exists?
+dataform=browser.iframe(id:'mainframe').form(name:'file_form')
+dldiv = browser.iframe(id:'mainframe').div(id:'f_sha')
+dldiv.div(id:'f_sha1').text
+filelink = dldiv.div(id:'f_sha1').text
+dataform.link(text: /v2rayN-Core/).exists?
+dataform.link(text: /v2rayN-Core/).click
+filelink
+filelink = dldiv.div(id:'f_sha1').text
+browser.windows
+browser.windows[0].title
+browser.windows[1].title
+browser.windows[1].use.button(id:'close').click
+browser.window(title:'').use.button(id:'close').click
+browser.window(title:'').use
+browser.button(id:'close').click
+browser.window(title:'').exists?
+browser.window(title:'').close
+browser.goto ' https://up.woozooo.com/account.php?action=login&ref=/mydisk.php'
+browser = Watir::Browser.new :firefox, profile: profile
+browser.goto ' https://up.woozooo.com/account.php?action=login&ref=/mydisk.php'
+hist
+!23-27
+hist -n -T
+hist --replay 23..27
+hist
+hist --replay 28..30
+dataform
+dataform.div.text
+dataform.div(id:'filelist').exists?
+dataform.element(id:'filelist').exists?
+hist --grep dataform
+hist --replay 85
+dataform.div(id:'filelist').exists?
+dataform.div.text
+dataform.div(id:'sub_folder_list').text
+dataform.div(id:'filelist').text
+dataform.div(id:'filelist').div(id:'f_name').text
+dataform.div(id:'filelist').div(class:'f_name').text
+dataform.div(id:'filelist').div(class:'f_name').link
+dataform.div(id:'filelist').div(class:'f_name').link.click
+browser.windows
+browser.windows[0].title
+browser.title
+browser.window[1].title
+browser.windows
+browser.windows.class
+browser.windows.class[1].title
+browser.windows[1].title
+browser.windows[1].button
+browser.windows[1].buttons
+browser.window[1].use
+browser.window(title:'').class
+browser.window(title:'').exists?
+browser.window(title:'').title
+browser.window(title:"").title
+browser.window(title:"").use
+browser.window(title:"").title
+browser.windows
+browser.windows(title:"").title
+browser.windows.name
+browser.windows.names
+browser.windows[0].title
+browser.windows[1].title
+browser.windows[1].name
+browser.windows[1].names
+browser.windows.size
+b1=browser.windows[1].use
+b1.title
+b1.close
+b1
+browser.title
+browser.windows[1].names
+browser.windows[0].names
+browser.windows
+browser.execute_script("return arguments[0].click();", dataform.div(id:'filelist').div(class:'f_name').link)
+browser.windows
+ls
+hist --grep dldiv
+hist --replay 86..88
+hist --grep sub_folder
+hist -n --replay --grep sub_folder
+hist --replay 119
+dataform.div(id:'sub_folder_list').link(text:/tool/).click
+dataform.div(id:'filemore').exists?
+dataform.div(id:'filemore').span(class:'btn').click
+dataform.div(id:'filelist')
+dataform.div(id:'filelist').div.text
+dataform.div(id:'filelist').text
+dataform.div(id:'filelist').text.clas
+dataform.div(id:'filelist').text.class
+hist --grep dldiv
+hist --replay 86..88
+browser.windows.size
+browser.title
+browser.window[1].use
+browser.windows[1].use
+browser.windows[0].use
+browser.windows[1].use
+dataform.element(text: /i7t3s9g/).class
+dataform.element(text: /i7t3s9g/).click(:control)
+dataform.element(text: /i7t3s9g/).attributes
+dataform.element(text: /i7t3s9g/).attribute
+dataform.element(text: /i7t3s9g/).class
+dataform.element(text: /i7t3s9g/)
+browser.windows[1].use
+browser.windows[0].use
+require 'watir'
+profile = Selenium::WebDriver::Firefox::Profile.new
+profile['browser.download.dir'] = 'C:\Users\Administrator\Downloads'
+profile['browser.download.folderList'] = 2
+profile['browser.helperApps.neverAsk.saveToDisk'] = 'application/pdf'
+browser = Watir::Browser.new :firefox, profile: profile
+browser.goto 'http://www.lanzou.com/u'
+browser.show_frames
+browser.frames
+browser.frame
+browser.frame.id
+browser.frames.first
+browser.frames.first.elements
+browser.frames(id: 'usename').exists?
+browser.frames(id: 'usename')
+browser.frame.first
+browser.frame.id
+browser.element(:xpath=>".//*[local-name()='frame'][@id='usename']").click
+browser.goto ' https://up.woozooo.com/account.php?action=login&ref=/mydisk.php'
+browser.element(id: 'username').exists?
+browser.element(id: 'username').set('1311360225')
+browser.text_field(name: 'username').exists?
+username = browser.text_field(name: 'username')
+username.set('13113602265')
+browser.text_field(name: 'password').exists?
+password = browser.text_field(name: 'password')
+password.set('lsq1213LAN')
+browser.element(id:'s3').exists?
+button = browser.element(id:'s3')
+button.click
+browser.as
+require 'watir'
+profile = Selenium::WebDriver::Firefox::Profile.new
+profile['browser.download.dir'] = 'C:\Users\Administrator\Downloads'
+profile['browser.download.folderList'] = 2
+profile['browser.helperApps.neverAsk.saveToDisk'] = 'application/pdf'
+browser = Watir::Browser.new :firefox, profile: profile
+browser.goto 'http://www.lanzou.com/u'
+browser.show_frames
+browser.frames
+browser.frame
+browser.frame.id
+browser.frames.first
+browser.frames.first.elements
+browser.frames(id: 'usename').exists?
+browser.frames(id: 'usename')
+browser.frame.first
+browser.frame.id
+browser.element(:xpath=>".//*[local-name()='frame'][@id='usename']").click
+browser.goto ' https://up.woozooo.com/account.php?action=login&ref=/mydisk.php'
+browser.element(id: 'username').exists?
+browser.element(id: 'username').set('1311360225')
+browser.text_field(name: 'username').exists?
+username = browser.text_field(name: 'username')
+username.set('13113602265')
+browser.text_field(name: 'password').exists?
+password = browser.text_field(name: 'password')
+password.set('lsq1213LAN')
+browser.element(id:'s3').exists?
+button = browser.element(id:'s3')
+button.click
+require 'watir'
+profile = Selenium::WebDriver::Firefox::Profile.new
+profile['browser.download.dir'] = 'C:\Users\Administrator\Downloads'
+profile['browser.download.folderList'] = 2
+profile['browser.helperApps.neverAsk.saveToDisk'] = 'application/pdf'
+browser = Watir::Browser.new :firefox, profile: profile
+browser.goto 'http://www.lanzou.com/u'
+browser.frames(id: 'usename').exists?
+browser.frames(id: 'usename')
+browser.frame.first
+browser.frame.id
+browser.element(:xpath=>".//*[local-name()='frame'][@id='usename']").click
+browser.goto ' https://up.woozooo.com/account.php?action=login&ref=/mydisk.php'
+browser.element(id: 'username').exists?
+browser.element(id: 'username').set('1311360225')
+browser.text_field(name: 'username').exists?
+username = browser.text_field(name: 'username')
+username.set('13113602265')
+browser.text_field(name: 'password').exists?
+password = browser.text_field(name: 'password')
+password.set('lsq1213LAN')
+browser.element(id:'s3').exists?
+button = browser.element(id:'s3')
+button.click
+pry
+q
+a.rb
+ls
+reload-code a.rb
+reload-code "a.rb"
+help
+help import-set 
+import-set a.rb
+import-set "a.rb"
+require 'watir'
+profile = Selenium::WebDriver::Firefox::Profile.new
+profile['browser.download.dir'] = 'C:\Users\Administrator\Downloads'
+profile['browser.download.folderList'] = 2
+profile['browser.helperApps.neverAsk.saveToDisk'] = 'application/pdf'
+browser = Watir::Browser.new :firefox, profile: profile
+browser.goto 'http://www.lanzou.com/u'
+browser.frames(id: 'usename').exists?
+browser.frames(id: 'usename')
+browser.goto ' https://up.woozooo.com/account.php?action=login&ref=/mydisk.php'
+browser.element(id: 'username').exists?
+browser.element(id: 'username').set('1311360225')
+browser.text_field(name: 'username').exists?
+username = browser.text_field(name: 'username')
+username.set('13113602265')
+browser.text_field(name: 'password').exists?
+password = browser.text_field(name: 'password')
+password.set('lsq1213LAN')
+browser.element(id:'s3').exists?
+button = browser.element(id:'s3')
+button.click
+ls
