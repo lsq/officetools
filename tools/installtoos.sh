@@ -7,13 +7,14 @@ pacman -Sy bash man pacman msys2-runtime base-devel --noconfirm --needed
 pacman -Sy mingw64/mingw-w64-x86_64-clang mingw64/mingw-w64-x86_64-sqlite3 \
 		  mingw64/mingw-w64-x86_64-libxml2 msys/libxml2-devel mingw64/mingw-w64-x86_64-libxslt msys/libxslt-devel\
 		  mingw64/mingw-w64-x86_64-sqlcipher msys/libsqlite-devel mingw64/mingw-w64-x86_64-ruby \
-		  mingw64/mingw-w64-x86_64-polipo 
+		  mingw64/mingw-w64-x86_64-polipo \
+		  --noconfirm --needed
 pacman -Sy mingw64/mingw-w64-x86_64-python2 mingw-w64-x86_64-make\
 		  mingw-w64-x86_64-toolchain libraries development compression VCS sys-utils net-utils msys2-devel\
 		  mingw-w64-x86_64-cmake mingw-w64-x86_64-gcc mingw64/mingw-w64-x86_64-python3-pip mingw64/mingw-w64-x86_64-python2-pip \
 		  --noconfirm --needed
 # pacman -S git subversion mingw64/mingw-w64-x86_64-ruby --noconfirm
-pacman -Sy git subversion  --noconfirm
+pacman -Sy git subversion  --noconfirm --needed
 pip2 install requests
 cat >~/.polipo <<EOF
 socksParentProxy="127.0.0.1:10808"
@@ -46,4 +47,4 @@ gem sources -l
 cd /c/Users/Administrator/github/robust_excel_ole && gem build robust_excel_ole.gemspec && gem install robust_excel_ole*.gem
 # cd /c/Users/Administrator/github/prawn && gem build prawn.gemspec && gem install prawn*.gem
 cd /c/Users/Administrator/github/pdfkit && gem build pdfkit.gemspec && gem install pdfkit*.gem
-gem install mechanize pry watir pincers ffi
+gem install mechanize pry watir pincers ffi  rubocop rufo
