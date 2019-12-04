@@ -1,5 +1,7 @@
 require 'watir'
 #require 'pry'
+
+## use pry -r ./filename.rb
 profile = Selenium::WebDriver::Firefox::Profile.new
 profile['browser.download.dir'] = 'C:\Users\Administrator\Downloads'
 profile['browser.download.folderList'] = 2
