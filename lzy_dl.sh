@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 which python
-pip install beautifulsoup4 requests json re
+pip3 install b4 requests 
 
 cd $APPVEYOR_BUILD_FOLDER/$APPVEYOR_JOB_ID
-python $APPVEYOR_BUILD_FOLDER/tools/lzy_dl.py
+python3 $APPVEYOR_BUILD_FOLDER/tools/lzy_dl.py
