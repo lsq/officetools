@@ -46,7 +46,7 @@ $env:Path +=  ";.\curl\bin"
 #$client.DownloadFile('https://mirrors.cqu.edu.cn/CTAN/systems/texlive/tlnet/tlpkg/installer/wget/wget.exe','wget.exe')
 # wget -uri https://mirrors.cqu.edu.cn/CTAN/systems/texlive/tlnet/tlpkg/installer/wget/wget.exe -OutFile wget.exe
 #$client.DownloadFile('http://mirrors.ustc.edu.cn/CTAN/systems/texlive/tlnet/tlpkg/installer/wget/wget.exe', 'wget.exe')
-curl.exe -sLS -o $msys2 http://mirrors.ustc.edu.cn/msys2/distrib/x86_64/msys2-x86_64-20190524.exe
+wget.exe -c -t -o $msys2 http://mirrors.ustc.edu.cn/msys2/distrib/x86_64/msys2-x86_64-20190524.exe
 # $client.DownloadFile('http://iso.mirrors.ustc.edu.cn/msys2/distrib/x86_64/msys2-x86_64-20190524.exe', $msys2)
 (Test-Path $msys2)  -and (Start-Process .\$msys2 -wait)
 if(Test-Path $msbash) { echo "bash in path..." }else{ exit }
@@ -58,6 +58,12 @@ curl.exe -sLSO  "https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF
 wget.exe -c -t 3 -d https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-win64.zip
 unzip.exe -o geckodriver-v0.26.0-win64.zip
 cp geckodriver*.exe C:\Windows\System32
+wget.exe -c -t 3 -d https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v7.8.1/npp.7.8.1.Installer.x64.exe
+(Test-Path npp.7.8.1.Installer.x64.exe)  -and  (Start-Process .\npp.7.8.1.Installer.x64.exe )
+wget.exe -c -t 3 -d https://github.com/kkkgo/KMS_VL_ALL/releases/download/32/KMS_VL_ALL-32.zip
+unzip.exe -o KMS_VL_ALL-32.zip
+wget.exe -c -t 3 -d https://github.com/lboulard/vim-win32-build/releases/download/v8.1.2384/gvim-8.1.2384-amd64.exe
+(Test-Path gvim-8.1.2384-amd64.exe)  -and  (Start-Process .\gvim-8.1.2384-amd64.exe )
 curl.exe  -vSL https://raw.githubusercontent.com/lsq/officetools/master/tools/pacmanset.sh -o $pacmanset
 curl.exe -vSL https://raw.githubusercontent.com/lsq/officetools/master/tools/installtoos.sh -o $installtool
 #(Test-Path $msys2)  -and (cmd /c $msys2)
@@ -68,6 +74,9 @@ if((Test-Path $msbash) -and (Test-Path $pacmanset) ){ cmd.exe /c $msbash -x $pac
 Start-Process -FilePath "$env:comspec" -ArgumentList "/c", $msbash, "-c `"pacman -Syu`""  -Wait
 Start-Process -FilePath "$env:comspec" -ArgumentList "/c", $msbash, "-c `"pacman -Syu`""  -Wait
 Start-Process -FilePath "$env:comspec" -ArgumentList "/c", $msbash, "-x $installtool"  -Wait
+
+(Test-Path $env:USERPROFILE\vimfiles)  -and  (mv $env:USERPROFILE\vimfiles $env:USERPROFILE\vimfiles_orig)
+
 
 
 
