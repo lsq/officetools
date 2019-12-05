@@ -25,6 +25,7 @@ EOF
 # 并且修改
 # wubi_pinyin.schema.yaml 
 # switches下的reset 值由0改为1，意思是重启后默认由中文状态改为英文状态
+sed -i '/switches:/,/^$/{/- name: ascii_mode/{N;s/\(reset:\).*/\1 1/}}' /usr/share/rime-data/wubi_pinyin.schema.yaml
 #
 # https://www.cnblogs.com/anliven/p/6218741.html
 cat > /etc/docker/daemon.json <<EOF
