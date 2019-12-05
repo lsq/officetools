@@ -30,7 +30,7 @@ if [ $? -eq 0 ]; then
 else
 	polipo.exe -c ~/.polipo &
 fi
-cd /c/Users/Administrator/
+cd  $USERPROFILE
 mkdir -p github
 cd github
 # git config --global http.proxy "http://127.0.0.1:8123"
@@ -44,7 +44,7 @@ gem -v
 # CAfile: C:/msys64/mingw64/ssl/certs/ca-bundle.crt
 gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
 gem sources -l
-cd /c/Users/Administrator/github/robust_excel_ole && gem build robust_excel_ole.gemspec && gem install robust_excel_ole*.gem
+cd  $USERPROFILE\github\robust_excel_ole && gem build robust_excel_ole.gemspec && gem install robust_excel_ole*.gem
 # cd /c/Users/Administrator/github/prawn && gem build prawn.gemspec && gem install prawn*.gem
-cd /c/Users/Administrator/github/pdfkit && gem build pdfkit.gemspec && gem install pdfkit*.gem
+cd  $USERPROFILE\github\pdfkit && gem build pdfkit.gemspec && gem install pdfkit*.gem
 gem install rdoc mechanize pry watir pincers ffi  rubocop rufo
