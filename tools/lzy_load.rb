@@ -1,5 +1,5 @@
 require 'watir'
-#require 'pry'
+require 'pry'
 
 ## use pry -r ./filename.rb
 profile = Selenium::WebDriver::Firefox::Profile.new
@@ -14,10 +14,10 @@ username = browser.text_field(name: 'username')
 username.set('13113602265')
 browser.text_field(name: 'password').exists?
 password = browser.text_field(name: 'password')
-password.set('lsq1213LAN')
+password.set('比')
 browser.element(id:'s3').exists?
 button = browser.element(id:'s3')
 button.click
 
-#binding.pry
+binding.pry
 puts "finished !"
