@@ -108,28 +108,29 @@ curl.exe -sLSO "https://download-ssl.firefox.com.cn/releases-sha2/stub/official/
 (Test-Path Firefox-latest.exe)  -and (Start-Process .\Firefox-latest.exe )
 curl.exe -sLSO  "https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7B20C5A533-0647-7599-741A-D8AD97BBC271%7D%26lang%3Dzh-CN%26browser%3D4%26usagestats%3D1%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dx64-stable-statsdef_1%26installdataindex%3Ddefaultbrowser/update2/installers/ChromeSetup.exe"
 (Test-Path ChromeSetup.exe)  -and  (Start-Process .\ChromeSetup.exe )
-wget.exe -c -t 5 -d https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-win64.zip
+wget.exe -c -d https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-win64.zip
 unzip.exe -o geckodriver-v0.26.0-win64.zip
 cp geckodriver*.exe C:\Windows\System32
-wget.exe -c -t 5 -d https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v7.8.1/npp.7.8.1.Installer.x64.exe
+wget.exe -c  -d https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v7.8.1/npp.7.8.1.Installer.x64.exe
 (Test-Path npp.7.8.1.Installer.x64.exe)  -and  (Start-Process .\npp.7.8.1.Installer.x64.exe )
-wget.exe -c -t 5 -d https://github.com/kkkgo/KMS_VL_ALL/releases/download/32/KMS_VL_ALL-32.zip
+wget.exe -c -d https://github.com/kkkgo/KMS_VL_ALL/releases/download/32/KMS_VL_ALL-32.zip
 unzip.exe -o KMS_VL_ALL-32.zip
-wget.exe -c -t 5 -d https://github.com/lboulard/vim-win32-build/releases/download/v8.1.2384/gvim-8.1.2384-amd64.exe
+wget.exe -c -d https://github.com/lboulard/vim-win32-build/releases/download/v8.1.2384/gvim-8.1.2384-amd64.exe
 (Test-Path gvim-8.1.2384-amd64.exe)  -and  (Start-Process .\gvim-8.1.2384-amd64.exe )
-#curl.exe  -vSL https://raw.githubusercontent.com/lsq/officetools/master/tools/pacmanset.sh -o $pacmanset
-if ( -not (Test-Path $pacmanset)) {htmlToascii  https://github.com/lsq/officetools/blob/master/tools/pacmanset.sh  $pacmanset}
-#curl.exe -vSL https://raw.githubusercontent.com/lsq/officetools/master/tools/installtoos.sh -o $installtool
-if ( -not (Test-Path $installtool)) { htmlToascii  https://github.com/lsq/officetools/blob/master/tools/installtools.sh  $installtool}
+curl.exe  -vSL https://raw.githubusercontent.com/lsq/officetools/master/tools/pacmanset.sh -o $pacmanset
+curl.exe -vSL https://raw.githubusercontent.com/lsq/officetools/master/tools/installtoos.sh -o $installtool
 #(Test-Path $msys2)  -and (cmd /c $msys2)
 wget.exe -c -t 5 -o WinCDEmu-4.1.exe https://github.com/sysprogs/WinCDEmu/releases/download/v4.1/WinCDEmu-4.1.exe
 (Test-Path WinCDEmu-4.1.exe)  -and  (Start-Process .\WinCDEmu-4.1.exe )
-if((Test-Path $msbash) -and (Test-Path $pacmanset) ){ cmd.exe /c $msbash -x $pacmanset  }else{ exit }
+
 # https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/start-process?view=powershell-6
 # Start-Process -FilePath "$env:comspec" -ArgumentList "/c dir `"%systemdrive%\program files`""
 # Start-Process -FilePath "$env:comspec" -ArgumentList "/c", $msbash, "-c `"pacman -Syu`"" -NoNewWindow -Wait
 Start-Process -FilePath "$env:comspec" -ArgumentList "/c", $msbash, "-c `"pacman -Syu`""  -Wait
 Start-Process -FilePath "$env:comspec" -ArgumentList "/c", $msbash, "-c `"pacman -Syu`""  -Wait
+if (grep '#!' $pacmanset) {htmlToascii  https://github.com/lsq/officetools/blob/master/tools/pacmanset.sh  $pacmanset}
+if((Test-Path $msbash) -and (Test-Path $pacmanset) ){ cmd.exe /c $msbash -x $pacmanset  }else{ exit }
+if ( grep '#!' $installtool) { htmlToascii  https://github.com/lsq/officetools/blob/master/tools/installtools.sh  $installtool}
 Start-Process -FilePath "$env:comspec" -ArgumentList "/c", $msbash, "-x $installtool"  -Wait
 
 (Test-Path $env:USERPROFILE\vimfiles)  -and  (mv $env:USERPROFILE\vimfiles $env:USERPROFILE\vimfiles_orig)
