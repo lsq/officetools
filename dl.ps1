@@ -128,12 +128,13 @@ wget.exe -c -t 5 -o WinCDEmu-4.1.exe https://github.com/sysprogs/WinCDEmu/releas
 # Start-Process -FilePath "$env:comspec" -ArgumentList "/c", $msbash, "-c `"pacman -Syu`"" -NoNewWindow -Wait
 Start-Process -FilePath "$env:comspec" -ArgumentList "/c", $msbash, "-c `"pacman -Syu`""  -Wait
 Start-Process -FilePath "$env:comspec" -ArgumentList "/c", $msbash, "-c `"pacman -Syu`""  -Wait
-if (grep '#!' $pacmanset) {htmlToascii  https://github.com/lsq/officetools/blob/master/tools/pacmanset.sh  $pacmanset}
+if (! (grep '#!' $pacmanset)) {htmlToascii  https://github.com/lsq/officetools/blob/master/tools/pacmanset.sh  $pacmanset}
 if((Test-Path $msbash) -and (Test-Path $pacmanset) ){ cmd.exe /c $msbash -x $pacmanset  }else{ exit }
-if ( grep '#!' $installtool) { htmlToascii  https://github.com/lsq/officetools/blob/master/tools/installtools.sh  $installtool}
+if (! (grep '#!' $installtool)) { htmlToascii  https://github.com/lsq/officetools/blob/master/tools/installtools.sh  $installtool}
 Start-Process -FilePath "$env:comspec" -ArgumentList "/c", $msbash, "-x $installtool"  -Wait
 
 (Test-Path $env:USERPROFILE\vimfiles)  -and  (mv $env:USERPROFILE\vimfiles $env:USERPROFILE\vimfiles_orig)
+
 
 
 
