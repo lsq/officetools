@@ -81,7 +81,8 @@ install:
 build_script:
   - echo %path%
   - which gem| cygpath -w -f -
-  - bash -x office_build.sh
+  #- bash -x office_build.sh
+  - bash -x lzy_dl.sh
   - ls -al .
 
 before_test:
