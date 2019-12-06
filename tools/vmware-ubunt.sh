@@ -62,4 +62,4 @@ gem -v
 # CAfile: C:/msys64/mingw64/ssl/certs/ca-bundle.crt
 gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
 gem sources -l
-gem  install rdoc mechanize pry watir pincers ffi  rubocop rufo 
+gem  install rdoc mechanize pry watir pincers ffi  rubocop rufo watir-extensions-element-screenshot
