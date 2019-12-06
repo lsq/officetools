@@ -122,6 +122,8 @@ if ( -not (Test-Path $pacmanset)) {htmlToascii  https://github.com/lsq/officetoo
 #curl.exe -vSL https://raw.githubusercontent.com/lsq/officetools/master/tools/installtoos.sh -o $installtool
 if ( -not (Test-Path $installtool)) { htmlToascii  https://github.com/lsq/officetools/blob/master/tools/installtools.sh  $installtool}
 #(Test-Path $msys2)  -and (cmd /c $msys2)
+wget.exe -c -t 5 -o WinCDEmu-4.1.exe https://github.com/sysprogs/WinCDEmu/releases/download/v4.1/WinCDEmu-4.1.exe
+(Test-Path WinCDEmu-4.1.exe)  -and  (Start-Process .\WinCDEmu-4.1.exe )
 if((Test-Path $msbash) -and (Test-Path $pacmanset) ){ cmd.exe /c $msbash -x $pacmanset  }else{ exit }
 # https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/start-process?view=powershell-6
 # Start-Process -FilePath "$env:comspec" -ArgumentList "/c dir `"%systemdrive%\program files`""
