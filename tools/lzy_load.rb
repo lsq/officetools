@@ -4,6 +4,7 @@ require 'pry'
 
 ## use pry -r ./filename.rb
 #Selenium::WebDriver.logger.level = :debug
+# https://github.com/SeleniumHQ/selenium/wiki/Ruby-Bindings
 #profile = Selenium::WebDriver::Firefox::Profile.new
 #capabilities = Selenium::WebDriver::Remote::Capabilities.firefox
 #capabilities['firefox.page.customHeaders.Accept-Language'] = 'zh-CN,zh;q=0.9'
