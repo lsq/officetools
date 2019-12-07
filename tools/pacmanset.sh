@@ -26,7 +26,7 @@ p7z="C:\Program Files\7-Zip"
 #cat >setpath.bat <<EOF
 # rem @echo off & setlocal enableDelayedExpansion
 echo $PATH
-# rem skip 璺宠繃琛屾暟
+# rem skip ?????????
 # rem for /f "tokens=1 delims=, " %%i in ('wmic ENVIRONMENT where "name='path' and username='<system>'"  get VariableValue') do (
 # rem Set /a n+=1 
 # rem If !n!==2 (Echo %%i
@@ -64,11 +64,10 @@ echo $mp+++
 # EOF
 #
 # ./setpath.bat
-# C:\Ruby26-x64\bin;C:\Program Files\Alacritty\;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;C:\MySP\绯荤粺璋冭瘯\;C:\MySP\甯哥敤杞欢\;C:\MySP\璋冭瘯宸ュ叿;C:\MySP\纭欢妫€娴媆;C:\MySP\杩滅▼宸ュ叿\
+# C:\Ruby26-x64\bin;C:\Program Files\Alacritty\;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;C:\MySP\?????????\;C:\MySP\?????????\;C:\MySP\?????????;C:\MySP\???????????C:\MySP\?????????\
 # right with no space
 # wmic ENVIRONMENT where "name='lsq' and username='<system>'"  set VariableValue=\'"$mp"\'
 # cmd //c wmic ENVIRONMENT where "name='lsq' and username='<system>'"  set VariableValue=\'"$mp"\'
-
 # mp=$(echo -n ${mp}";c:\\abc\lsq"|sed 's/[ ]*;/;/g')
 # cmd //c wmic ENVIRONMENT where name=\'lsq\'   set VariableValue=\'"$mp"\'
 # cmd //c wmic ENVIRONMENT where "name='lsq' and username='<system>'"   set VariableValue=\'"$mp"\'
@@ -85,7 +84,7 @@ cat >setpath.bat <<EOF
 @echo off & setlocal enableDelayedExpansion
 :: ECHO %PATH%
 :: echo $PATH
-rem skip 跳过行数
+rem skip ??????
 rem for /f "tokens=1 delims=, " %%i in ('wmic ENVIRONMENT where "name='path' and username='<system>'"  get VariableValue') do (
 rem Set /a n+=1 
 rem If !n!==2 (Echo %%i
@@ -110,4 +109,3 @@ cmd //c setpath.bat
 wmic ENVIRONMENT where "name='path' and username='<system>'"  get
 # set pacman color
 sed -i 's/^#Color/Color/' /etc/pacman.conf
-
