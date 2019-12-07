@@ -1,0 +1,20 @@
+{
+	"request": [],
+	"sendHeader": [
+		{
+			"enable": true,
+			"name": "https://vip.d0.baidupan.com",
+			"ruleType": "modifySendHeader",
+			"matchType": "all",
+			"pattern": "",
+			"exclude": "",
+			"group": "lzy",
+			"isFunction": false,
+			"action": {
+				"name": "accept-language",
+				"value": "zh-CN,zh;q=0.9"
+			}
+		}
+	],
+	"receiveHeader": []
+}
