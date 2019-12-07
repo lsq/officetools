@@ -45,8 +45,8 @@ wget -c -t 3 https://github.com/mozilla/geckodriver/releases/download/v0.26.0/ge
 tar xf geckodriver-v0.26.0-linux64.tar.gz &&
 cp geckodriver /usr/bin/ &
 wget -c https://chromedriver.storage.googleapis.com/78.0.3904.105/chromedriver_linux64.zip &&
-tar xf geckodriver-v0.26.0-linux64.tar.gz &&
-cp geckodriver /usr/bin/ &
+unzip -o chromedriver_linux64.zip &&
+cp chromedriver /usr/bin/ &
 
 curl -sLf https://spacevim.org/install.sh | bash
 
