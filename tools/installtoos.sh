@@ -16,6 +16,7 @@ pacman -Sy mingw64/mingw-w64-x86_64-python2 mingw-w64-x86_64-make\
 # pacman -S git subversion mingw64/mingw-w64-x86_64-ruby --noconfirm
 pacman -Sy git subversion  --noconfirm --needed
 pip2 install requests
+pip3 install bs4
 cat >~/.polipo <<EOF
 socksParentProxy="127.0.0.1:10808"
 socksProxyType="socks5"
