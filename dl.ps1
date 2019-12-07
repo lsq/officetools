@@ -101,8 +101,7 @@ $sedtext = @"
 $sedtext | out-file  .\htmlToascii.sed -Encoding utf8
 sed -i 's/\xEF\xBB\xBF//g' .\htmlToascii.sed
 function htmlToascii($url, $localfile){
-curl.exe -sSL $url | sed -n -f .\htmlToascii.sed > $localfile
-sed -i 's/\xEF\xBB\xBF//g' $localfile
+curl.exe -sSL $url | sed -n -f .\htmlToascii.sed | out-file $localfile  -Encoding utf8
 }
 
 ## 
