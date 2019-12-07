@@ -57,3 +57,55 @@ print(res4.headers['Location'])
 # 来源：掘金
 # 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
+#  后续调试细节
+# 下载链接生成是由javascript中f_sha(f_di)生成
+# 而f_sha(f_id)函数存放在https://pc.woozooo.com/includes/js/coms9.js?v7277这个文件中需要下载分析
+# 以下为js代码
+# function f_sha(fid){
+# 	$('div#f_sha1').text('');
+# 	$('div#code').text('');
+# 	var url;
+# 	url ='http'+ isssl +'://pan.lanzou.com/' + fid+'/';
+# 	$('div#f_sha').show(150);
+# 	$('div#f_sha1').text('获取中...');
+# 
+# 	$.ajax({
+# 			type : 'post', // 发送post请求, 查询必须要附带cookie, 否则查询不成功;Response为json数据
+# 			url : '/doupload.php', // https://pc.woozooo.com/doupload.php
+# 			data : { 'task':22,'file_id':fid }, // Form Data: task=22&file_id=13473382
+# 			dataType : 'json',
+# 			success:function(msg){
+# 				if(msg.zt == '1'){
+# 					//success
+# 					if(msg.info.onof ==1){
+# 						//on
+# 						url =msg.info.is_newd +'/' + msg.info.f_id +'<br>密码:'+msg.info.pwd + msg.info.taoc;
+# 						//urls ='http'+ isssl +'://pan.lanzou.com/' + msg.info.f_id;
+# 						url_d = msg.info.is_newd+'/'+msg.info.f_id;
+# 						code_suc(url_d);
+# 						$('div#f_sha1').html(url);
+# 					}else{
+# 						//无密码
+# 						//t.cn
+# 						//tcn(msg.info.f_id); 
+#                                               // info.is_newd: "https:\/\/www.lanzous.com"是返回的请求host;
+#                                               // info.f_id: "i7t3s9g"是返回请求路径;
+#                                               // taoc: "";
+# 						url =msg.info.is_newd +'/' + msg.info.f_id + msg.info.taoc;
+# 						//urls ='http'+ isssl +'://pan.lanzou.com/' + msg.info.f_id;
+# 						url_d = msg.info.is_newd+'/'+msg.info.f_id;
+# 						code_suc(url_d);
+# 						$('div#f_sha1').html(url);
+# 					}
+# 					url = msg.info.is_newd + '/' + msg.info.f_id;
+# 				}else{
+# 					w_info('获取失败，请重试');
+# 				}
+# 			},
+# 			error:function(){
+# 				w_info('获取失败，请重试');
+# 			}
+# 	
+# 		});
+# 
+# }
