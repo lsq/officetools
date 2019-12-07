@@ -23,9 +23,7 @@ socksProxyType="socks5"
 proxyAddress="127.0.0.1"
 proxyPort=8123
 EOF
-
 ps aux|grep polipo
- 
 if [ $? -eq 0 ]; then
 	echo "already running"
 else
@@ -35,11 +33,9 @@ cd  $USERPROFILE
 mkdir -p github
 cd github
 # git config --global http.proxy "http://127.0.0.1:8123"
-
 [ ! -d robust_excel_ole ] && git clone https://github.com/Thomas008/robust_excel_ole.git
 # [ ! -d prawn ] && git clone https://github.com/prawnpdf/prawn.git
 [ ! -d pdfkit ] && git clone https://github.com/pdfkit/pdfkit.git
-
 gem update --system
 gem -v
 # CAfile: C:/msys64/mingw64/ssl/certs/ca-bundle.crt
@@ -48,4 +44,4 @@ gem sources -l
 cd  $USERPROFILE\github\robust_excel_ole && gem build robust_excel_ole.gemspec && gem install robust_excel_ole*.gem
 # cd /c/Users/Administrator/github/prawn && gem build prawn.gemspec && gem install prawn*.gem
 cd  $USERPROFILE\github\pdfkit && gem build pdfkit.gemspec && gem install pdfkit*.gem
-gem install rdoc mechanize pry watir pincers ffi  rubocop rufo
+gem install rdoc watir-extensions-element-screenshot mechanize pry watir pincers ffi  rubocop rufo
