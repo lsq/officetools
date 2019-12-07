@@ -15,6 +15,9 @@ function str_convert() {
 sed -i '/## msys2.org/a Server = https://mirrors.tuna.tsinghua.edu.cn/msys2/mingw/i686' /etc/pacman.d/mirrorlist.mingw32
 sed -i '/## msys2.org/a Server = https://mirrors.tuna.tsinghua.edu.cn/msys2/mingw/x86_64' /etc/pacman.d/mirrorlist.mingw64
 sed -i '/## msys2.org/a Server = https://mirrors.tuna.tsinghua.edu.cn/msys2/msys/$arch' /etc/pacman.d/mirrorlist.msys
+sed -i '/## msys2.org/a Server = https://mirrors.huaweicloud.com/msys2/mingw/i686' /etc/pacman.d/mirrorlist.mingw32
+sed -i '/## msys2.org/a Server = https://mirrors.huaweicloud.com/msys2/mingw/x86_64' /etc/pacman.d/mirrorlist.mingw64
+sed -i '/## msys2.org/a Server = https://mirrors.huaweicloud.com/msys2/msys/$arch' /etc/pacman.d/mirrorlist.msys
 # echo -e 'set path_=%Path%\r\nsetx "Path" "%path_%;C:\Ruby25-x64\msys64\usr\\bin;C:\Ruby25-x64\msys64\mingw64\\bin" /m' >setpath.sh
 rubydir=$(ls /c/Ruby*/ -d |awk -F'/' '{print $3}')
 msysbin="${rubydir}\msys64\usr\bin"
