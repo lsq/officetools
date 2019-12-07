@@ -46,10 +46,10 @@ $env:Path +=  ";.\curl\bin"
 #$client.DownloadFile('https://mirrors.cqu.edu.cn/CTAN/systems/texlive/tlnet/tlpkg/installer/wget/wget.exe','wget.exe')
 # wget -uri https://mirrors.cqu.edu.cn/CTAN/systems/texlive/tlnet/tlpkg/installer/wget/wget.exe -OutFile wget.exe
 #$client.DownloadFile('http://mirrors.ustc.edu.cn/CTAN/systems/texlive/tlnet/tlpkg/installer/wget/wget.exe', 'wget.exe')
-# wget.exe -c -t 5 -o $msys2 https://mirrors.tuna.tsinghua.edu.cn/msys2/distrib/x86_64/msys2-x86_64-20190524.exe
+# wget.exe -c -t 5 -O $msys2 https://mirrors.tuna.tsinghua.edu.cn/msys2/distrib/x86_64/msys2-x86_64-20190524.exe
 # curl.exe -sSLO https://mirrors.tuna.tsinghua.edu.cn/msys2/distrib/x86_64/msys2-x86_64-20190524.exe
-wget.exe -o $msys2 https://mirrors.huaweicloud.com/msys2/distrib/x86_64/msys2-x86_64-20190524.exe
-# wget.exe -c -t 5 -o $msys2 http://mirrors.ustc.edu.cn/msys2/distrib/x86_64/msys2-x86_64-20190524.exe
+wget.exe -O $msys2 https://mirrors.huaweicloud.com/msys2/distrib/x86_64/msys2-x86_64-20190524.exe
+# wget.exe -c -t 5 -O $msys2 http://mirrors.ustc.edu.cn/msys2/distrib/x86_64/msys2-x86_64-20190524.exe
 # $client.DownloadFile('http://iso.mirrors.ustc.edu.cn/msys2/distrib/x86_64/msys2-x86_64-20190524.exe', $msys2)
 (Test-Path $msys2)  -and (Start-Process .\$msys2 -wait)
 if(Test-Path $msbash) { echo "bash in path..." }else{ exit }
