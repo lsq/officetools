@@ -5,22 +5,23 @@ agent.user_agent_alias = 'Windows Mozilla'
 page = agent.get('https://up.woozooo.com/account.php?action=login&ref=/mydisk.php')
 page.form_with(name:'user_form')
 loginform = page.form_with(name:'user_form')
-if File.exist?("cookies.yaml")
+#if File.exist?("cookies.yaml")
   #agent.cookie_jar.load("cookies.yaml")
   puts "rewrite now...."
 # else
 loginform.username = '13113602265'
 loginform
-loginform.password = 'x'
+loginform.password = 'lsq1213LAN'
 loginform
+agent.submit(loginform,loginform.button_with(value:'登 陆'))
+agent.cookie_jar.save("cookies.yaml", session: true)
 loginpage = agent.submit(loginform,loginform.button_with(value:'登 陆'))
-end
+#end
 
 # screen-scrapey stuff
 #agent.cookie_jar.save("cookies.yaml")
 #But you can override this behavior with an option:
 
-agent.cookie_jar.save("cookies.yaml", session: true)
 #agent.cookie_jar.save("cookies.yaml", session: true)
 # With the session flag set, Mechanize will write out the full contents of its cookie jar for later loading.
 #puts loginpage.link_with(text:/Lanzou/)
