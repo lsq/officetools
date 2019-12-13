@@ -55,7 +55,7 @@ install:
   - ls -al
   - df -h
   # - setup.exe /configure o2019.xml
-  # - cmd: cd %ProgramFiles%
+   - cmd: dir %ProgramFiles%
   # - ls -al
   - cd %APPVEYOR_BUILD_FOLDER%
   - bash -x appveyor_prepare.sh
