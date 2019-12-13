@@ -83,7 +83,7 @@ build_script:
   - which gem| cygpath -w -f -
   #- bash -x office_build.sh
   #- bash -x lzy_dl.sh
-  - bash -x tools/curl_gecko.sh
+  - .\tools\curl_gecko.bat
   - ls -al .
 
 before_test:
