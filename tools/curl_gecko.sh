@@ -1,7 +1,7 @@
 env
 cd "$PROGRAMFILES\Mozilla Firefox"
 ls -alh
-firefox.exe --version
+cmd //c .\firefox.exe --version
 which geckodriver
 # cmd //c start cmd.exe /k "geckodriver.exe -vv "
 cmd //c geckodriver.exe -vv &
