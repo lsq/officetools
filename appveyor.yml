@@ -84,7 +84,7 @@ build_script:
   #- bash -x office_build.sh
   #- bash -x lzy_dl.sh
   # - .\tools\curl_gecko.bat
-  - bash -x curl_gecko.sh
+  - bash -x tools/curl_gecko.sh
   - ls -al .
 
 before_test:
