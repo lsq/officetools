@@ -55,8 +55,8 @@ install:
   - ls -al
   - df -h
   # - setup.exe /configure o2019.xml
-  - cmd: dir %ProgramFiles%
-  # - ls -al
+  - cmd: cd %ProgramFiles%
+  - ls -ahl
   - cd %APPVEYOR_BUILD_FOLDER%
   - bash -x appveyor_prepare.sh
   - which ruby| cygpath -w -f -
