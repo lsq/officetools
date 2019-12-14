@@ -1,4 +1,7 @@
 env
+wget -c -O geckodriver-v0.26.0-win64.zip https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-win64.zip
+unzip geckodriver-v0.26.0-win64.zip
+cp geckodriver.exe C:\Windows\
 cd "$PROGRAMFILES\Mozilla Firefox"
 ls -alh
 cmd //c ".\firefox.exe --version"
