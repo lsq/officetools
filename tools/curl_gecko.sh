@@ -1,10 +1,10 @@
 env
 wget -c -O geckodriver-v0.26.0-win64.zip https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-win64.zip
 unzip geckodriver-v0.26.0-win64.zip
-cp geckodriver.exe C:\Windows\
+cp geckodriver.exe `echo -n "C:\Windows\" | cygpath -u -f -`
 cd "$PROGRAMFILES\Mozilla Firefox"
 ls -alh
-cmd //c ".\firefox.exe --version"
+cmd //c "firefox.exe --version"
 which geckodriver
 # cmd //c start cmd.exe /k "geckodriver.exe -vv "
 cmd //c geckodriver.exe -vv &
