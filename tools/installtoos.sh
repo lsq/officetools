@@ -49,4 +49,4 @@ gem sources -l
 cd  "$USERPROFILE\github\robust_excel_ole" && gem build robust_excel_ole.gemspec && gem install robust_excel_ole*.gem
 # cd /c/Users/Administrator/github/prawn && gem build prawn.gemspec && gem install prawn*.gem
 cd  "$USERPROFILE\github\pdfkit" && gem build pdfkit.gemspec && gem install pdfkit*.gem
-gem install rdoc watir-extensions-element-screenshot mechanize pry watir pincers ffi  rubocop rufo
+gem install rdoc watir-extensions-element-screenshot mechanize pry watir pincers ffi  rubocop rufo sqlite3 axlsx roo roo-xls
