@@ -41,6 +41,11 @@ git config --global https.proxy 'socks5://127.0.0.1:10808'
 [ ! -d robust_excel_ole ] && git clone https://github.com/Thomas008/robust_excel_ole.git
 # [ ! -d prawn ] && git clone https://github.com/prawnpdf/prawn.git
 [ ! -d pdfkit ] && git clone https://github.com/pdfkit/pdfkit.git
+[ ! -d axlsx ] && git clone https://github.com/randym/axlsx.git
+[ ! -d axlsx_styler ] && git clone https://github.com/axlsx-styler-gem/axlsx_styler.git
+[ ! -d sqlite3-ruby ] && git clone https://github.com/sparklemotion/sqlite3-ruby.git
+[ ! -d roo ] && git clone https://github.com/roo-rb/roo.git
+[ ! -d roo-xls ] && git clone https://github.com/roo-rb/roo-xls.git
 gem update --system
 gem -v
 # CAfile: C:/msys64/mingw64/ssl/certs/ca-bundle.crt
@@ -49,4 +54,4 @@ gem sources -l
 cd  "$USERPROFILE\github\robust_excel_ole" && gem build robust_excel_ole.gemspec && gem install robust_excel_ole*.gem
 # cd /c/Users/Administrator/github/prawn && gem build prawn.gemspec && gem install prawn*.gem
 cd  "$USERPROFILE\github\pdfkit" && gem build pdfkit.gemspec && gem install pdfkit*.gem
-gem install rdoc watir-extensions-element-screenshot mechanize pry watir pincers ffi  rubocop rufo sqlite3 axlsx roo roo-xls
+gem install rdoc watir-extensions-element-screenshot mechanize pry watir pincers ffi  rubocop rufo 
