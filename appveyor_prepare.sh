@@ -10,7 +10,7 @@ pacman -S --noconfirm --needed base-devel\
 pacman -S --noconfirm git subversion \
      mingw64/mingw-w64-x86_64-ruby \
 	   mingw64/mingw-w64-x86_64-libxslt python3 python\
-	   mingw64/mingw-w64-x86_64-sqlite3 msys/libsqlite-devel unzip
+	   mingw64/mingw-w64-x86_64-sqlite3 msys/libsqlite-devel unzip aria2
 pacman -Sy bash man pacman msys2-runtime base-devel --noconfirm --needed
 pacman -Sy mingw64/mingw-w64-x86_64-clang mingw64/mingw-w64-x86_64-sqlite3 \
 		  mingw64/mingw-w64-x86_64-libxml2 msys/libxml2-devel mingw64/mingw-w64-x86_64-libxslt msys/libxslt-devel\
@@ -19,7 +19,7 @@ pacman -Sy mingw64/mingw-w64-x86_64-clang mingw64/mingw-w64-x86_64-sqlite3 \
 		  --noconfirm --needed
 pacman -Sy mingw64/mingw-w64-x86_64-python2 mingw-w64-x86_64-make\
 		  mingw-w64-x86_64-toolchain libraries development compression VCS sys-utils net-utils msys2-devel\
-		  mingw-w64-x86_64-cmake mingw-w64-x86_64-gcc mingw64/mingw-w64-x86_64-python3-pip mingw64/mingw-w64-x86_64-python2-pip \
+		  mingw-w64-x86_64-cmake mingw-w64-x86_64-gcc mingw64/mingw-w64-x86_64-python3-pip  \
 		  --noconfirm --needed
 
 # 
