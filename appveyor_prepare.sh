@@ -10,7 +10,7 @@ pacman -S --noconfirm --needed base-devel\
 pacman -S --noconfirm git subversion \
      mingw64/mingw-w64-x86_64-ruby \
 	   mingw64/mingw-w64-x86_64-libxslt python3 python\
-	   mingw64/mingw-w64-x86_64-sqlite3 msys/libsqlite-devel unzip aria2
+	   mingw64/mingw-w64-x86_64-sqlite3 msys/libsqlite-devel unzip aria2c
 pacman -Sy bash man pacman msys2-runtime base-devel --noconfirm --needed
 pacman -Sy mingw64/mingw-w64-x86_64-clang mingw64/mingw-w64-x86_64-sqlite3 \
 		  mingw64/mingw-w64-x86_64-libxml2 msys/libxml2-devel mingw64/mingw-w64-x86_64-libxslt msys/libxslt-devel\
