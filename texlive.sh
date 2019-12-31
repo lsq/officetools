@@ -24,6 +24,8 @@ iso_install(){
   #cd /mnt
   ls -al
   #sudo ./install-tl -q -profile $APPVEYOR_BUILD_FOLDER/install_texlive.profile
+  # Mount-DiskImage -ImagePath
+  # Dismount-DiskImage -ImagePath "texlive.iso"
   cmd //c start texlive.iso
   cmd //c  install-tl-windows.bat -q -profile $APPVEYOR_BUILD_FOLDER/install_texlive.profile
 }
