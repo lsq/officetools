@@ -86,7 +86,8 @@ build_script:
   - bash -x office_build.sh
   #- bash -x lzy_dl.sh
   # - .\tools\curl_gecko.bat
-  - bash -x tools/curl_gecko.sh
+  #- bash -x tools/curl_gecko.sh
+  - bash -x texlive.sh
   - ls -al .
 
 before_test:
