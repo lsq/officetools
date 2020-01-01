@@ -26,8 +26,32 @@ iso_install(){
   #sudo ./install-tl -q -profile $APPVEYOR_BUILD_FOLDER/install_texlive.profile
   # Mount-DiskImage -ImagePath
   # Dismount-DiskImage -ImagePath "texlive.iso"
-  cmd //c start texlive.iso
-  cmd //c  install-tl-windows.bat -q -profile $APPVEYOR_BUILD_FOLDER/install_texlive.profile
+  cat > mountiso.ps1 <<'EOF'
+    # wmic LogicalDisk get FreeSpace,Size /value
+    $currentdir = "$PWD"
+    $texliveiso = "$currentdir\texlive.iso"
+    echo $texliveiso
+
+    wmic LogicalDisk list
+   # 获取逻辑磁盘盘符
+
+    wmic logicaldisk where drivetype=3 get deviceid
+
+    # 获取移动磁盘盘符
+
+    # wmic locgicaldisk where drivetype=2 get deviceid
+    # 获取光盘盘符
+    Mount-DiskImage -ImagePath $texliveiso
+    wmic locgicaldisk where drivetype=5 get deviceid
+    # Get-WmiObject -Class Win32_LogicalDisk | Where-Object {$_.DriveType -ne 5} |    Sort-Object -Property Name | Select-Object Name, VolumeName
+    # Get-WmiObject -Class Win32_logicaldisk -Filter "DriveType = '3'"
+    $isod = $(wmic locgicaldisk where drivetype=5 get deviceid | grep ":" |head -1).trim()
+    cd $isod
+    
+    Dismount-DiskImage -ImagePath $texliveiso
+  EOF
+  # cmd //c start texlive.iso
+  # cmd //c  install-tl-windows.bat -q -profile $APPVEYOR_BUILD_FOLDER/install_texlive.profile
 }
 
 ### for network install
