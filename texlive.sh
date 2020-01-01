@@ -47,9 +47,11 @@ iso_install(){
     # Get-WmiObject -Class Win32_logicaldisk -Filter "DriveType = '3'"
     $isod = $(wmic locgicaldisk where drivetype=5 get deviceid | grep ":" |head -1).trim()
     cd $isod
-    
+    ls 
+    .\install-tl-windows.bat -q -profile $APPVEYOR_BUILD_FOLDER\install_texlive.profile
     Dismount-DiskImage -ImagePath $texliveiso
-  EOF
+EOF
+  .\mountiso.ps1
   # cmd //c start texlive.iso
   # cmd //c  install-tl-windows.bat -q -profile $APPVEYOR_BUILD_FOLDER/install_texlive.profile
 }
