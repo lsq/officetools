@@ -14,47 +14,7 @@ basename() {
 
 ### only for iso file on unix
 #mount -t iso9660 -o ro,loop,noauto /your/texlive.iso /mnt
-iso_install(){
-  creat_profile
-  aria2c -c -s 20 -o texlive.iso $1
-  [ ! -f texlive.iso ] && exit 1
-  file texlive.iso
-  #sudo mount -t iso9660 -o ro,loop,noauto ./texlive.iso /mnt
-  #sudo mount texlive.iso /mnt
-  #cd /mnt
-  ls -al
-  #sudo ./install-tl -q -profile $APPVEYOR_BUILD_FOLDER/install_texlive.profile
-  # Mount-DiskImage -ImagePath
-  # Dismount-DiskImage -ImagePath "texlive.iso"
-  cat > mount-texliveiso.ps1 <<'EOF'
-    # wmic LogicalDisk get FreeSpace,Size /value
-    $currentdir = "$PWD"
-    $texliveiso = "$currentdir\texlive.iso"
-    echo $texliveiso
 
-    wmic LogicalDisk list
-   # 获取逻辑磁盘盘符
-
-    wmic logicaldisk where drivetype=3 get deviceid
-
-    # 获取移动磁盘盘符
-
-    # wmic locgicaldisk where drivetype=2 get deviceid
-    # 获取光盘盘符
-    Mount-DiskImage -ImagePath $texliveiso
-    wmic locgicaldisk where drivetype=5 get deviceid
-    # Get-WmiObject -Class Win32_LogicalDisk | Where-Object {$_.DriveType -ne 5} |    Sort-Object -Property Name | Select-Object Name, VolumeName
-    # Get-WmiObject -Class Win32_logicaldisk -Filter "DriveType = \'3\'"
-    $isod = $(wmic logicaldisk where drivetype=5 get deviceid | grep ":" |head -1).trim()
-    cd $isod
-    ls 
-     .\install-tl-windows.bat -q -profile $APPVEYOR_BUILD_FOLDER\install_texlive.profile
-    Dismount-DiskImage -ImagePath $texliveiso
-EOF
-  powershell -ExecutionPolicy Unrestricted  -File mount-texliveiso.ps1
-  # cmd //c start texlive.iso
-  # cmd //c  install-tl-windows.bat -q -profile $APPVEYOR_BUILD_FOLDER/install_texlive.profile
-}
 
 ### for network install
 creat_profile(){
@@ -158,6 +118,48 @@ decrypt()
   echo "Successfully decrypted"
 }
 
+iso_install(){
+  creat_profile
+  aria2c -c -s 20 -o texlive.iso $1
+  [ ! -f texlive.iso ] && exit 1
+  file texlive.iso
+  #sudo mount -t iso9660 -o ro,loop,noauto ./texlive.iso /mnt
+  #sudo mount texlive.iso /mnt
+  #cd /mnt
+  ls -al
+  #sudo ./install-tl -q -profile $APPVEYOR_BUILD_FOLDER/install_texlive.profile
+  # Mount-DiskImage -ImagePath
+  # Dismount-DiskImage -ImagePath "texlive.iso"
+  cat > mount-texliveiso.ps1 <<'EOF'
+    # wmic LogicalDisk get FreeSpace,Size /value
+    $currentdir = "$PWD"
+    $texliveiso = "$currentdir\texlive.iso"
+    echo $texliveiso
+
+    wmic LogicalDisk list
+   # 获取逻辑磁盘盘符
+
+    wmic logicaldisk where drivetype=3 get deviceid
+
+    # 获取移动磁盘盘符
+
+    # wmic locgicaldisk where drivetype=2 get deviceid
+    # 获取光盘盘符
+    Mount-DiskImage -ImagePath $texliveiso
+    wmic logicaldisk where drivetype=5 get deviceid
+    # Get-WmiObject -Class Win32_LogicalDisk | Where-Object {$_.DriveType -ne 5} |    Sort-Object -Property Name | Select-Object Name, VolumeName
+    # Get-WmiObject -Class Win32_logicaldisk -Filter "DriveType = \'3\'"
+    $isod = $(wmic logicaldisk where drivetype=5 get deviceid | grep ":" |head -1).trim()
+    cd $isod
+    ls 
+     .\install-tl-windows.bat -q -profile $currentdir\install_texlive.profile
+    Dismount-DiskImage -ImagePath $texliveiso
+EOF
+  powershell -ExecutionPolicy Unrestricted  -File mount-texliveiso.ps1
+  # cmd //c start texlive.iso
+  # cmd //c  install-tl-windows.bat -q -profile $APPVEYOR_BUILD_FOLDER/install_texlive.profile
+}
+
 # https://mirror.bjtu.edu.cn/ctan/systems/texlive/tlnet/tlpkg/
 echo "====================="
 echo "begin install........"
@@ -178,9 +180,10 @@ echo "installed use $((cost_time/60))min $((cost_time%60))s"
 
 cd $APPVEYOR_BUILD_FOLDER/tex/
 cp *.ttf $WINDIR/Fonts/
+cp *.ttf "$(install_texlive.profile|grep TEXDIR|gawk '{printf $2}')\texmf-dist\fonts\truetype\public\unfonts-extra"
 
-mkfontscale
-mkfontdir
+# mkfontscale
+# mkfontdir
 fc-cache -fv
 
 xelatex fy.tex
