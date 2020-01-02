@@ -177,7 +177,7 @@ echo "installed use $((cost_time/60))min $((cost_time%60))s"
 # to your PATH for current and future sessions.
 # Logfile: /usr/local/texlive/2019/install-tl.log
 
-export PATH=$(grep TEXDIR texlive.profile |gawk '{printf $2}'|cygpath.exe -u -f -)/bin/win32/:$PATH
+export PATH=$(grep TEXDIR install_texlive.profile|gawk '{printf $2}'|cygpath.exe -u -f -)/bin/win32/:$PATH
 cd $APPVEYOR_BUILD_FOLDER/tex/
 cp *.ttf $WINDIR/Fonts/
 cp *.ttf "$(grep TEXDIR $APPVEYOR_BUILD_FOLDER/install_texlive.profile|gawk '{printf $2}')\texmf-dist\fonts\truetype\public\unfonts-extra"
