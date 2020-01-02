@@ -51,7 +51,8 @@ iso_install(){
     .\install-tl-windows.bat -q -profile $APPVEYOR_BUILD_FOLDER\install_texlive.profile
     Dismount-DiskImage -ImagePath $texliveiso
 EOF
-  powershell mountiso.ps1
+  'powershell mountiso.ps1
+  powershell -ExecutionPolicy Unrestricted  -File mount-texlive.ps1
   # cmd //c start texlive.iso
   # cmd //c  install-tl-windows.bat -q -profile $APPVEYOR_BUILD_FOLDER/install_texlive.profile
 }
