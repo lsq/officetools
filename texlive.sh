@@ -45,7 +45,7 @@ iso_install(){
     wmic locgicaldisk where drivetype=5 get deviceid
     # Get-WmiObject -Class Win32_LogicalDisk | Where-Object {$_.DriveType -ne 5} |    Sort-Object -Property Name | Select-Object Name, VolumeName
     # Get-WmiObject -Class Win32_logicaldisk -Filter "DriveType = \'3\'"
-    $isod = $(wmic locgicaldisk where drivetype=5 get deviceid | grep ":" |head -1).trim()
+    $isod = $(wmic logicaldisk where drivetype=5 get deviceid | grep ":" |head -1).trim()
     cd $isod
     ls 
     .\install-tl-windows.bat -q -profile $APPVEYOR_BUILD_FOLDER\install_texlive.profile
