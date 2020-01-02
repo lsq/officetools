@@ -48,7 +48,7 @@ iso_install(){
     $isod = $(wmic logicaldisk where drivetype=5 get deviceid | grep ":" |head -1).trim()
     cd $isod
     ls 
-    # .\install-tl-windows.bat -q -profile $APPVEYOR_BUILD_FOLDER\install_texlive.profile
+     .\install-tl-windows.bat -q -profile $APPVEYOR_BUILD_FOLDER\install_texlive.profile
     Dismount-DiskImage -ImagePath $texliveiso
 EOF
   powershell -ExecutionPolicy Unrestricted  -File mount-texliveiso.ps1
@@ -114,11 +114,11 @@ collection-wintools 1
 collection-xetex 1
 instopt_adjustpath 1
 instopt_adjustrepo 1
-instopt_desktop_integration 1
-instopt_file_assocs 1
+#instopt_desktop_integration 1
+#instopt_file_assocs 1
 instopt_letter 0
 instopt_portable 0
-instopt_w32_multi_user 1
+#instopt_w32_multi_user 1
 instopt_write18_restricted 1
 tlpdbopt_autobackup 1
 tlpdbopt_backupdir tlpkg/backups
