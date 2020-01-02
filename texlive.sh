@@ -26,7 +26,7 @@ iso_install(){
   #sudo ./install-tl -q -profile $APPVEYOR_BUILD_FOLDER/install_texlive.profile
   # Mount-DiskImage -ImagePath
   # Dismount-DiskImage -ImagePath "texlive.iso"
-  cat > mountiso.ps1 <<'EOF'
+  cat > mount-texliveiso.ps1 <<'EOF'
     # wmic LogicalDisk get FreeSpace,Size /value
     $currentdir = "$PWD"
     $texliveiso = "$currentdir\texlive.iso"
@@ -51,7 +51,7 @@ iso_install(){
     .\install-tl-windows.bat -q -profile $APPVEYOR_BUILD_FOLDER\install_texlive.profile
     Dismount-DiskImage -ImagePath $texliveiso
 EOF
-  powershell -ExecutionPolicy Unrestricted  -File mount-texlive.ps1
+  powershell -ExecutionPolicy Unrestricted  -File mount-texliveiso.ps1
   # cmd //c start texlive.iso
   # cmd //c  install-tl-windows.bat -q -profile $APPVEYOR_BUILD_FOLDER/install_texlive.profile
 }
