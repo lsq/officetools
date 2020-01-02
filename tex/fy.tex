@@ -1,6 +1,8 @@
-%\documentclass[zihao=-4, UTF8]{ctexart}
-\documentclass[]{article}
+\documentclass[scheme=plain,UTF8]{ctexart}
+%\documentclass[]{article}
 \usepackage{xeCJK}
+\usepackage{needspace}
+% \usepackage{ctexcap}
 \usepackage{enumitem}
 \usepackage{color}
 \usepackage{longtable,booktabs}
@@ -8,7 +10,7 @@
 \usepackage{tabu}
 \usetikzlibrary{shapes.geometric, arrows}
 \usetikzlibrary{calc}
-\usepackage[top=2cm,bottom=2.5cm]{geometry}
+\usepackage[top=2cm,bottom=3cm]{geometry}
 \setCJKmainfont{FangSong_GB2312}
 %\setCJKmainfont{FangSong}
 
@@ -31,38 +33,65 @@
 % \AddEnumerateCounter{\chinese}{\chinese}{}
 
 
-%%\pagestyle{plain}
-%\ctexset {
-%% part/pagestyle = empty,
-%% chapter = {
-%% format = \raggedright,
-%% pagestyle = empty,
-%% },
-%section = {
-%name = {,.},
-%nameformat= \Large\bf,
-%%aftername = \par\medskip,
-%%number = \chinese{section},
+\pagestyle{plain}
+%%%%%%%%%% ctexcap %%%%%%%%
+% \CTEXsetup[name={第,节}, number={\chinese{\section}}]{section}
+
+%%%%%%%%%%%%%%%%%%%
+\ctexset {
+autoindent=true,
+figurename=图,
+tablename=表,
+appendixname=附录,
+% part/pagestyle = empty,
+% chapter = {
+% format = \raggedright,
+% pagestyle = empty,
+% },
+section = {
+name = {,、},
+% nameformat= \Large\bf,
+aftername = \medskip,
+number = \chinese{section},
 %number = \arabic{section},
-%format = \Large
-%}
-%}
+format = \zihao{3},
+break = \Needspace{.01\textheight},
+},
+subsection = {
+name = {（,）},
+% nameformat= \Large\bf,
+aftername = \medskip,
+number = \chinese{subsection},
+%number = \arabic{section},
+format = \zihao{3},
+},
+subsubsection = {
+name = {,.},
+% nameformat= \Large\bf,
+aftername = \space,
+number = \arabic{subsubsection},
+%number = \arabic{section},
+format = \zihao{3},
+nameformat = \bigskip\hfill,
+%beforeskip = 12pt,
+}
+}
 
 \begin{document}
 %\maketitle
-\thispagestyle{empty}
+%\thispagestyle{empty}
+\zihao{3}
 \begin{center}
-费用报销制度
+\Large 费用报销制度
 \end{center}
-
+\vspace{3ex}
+%\zihao=-3
 \section{目的}
-
 为规范公司的费用报销流程，加强对费用报销的监管，特制订本制度。
-
 \nopagebreak[4]
 \section{适用范围}
-\subsection{本制度适用于深圳市巴达木科技有限公司及其关联公司。}
-
+本制度适用于深圳市巴达木科技有限公司及其关联公司。
+\nopagebreak[4]
 \section{报销中的原则责任}
 \subsection{原则}
 \subsubsection{预算管理原则：在公司预算范围内进行费用报销。无预算或超出预算的费用，须先申请增补预算再报销。}
@@ -138,13 +167,13 @@
 % 4)	开户行及账号：\textcolor{red}{中国工商银行股份有限公司深圳宝民支行4000092509100249944}\\\indent
 % 增值税专用发票，需包含以上四项内容；增值税普通发票，至少应包含公司名称及税务编码。
 \subsection{报销的发票、收据类型}
-1)	增值税专用发票；\\\indent
-2)	增值税普通发票（含增值税电子普通发票）；\\\indent
-3)	通用机打发票；\\\indent
-4)	通用定额发票；\\\indent
-5)	客运发票、轮船票、出租车发票、火车票、飞机票行程单、以及通行费发票；\\\indent
-6)	行政事业单位提供的财政监制收据；\\\indent
-7)	其他税务认可的票据；\\\indent
+\subsubsection{增值税专用发票；}
+\subsubsection{增值税普通发票（含增值税电子普通发票）；}
+\subsubsection{通用机打发票；}
+\subsubsection{通用定额发票；}
+\subsubsection{客运发票、轮船票、出租车发票、火车票、飞机票行程单、以及通行费发票；}
+\subsubsection{行政事业单位提供的财政监制收据；}
+\subsubsection{其他税务认可的票据；}
 费用报销须提供以上发票或票据，其他凭据均视为不能提供发票。
 \subsection{发票内容，须与实际业务一致。与实际业务不相符的发票，财务部应予以退回。}
 \subsection{增值税电子普通发票，报销人需自行打印。}
@@ -263,3 +292,5 @@ C.	其他经部门负责人批准的特殊情况。\\\indent
 2.	必须将原始单据粘贴在粘贴底单上、必须使用胶水粘贴整齐，不得使用订书机。 \\\indent
 3.	票据粘贴以左边和上边对整齐，按发票面积大小分类，面积小的单据贴下面，面积大的单据贴上面，并依次粘贴。\\\indent 
 4.	所有报销单据粘贴要求整齐、美观。 
+
+\end{document}
