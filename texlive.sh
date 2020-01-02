@@ -180,7 +180,7 @@ echo "installed use $((cost_time/60))min $((cost_time%60))s"
 
 cd $APPVEYOR_BUILD_FOLDER/tex/
 cp *.ttf $WINDIR/Fonts/
-cp *.ttf "$(install_texlive.profile|grep TEXDIR|gawk '{printf $2}')\texmf-dist\fonts\truetype\public\unfonts-extra"
+cp *.ttf "$(grep TEXDIR $APPVEYOR_BUILD_FOLDER/install_texlive.profile|gawk '{printf $2}')\texmf-dist\fonts\truetype\public\unfonts-extra"
 
 # mkfontscale
 # mkfontdir
