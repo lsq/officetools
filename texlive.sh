@@ -152,7 +152,7 @@ iso_install(){
     $isod = $(wmic logicaldisk where drivetype=5 get deviceid | grep ":" |head -1).trim()
     cd $isod
     ls 
-     .\install-tl-windows.bat -q -profile $currentdir\install_texlive.profile
+     .\install-tl-advanced.bat -no-gui -q -profile $currentdir\install_texlive.profile
     Dismount-DiskImage -ImagePath $texliveiso
 EOF
   powershell -ExecutionPolicy Unrestricted  -File mount-texliveiso.ps1
