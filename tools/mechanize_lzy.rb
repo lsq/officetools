@@ -11,7 +11,7 @@ loginform = page.form_with(name:'user_form')
 # else
 loginform.username = '13113602265'
 loginform
-loginform.password = 'lsq1213LAN'
+loginform.password = 'x'
 loginform
 agent.submit(loginform,loginform.button_with(value:'登 陆'))
 agent.cookie_jar.save("cookies.yaml", session: true)
