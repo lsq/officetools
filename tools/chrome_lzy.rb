@@ -46,7 +46,7 @@ username = browser.text_field(name: 'username')
 username.set('13113602265')
 browser.text_field(name: 'password').exists?
 password = browser.text_field(name: 'password')
-password.set('lsq1213LAN')
+password.set('xx')
 browser.element(id:'s3').exists?
 button = browser.element(id:'s3')
 button.click
