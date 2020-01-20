@@ -185,6 +185,7 @@ cp *.ttf "$(grep TEXDIR $APPVEYOR_BUILD_FOLDER/install_texlive.profile|gawk '{pr
 # mkfontscale
 # mkfontdir
 fc-cache -fv
+fc-list :lang=zh-cn 
 
 xelatex fy.tex
 cp fy.pdf $APPVEYOR_BUILD_FOLDER/$APPVEYOR_JOB_ID/
