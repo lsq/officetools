@@ -44,7 +44,7 @@ systemctl restart  docker
 wget -c -t 3 https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz &&
 tar xf geckodriver-v0.26.0-linux64.tar.gz &&
 cp geckodriver /usr/bin/ &
-wget -c https://chromedriver.storage.googleapis.com/78.0.3904.105/chromedriver_linux64.zip &&
+wget -c https://chromedriver.storage.googleapis.com/79.0.3945.36/chromedriver_linux64.zip &&
 unzip -o chromedriver_linux64.zip &&
 cp chromedriver /usr/bin/ &
 
