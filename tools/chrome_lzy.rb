@@ -35,6 +35,8 @@ prefs = {
   }
 }
 
+# k3_bdm = 'https://bgsdc.ik3cloud.com/K3Cloud/HTML5/'
+
 browser = Watir::Browser.new :chrome, options: {prefs: prefs, args: args}
 ################
 # browser = Watir::Browser.new :firefox, profile: 'lsq' 
