@@ -113,7 +113,7 @@ curl.exe -sLSO  "https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF
 wget.exe -c -d https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-win64.zip
 unzip.exe -o geckodriver-v0.26.0-win64.zip
 cp geckodriver*.exe C:\Windows\System32
-wget.exe -c "https://chromedriver.storage.googleapis.com/78.0.3904.105/chromedriver_win32.zip"
+wget.exe -c "https://chromedriver.storage.googleapis.com/79.0.3945.36/chromedriver_win32.zip"
 unzip.exe -o chromedriver_win32.zip
 cp chromedriver*.exe C:\Windows\System32
 wget.exe -c  -d https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v7.8.1/npp.7.8.1.Installer.x64.exe
