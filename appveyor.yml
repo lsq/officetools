@@ -87,7 +87,7 @@ build_script:
   #- bash -x lzy_dl.sh
   # - .\tools\curl_gecko.bat
   #- bash -x tools/curl_gecko.sh
-  - bash -x texlive.sh
+  #- bash -x texlive.sh
   - ls -al .
 
 before_test:
