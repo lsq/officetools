@@ -2,7 +2,10 @@
 
 # more curl info https://msd.misuland.com/pd/3113337336633494028
 # curl 'https://usky.ml/tool/api/free_ssr?page=1&limit=10' -H 'authority: usky.ml' -H 'accept: application/json, text/javascript, */*; q=0.01' -H 'x-requested-with: XMLHttpRequest' -H 'user-agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36' -H 'sec-fetch-site: same-origin' -H 'sec-fetch-mode: cors' -H 'referer: https://usky.ml/tool/free_ssr' -H 'accept-encoding: gzip, deflate, br' -H 'accept-language: zh-CN,zh;q=0.9' -H 'cookie: __cfduid=d15e1c299de788bdf1c22d05d9a00e4d01579690903; xf_session=5a20e5238ccdf355f8123ebdd2cf597d; _ga=GA1.2.1162918659.1579690908; _gid=GA1.2.595927745.1579690908; _gat_gtag_UA_114232786_1=1; JSESSIONID=AF6CF344C8A7E0D4092658B331683B7B; _gat_gtag_UA_114706424_1=1' --compressed
-
+# https://github.com/jhao104/proxy_pool
+# http://www.xiladaili.com/
+# https://www.freeip.top/?page=1&protocol=https
+#  http://118.24.52.95/get
 
 function gentimestamp() { 
 	date +%s%3N
