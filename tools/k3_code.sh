@@ -55,7 +55,7 @@ function analysisresult(){
 	local contents="$1"
 
 	#while read -ra line
-	sed -n '1{s/ //gp}' <<<"$contents"
+	sed -n '1{s/ //g;p;q}' <<<"$contents"
 }
 
 uploadinfo=$(uploadimg ./d.jpg https://ocr.wdku.net/Upload)
@@ -76,7 +76,7 @@ while [[ $ocrcode -ne 1 ]]; do
 done
 #sleep 20s
 
-responsebody=$(analysisresult "$(getresult "$pstid" "pstinfo" https://ocr.wdku.net/downResult)")
+responsebody=$(analysisresult "$(getresult "$pstid" "$pstts" https://ocr.wdku.net/downResult)")
 #echo -n $(analysisresult "$responsebody")
 printf "$responsebody"
 
