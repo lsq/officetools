@@ -64,15 +64,19 @@ echo $imgts
 
 pstinfo=$(postinfo "$imgid" "$imgts" https://ocr.wdku.net/submitOcr?type=1)
 grep '"errno":10106' <<<"$pstinfo" && exit
-pstid=$(analysisid $pstinfo)
+pstid=$(analysisid "$pstinfo")
+pstts=$(analysistimestamp "$pstinfo")
 
 ocrcode=$(checkorcresponse "$pstid" https://ocr.wdku.net/waitResult2)
 while [[ $ocrcode -ne 1 ]]; do
 	sleep 2s
 	ocrcode=$(checkorcresponse "$pstid" https://ocr.wdku.net/waitResult2)
 done
+#sleep 20s
 
-printf "$(analysisresult `getresult "$imgid" $imgts https://ocr.wdku.net/downResult`)"
+responsebody=$(analysisresult "$(getresult "$pstid" "pstinfo" https://ocr.wdku.net/downResult)")
+#echo -n $(analysisresult "$responsebody")
+printf "$responsebody"
 
 
 
