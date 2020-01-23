@@ -58,7 +58,7 @@ function analysisresult(){
 	local contents="$1"
 
 	#while read -ra line
-	sed -n '1{s/ //g;p;q}' <<<"$contents"
+	sed -n '1{s/[^0-9A-Za-z]//g;p;q}' <<<"$contents"
 }
 
 uploadinfo=$(uploadimg ./d.jpg https://ocr.wdku.net/Upload)
