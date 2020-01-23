@@ -23,7 +23,8 @@ function postinfo(){
 	local ids="$1"
 	local tmst="$2"
 
-	curl -d "obj_type=txt3&ids=${ids}&ts=${tmst}&pass=&lang=2&autorotation=true&combine=true&a4=false&color=false" $url
+#	curl -d "obj_type=txt3&ids=${ids}&ts=${tmst}&pass=&lang=2&autorotation=true&combine=true&a4=false&color=false" $url
+	curl -d "obj_type=txt3&ids=${ids}&ts=${tmst}&pass=&lang=2&autorotation=true&combine=true&a4=false&color=true" $url
 }
 
 function checkorcresponse(){
@@ -61,6 +62,29 @@ function analysisresult(){
 	sed -n '1{s/[^0-9A-Za-z]//g;p;q}' <<<"$contents"
 }
 
+function changeproxy() {
+	[ -s ~/.curlrc ] ||  echo '# proxy setting' >> ~/.curlrc
+
+	local freeip
+	local count=1
+	local ip
+
+	freeip="$(curl https://www.freeip.top/api/proxy_ip)"
+	until grep '"protocol":"https"' <<<"$freeip";do
+		freeip="$(curl https://www.freeip.top/api/proxy_ip)"
+		sleep 2s
+		if [[ $count -gt 10 ]];then
+			break
+		fi
+		$((count++))
+		continue
+	done
+
+	ip=`sed 's/.*"ip":"\(.*\)","port":"\([0-9]\+\)".*/\1:\2/' <<<"$freeip"`
+
+	sed -i '/^proxy/{s/^\(proxy=\)\(.*\)$/\1'$ip'/;q};$a\proxy='$ip'' ~/.curlrc
+}
+
 uploadinfo=$(uploadimg ./d.jpg https://ocr.wdku.net/Upload)
 imgid=$(analysisid "$uploadinfo")
 echo $imgid
@@ -68,7 +92,8 @@ imgts=$(analysistimestamp "$uploadinfo")
 echo $imgts
 
 pstinfo=$(postinfo "$imgid" "$imgts" https://ocr.wdku.net/submitOcr?type=1)
-grep '"errno":10106' <<<"$pstinfo" && exit
+#grep '"errno":10106' <<<"$pstinfo" && exit
+grep '"errno":10106' <<<"$pstinfo" && changeproxy &&  exec bash -x $0
 pstid=$(analysisid "$pstinfo")
 pstts=$(analysistimestamp "$pstinfo")
 
@@ -82,6 +107,3 @@ done
 responsebody=$(analysisresult "$(getresult "$pstid" "$pstts" https://ocr.wdku.net/downResult)")
 #echo -n $(analysisresult "$responsebody")
 printf "$responsebody"
-
-
-
