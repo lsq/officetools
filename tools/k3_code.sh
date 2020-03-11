@@ -24,7 +24,7 @@ function postinfo(){
 	local tmst="$2"
 
 #	curl -d "obj_type=txt3&ids=${ids}&ts=${tmst}&pass=&lang=2&autorotation=true&combine=true&a4=false&color=false" $url
-	curl -d "obj_type=txt3&ids=${ids}&ts=${tmst}&pass=&lang=2&autorotation=true&combine=true&a4=false&color=true" $url
+	curl -d "obj_type=txt2&ids=${ids}&ts=${tmst}&pass=&lang=2&autorotation=true&combine=true&a4=false&color=true" $url
 }
 
 function checkorcresponse(){
