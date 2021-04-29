@@ -42,6 +42,7 @@ git config --global https.proxy 'socks5://127.0.0.1:10808'
 # [ ! -d prawn ] && git clone https://github.com/prawnpdf/prawn.git
 [ ! -d pdfkit ] && git clone https://github.com/pdfkit/pdfkit.git
 [ ! -d axlsx ] && git clone https://github.com/randym/axlsx.git
+[ ! -d caxlsx ] && git clone https://github.com/caxlsx/caxlsx.git
 [ ! -d axlsx_styler ] && git clone https://github.com/axlsx-styler-gem/axlsx_styler.git
 [ ! -d sqlite3-ruby ] && git clone https://github.com/sparklemotion/sqlite3-ruby.git
 [ ! -d roo ] && git clone https://github.com/roo-rb/roo.git
