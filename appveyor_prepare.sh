@@ -2,8 +2,8 @@
 
 set -exuo pipefail
 PKG_PREFIX="mingw-w64-$MSYS2_ARCH"
-pacman -Syu
-pacman -Syuu
+pacman -Syu --noconfirm
+pacman -Syuu --noconfirm
 pacman -S --noconfirm --needed base-devel\
        ${PKG_PREFIX}-json-c \
        ${PKG_PREFIX}-glib2 \
