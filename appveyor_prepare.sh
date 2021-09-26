@@ -17,8 +17,9 @@ pacman -Sy mingw64/mingw-w64-x86_64-clang mingw64/mingw-w64-x86_64-sqlite3 \
 		  mingw64/mingw-w64-x86_64-sqlcipher msys/libsqlite-devel mingw64/mingw-w64-x86_64-ruby \
 		  mingw64/mingw-w64-x86_64-polipo \
 		  --noconfirm --needed
+# sys-utils
 pacman -Sy mingw64/mingw-w64-x86_64-python2 mingw-w64-x86_64-make\
-		  mingw-w64-x86_64-toolchain libraries development compression VCS sys-utils net-utils msys2-devel\
+		  mingw-w64-x86_64-toolchain libraries development compression VCS  net-utils msys2-devel\
 		  mingw-w64-x86_64-cmake mingw-w64-x86_64-gcc mingw64/mingw-w64-x86_64-python3-pip  \
 		  --noconfirm --needed
 
