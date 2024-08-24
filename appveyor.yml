@@ -29,8 +29,7 @@ init:
   # System upgrade (must be run twice, separately, to finalize). Disabled
   # for now due to build time and resource usage (500MB bw, 2.7GB disk)
   - bash -lc "/usr/bin/env pacman --noconfirm -Syu"
-  - bash -lc "/usr/bin/env pacman --noconfirm -Syu"
-  - ps: .\tools\scoop_vim_install.ps1
+  - bash -lc "/usr/bin/env pacman --noconfirm -Syu"  
 
 # Fetch dependencies, build and run tests
 #clone_script:
@@ -90,6 +89,7 @@ build_script:
   #- bash -x tools/curl_gecko.sh
   #- bash -x texlive.sh
   - ls -al .
+  - ps: .\tools\scoop_vim_install.ps1
 
 before_test:
   - ruby -v
