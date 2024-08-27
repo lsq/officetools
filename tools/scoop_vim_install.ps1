@@ -15,4 +15,5 @@ function downGit($repo, $folder){
         iwr -useb $($_).download_url | ni $_.path -Force
     }
 }
-downGit "msys2/MSYS2-packages" "vim"
+#downGit "msys2/MSYS2-packages" "vim"
+downGit "lsq/officetools" "tools/vim"
