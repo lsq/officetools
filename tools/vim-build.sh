@@ -1,5 +1,5 @@
-#!/bin/env bash
+#!/usr/bin/bash
 set -x
-echo $MSYSTEM
+echo "$MSYSTEM"
 cd ./tools/vim
 MINGW_ARCH=ucrt64 makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
