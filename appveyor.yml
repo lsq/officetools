@@ -91,6 +91,8 @@ build_script:
   #- bash -x texlive.sh
   - ls -al .
   - ps: .\tools\scoop_vim_install.ps1
+  - cd vim
+  - makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
 
 before_test:
   - ruby -v
