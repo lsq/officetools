@@ -78,8 +78,7 @@ build() {
     --enable-pythoninterp=no \
     --enable-python3interp=dynamic \
     --enable-rubyinterp=dynamic \
-    --disable-tclinterp \
-    --disable-gpm --disable-sysmouse \
+    --enable-tclinterp=dynamic \    
     --without-x \
     CPPFLAGS="${CPPFLAGS} " \
     --with-compiledby="<https://www.msys2.org/>"
