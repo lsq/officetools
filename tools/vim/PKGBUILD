@@ -46,7 +46,7 @@ prepare() {
     > runtime/doc/eval.tmp && mv -f runtime/doc/eval.{tmp,txt}
 
   patch -p2 -i ${srcdir}/7.3-cygwin-mouse.patch
-  patch -p2 -i ${srcdir}/7.3-virc.patch
+  #patch -p2 -i ${srcdir}/7.3-virc.patch
   patch -p2 -i ${srcdir}/7.3-cygwin-python-dyn.patch
   patch -p1 -i ${srcdir}/pretend-cygwin-msys.patch
   patch -p1 -i ${srcdir}/accept-crlf.patch
