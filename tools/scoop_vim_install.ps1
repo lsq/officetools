@@ -16,4 +16,4 @@ function downGit($repo, $folder){
     }
 }
 #downGit "msys2/MSYS2-packages" "vim"
-downGit "lsq/officetools" "tools/vim"
+#downGit "lsq/officetools" "tools/vim"
