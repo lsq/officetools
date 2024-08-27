@@ -12,7 +12,7 @@ function downGit($repo, $folder){
     $json = irm https://api.github.com/repos/$repo/contents/$($folder)?ref=master
     $json | ForEach-Object {
         echo $_.path
-        iwr -useb $_.url | ni $_.path -Force
+        iwr -useb $($_).download_url | ni $_.path -Force
     }
 }
 downGit "msys2/MSYS2-packages" "vim"
