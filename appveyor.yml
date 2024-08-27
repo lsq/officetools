@@ -10,7 +10,7 @@ environment:
     secure: wX822g4t5xXPI86jW/Oy7g==
     #secure: zt43vh97KFrDRrWr0I4KT435t2Qkqckh33yDFzyMUoJcWY0p+nJiLbt+b4egl34n
     #secure: 855kciMXrCGEcKW+P87C5nMrvYN47FH/Zjz9yHjZ53yeijLyb6/0oZ4CVv7j0VbE
-  RUBY_VERSION: 26-x64
+  #RUBY_VERSION: 26-x64
   #APPVEYOR_RDP_PASSWORD:
   matrix:
     - MSYS2_ARCH: x86_64
@@ -29,8 +29,8 @@ init:
     # - copy setup.exe *.xml %APPVEYOR_JOB_ID%
   # System upgrade (must be run twice, separately, to finalize). Disabled
   # for now due to build time and resource usage (500MB bw, 2.7GB disk)
-  - bash -lc "/usr/bin/env pacman --noconfirm -Syu"
-  - bash -lc "/usr/bin/env pacman --noconfirm -Syu"  
+  - bash -lc "/usr/bin/env pacman --noconfirm -Syuu"
+  - bash -lc "/usr/bin/env pacman --noconfirm -Syuu"  
 
 # Fetch dependencies, build and run tests
 #clone_script:
@@ -92,7 +92,10 @@ build_script:
   - ls -al .
   - ps: .\tools\scoop_vim_install.ps1
   - cd vim
-  - makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
+  - ps: $env:CHERE_INVOKING = 'yes'  # Preserve the current working directory
+  - ps: $env:MSYSTEM = 'UCRT64'  # Start a 64 bit Mingw environment
+  - ps: C:\msys64\usr\bin\bash -lc "./tools/vim-build.sh"
+  #- makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
 
 before_test:
   - ruby -v
