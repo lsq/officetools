@@ -9,7 +9,7 @@ iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
     }
 scoop install aria2 curl grep sed less touch vim-nightly ctags global
 function downGit($repo, $folder){
-    $json = irm https://api.github.com/repos/$repo/contents/$folder?ref=master
+    $json = irm https://api.github.com/repos/$repo/contents/$($folder)?ref=master
     $json | ForEach-Object {
         echo $_.path
         iwr -useb $_.url | ni $_.path -Force
