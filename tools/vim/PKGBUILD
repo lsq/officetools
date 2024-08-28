@@ -135,10 +135,11 @@ call %VCVARSALL% x64
 EOF
   #cmd //c start nmake-build.bat
   #MSYS2_ARG_CONV_EXCL='*' /c/Windows/System32/cmd.exe /C "start nmake-build.bat"
+  mkdir ../GvimExt64 
   cp -rf gvimext.dll  gvimext64.dll
   cp -rf gvimext.dll  ../GvimExt64/gvimext64.dll
   ./nmake-build.bat
-  mkdir ../GvimExt64  
+   
   mv gvimext.dll   ../GvimExt64/gvimext.dll
   cp -rf README.txt ../GvimExt64
   cp -rf *.inf      ../GvimExt64
