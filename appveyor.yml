@@ -62,7 +62,7 @@ install:
   - cmd: cd %ProgramFiles%
   - ls -ahl
   - cd %APPVEYOR_BUILD_FOLDER%
-  - bash -x appveyor_prepare.sh
+  #- bash -x appveyor_prepare.sh
   - which ruby| cygpath -w -f -
   - ls -al
   - pwd
