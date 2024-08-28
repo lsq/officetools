@@ -21,8 +21,10 @@ downGit "msys2/MSYS2-packages" "vim"
 # Customize the location you want to install to,
 # preferably without spaces, as it has not been tested
 $env:RBENV_ROOT = "C:\Ruby-on-Windows"
-iwr -useb "https://github.com/ccmywish/rbenv-for-windows/raw/main/tools/install.ps1" | iex
-"$env:RBENV_ROOT\rbenv\bin\rbenv.ps1" "init"
+# iwr -useb "https://github.com/ccmywish/rbenv-for-windows/raw/main/tools/install.ps1" | iex
+iex "& {$(irm 'https://github.com/ccmywish/rbenv-for-windows/raw/main/tools/install.ps1')} -RunAsAdmin"
+new-Item -ItemType junction -Path \msys64 -Target $env:RBENV_ROOT\msys64
+& "$env:RBENV_ROOT\rbenv\bin\rbenv.ps1" init
 rbenv global 3
 rbenv update
 rbenv install 3.2.5-1
