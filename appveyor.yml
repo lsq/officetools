@@ -30,8 +30,8 @@ init:
     # - copy setup.exe *.xml %APPVEYOR_JOB_ID%
   # System upgrade (must be run twice, separately, to finalize). Disabled
   # for now due to build time and resource usage (500MB bw, 2.7GB disk)
-  - bash -lc "/usr/bin/env pacman --noconfirm -Syuu"
-  - bash -lc "/usr/bin/env pacman --noconfirm -Syuu"  
+  - C:\msys64\usr\bin\bash -lc "pacman --noconfirm -Syuu"
+  - C:\msys64\usr\bin\bash -lc "pacman --noconfirm -Syuu"  
 
 # Fetch dependencies, build and run tests
 #clone_script:
