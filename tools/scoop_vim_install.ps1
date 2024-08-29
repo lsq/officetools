@@ -35,6 +35,7 @@ rbenv global 3
 rbenv update
 rbenv install 3.2.5-1
 #>
+$rubyhome = $env:rubyhome
 $rubyversion = [System.iO.Path]::GetFileName($rubyhome)
 $rubyroot = [system.iO.Path]::GetDirectoryName($rubyhome)
 iwr https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-$rubyversion/rubyinstaller-$rubyversion-x64.7z -Output rubyinstaller-$rubyversion-x64.7z
