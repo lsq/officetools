@@ -51,5 +51,6 @@ $env:USER_PATH=$env:USER_PATH -replace "c:\\Ruby32\\bin;", "$rubyhome\bin;" #// 
 $env:USER_PATH="$rubyhome\bin;$rubyhome\gems\bin;" + $env:USER_PATH
 [Environment]::SetEnvironmentVariable("PATH", $env:USER_PATH, 'Machine')  #   // 使临时替换永久生效
 #(删除PATH中的某一个路径替换为""即可)
+echo $env:PATH
 which ruby
 gem install rake

@@ -159,7 +159,7 @@ check() {
   ./gvim.exe -u NONE -c "redir @a | ver | 0put a | wq!" ver.txt
   [ -f ./gvimext.log ] && cat gvimext.log
   [ -f ./ver.txt ] && cat ver.txt && ./vim.exe --version
-  ./gvim.exe -u NONE -S "${srcdir}"/../if_ver.vim -c "quit"
+  export PATH=$rubyhome/bin:$PATH && ./gvim.exe -u NONE -S "${srcdir}"/../if_ver.vim -c "quit"
   [ -f ./if_ver.txt ] &&  cat if_ver.txt
 
   #make test

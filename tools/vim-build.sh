@@ -9,6 +9,7 @@ cd $APPVEYOR_BUILD_FOLDER/tools/vim
 echo $PATH
 #PATH=/${MSYSTEM}/bin:/${MSYSTEM}/bin/site_perl/5.38.2:/${MSYSTEM}/bin/vendor_perl:/${MSYSTEM}/bin/core_perl:/usr/local/bin:/usr/bin:/bin
 export PATH=$rubyhome/bin:$PATH
-ridk install
+ridk.cmd install
 echo $PATH
+ls $rubyhome/bin/
 MINGW_ARCH=ucrt64 makepkg-mingw -L --cleanbuild --syncdeps --force --noconfirm

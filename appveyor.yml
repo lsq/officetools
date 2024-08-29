@@ -23,7 +23,7 @@ environment:
 # Set path for msys
 init:
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-  #- PATH %rubyhome%\bin;%rubyhome%\..\rbenv;%rubyhome%\..\shims;C:\msys64\%MSYSTEM%\bin;C:\msys64\usr\bin;C:\msys64\bin;%PATH%
+  - PATH %rubyhome%\bin;%PATH%
     # - set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
   - pwd
   - ps: Write-Host "$env:APPVEYOR_BUILD_FOLDER"
@@ -112,6 +112,10 @@ before_test:
 
 artifacts:
   - path: \$(APPVEYOR_JOB_ID)
+  - path: tools\vim\gvim_*_x86_64.zip
+    name: gvim_x64.zip
+  - path: tools\vim\vim-*-x86_64.pkg.tar.zst
+    name: gvim-ucrt-x64.pkg.tar.zst
     #- path: src-
 
 cache:
