@@ -34,7 +34,7 @@ sed.exe -i 's|\((Test-Path \"\$env:RBENV_ROOT\\\msys64\")\)|(\1 -or (Test-Path \
 rbenv global 3
 rbenv update
 rbenv install 3.2.5-1
-
+#>
 echo $rubyhome --- $env:rubyhome
 $rubyhome = $env:rubyhome
 $rubyversion = [System.iO.Path]::GetFileName($rubyhome)
@@ -54,4 +54,4 @@ $env:USER_PATH="$rubyhome\bin;$rubyhome\gems\bin;" + $env:USER_PATH
 echo $env:PATH
 which ruby
 gem install rake
-#>
+
