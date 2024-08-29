@@ -35,6 +35,7 @@ rbenv global 3
 rbenv update
 rbenv install 3.2.5-1
 #>
+echo $rubyhome --- $env:rubyhome
 $rubyhome = $env:rubyhome
 $rubyversion = [System.iO.Path]::GetFileName($rubyhome)
 $rubyroot = [system.iO.Path]::GetDirectoryName($rubyhome)
