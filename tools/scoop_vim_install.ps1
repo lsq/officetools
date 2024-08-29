@@ -40,8 +40,8 @@ $rubyhome = $env:rubyhome
 $rubyversion = [System.iO.Path]::GetFileName($rubyhome)
 $rubyroot = [system.iO.Path]::GetDirectoryName($rubyhome)
 iwr https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-$rubyversion/rubyinstaller-$rubyversion-x64.7z -OutFile rubyinstaller-$rubyversion-x64.7z
-
-7z x .\rubyinstaller-$rubyversion-x64.7z  -o$rubyroot
+Start-Process 7z.exe -ArgumentList "x", ".\rubyinstaller-$rubyversion-x64.7z", "-o$rubyroot" -Wait
+#7z x .\rubyinstaller-$rubyversion-x64.7z  -o$rubyroot
 mv $rubyroot\rubyinstaller-$rubyversion-x64 $rubyhome
 
 #$env:USER_PATH=[Environment]::GetEnvironmentVariable("PATH", "User") 
