@@ -31,6 +31,10 @@ init:
     # - copy setup.exe *.xml %APPVEYOR_JOB_ID%
   # System upgrade (must be run twice, separately, to finalize). Disabled
   # for now due to build time and resource usage (500MB bw, 2.7GB disk)    
+  - ps: $env:CHERE_INVOKING = 'yes'  # Preserve the current working directory
+  - ps: $env:MSYSTEM = 'UCRT64'  # Start a 64 bit Mingw environment
+  - ps: $env:rubyhome = $rubyhome
+  - ps: echo $rubyhome --- $env:rubyhome
 
 # Fetch dependencies, build and run tests
 #clone_script:
@@ -92,10 +96,7 @@ build_script:
   #- bash -x tools/curl_gecko.sh
   #- bash -x texlive.sh
   - ls -al .
-  - ps: .\tools\scoop_vim_install.ps1
-  - ps: $env:CHERE_INVOKING = 'yes'  # Preserve the current working directory
-  - ps: $env:MSYSTEM = 'UCRT64'  # Start a 64 bit Mingw environment
-  - ps: $env:rubyhome = $rubyhome
+  - ps: .\tools\scoop_vim_install.ps1  
   - ps: C:\msys64\usr\bin\bash -lc "./tools/vim-build.sh"
   #- makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
 
