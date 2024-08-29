@@ -23,14 +23,14 @@ environment:
 # Set path for msys
 init:
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-  - PATH %rubyhome%\bin;%PATH%
-    # - set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
+  - PATH %rubyhome%\bin;C:\msys64\%MSYSTEM%\bin;C:\msys64\usr\bin;%PATH%
+  # - set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
   - pwd
   - ps: Write-Host "$env:APPVEYOR_BUILD_FOLDER"
   - ps: Write-Host "$env:rubyhome"
   - ls -al .
   - set
-    # - copy setup.exe *.xml %APPVEYOR_JOB_ID%
+  # - copy setup.exe *.xml %APPVEYOR_JOB_ID%
   # System upgrade (must be run twice, separately, to finalize). Disabled
   # for now due to build time and resource usage (500MB bw, 2.7GB disk)    
   - ps: $env:CHERE_INVOKING = 'yes'  # Preserve the current working directory
@@ -98,10 +98,12 @@ build_script:
   #- bash -x texlive.sh
   - ls -al .
   - ps: .\tools\scoop_vim_install.ps1  
-  #- ps: C:\msys64\usr\bin\bash -lc "./tools/vim-build.sh"
+  #- C:\msys64\usr\bin\bash -lc "./tools/vim-build.sh"
+  - bash -x "./tools/vim-build.sh"
   #- makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
 
 before_test:
+  - which ruby| cygpath -w -f -
   - ruby -v
   - gem -v
   - bundle -v

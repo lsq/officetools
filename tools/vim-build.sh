@@ -1,6 +1,5 @@
-#!/usr/bin/bash
 set -x
-printf "$MSYSTEM"
+echo "$MSYSTEM"
 pacman --noconfirm --sync --needed pactoys
 pacman-key --recv-keys BE8BF1C5
 pacman-key --lsign-key BE8BF1C5
