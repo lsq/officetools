@@ -41,10 +41,10 @@ $rubyhome = $env:rubyhome
 $rubyversion = $Matches['version']
 #$rubyversion = [System.iO.Path]::GetFileName($rubyhome)
 $rubyroot = [system.iO.Path]::GetDirectoryName($rubyhome)
-iwr https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-$rubyversion/rubyinstaller-$rubyversion-x64.7z -OutFile rubyinstaller-$rubyversion-x64.7z
-Start-Process 7z.exe -ArgumentList "x", ".\rubyinstaller-$rubyversion-x64.7z", "-o$rubyroot" -Wait
+iwr https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-$rubyversion/rubyinstaller-$rubyversion-1-x64.7z -OutFile rubyinstaller-$rubyversion-1-x64.7z
+Start-Process 7z.exe -ArgumentList "x", ".\rubyinstaller-$rubyversion-1-x64.7z", "-o$rubyroot" -Wait
 #7z x .\rubyinstaller-$rubyversion-x64.7z  -o$rubyroot
-mv $rubyroot\rubyinstaller-$rubyversion-x64 $rubyhome
+mv $rubyroot\rubyinstaller-$rubyversion-1-x64 $rubyhome
 $rver = ($rubyversion -split "\.")[0..1] -join ''
 sed.exe -i "s/(ci.ri2::ruby).*/\\1$rver/" $env:APPVEYOR_BUILD_FOLDER\tools\vim-build.sh
 
