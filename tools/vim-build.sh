@@ -23,6 +23,6 @@ rubyhm=${rbdir%/*}
 rubyversion=$(ruby -v | sed -r -n 's/.* (([0-9]{1,2})\.([0-9]{1,2})\.)[0-9]{1,2} .*/\2\3/p')
 rubyapiver=$(ruby -v | sed -r -n 's/.* (([0-9]{1,2})\.([0-9]{1,2})\.)[0-9]{1,2} .*/\10/p')
 sed -i "s|RUBY=\${ruby_home}|RUBY=${rubyhm}|" $APPVEYOR_BUILD_FOLDER/tools/vim/PKGBUILD
-sed -i "s|RUBY_VER=32|RUBY_VER=${rubyversion}" $APPVEYOR_BUILD_FOLDER/tools/vim/PKGBUILD
-sed -i "s|RUBY_API_VER_LONG=3.2.0|RUBY_API_VER_LONG=${rubyapiver}" $APPVEYOR_BUILD_FOLDER/tools/vim/PKGBUILD
+sed -i "s|RUBY_VER=32|RUBY_VER=${rubyversion}|" $APPVEYOR_BUILD_FOLDER/tools/vim/PKGBUILD
+sed -i "s|RUBY_API_VER_LONG=3.2.0|RUBY_API_VER_LONG=${rubyapiver}|" $APPVEYOR_BUILD_FOLDER/tools/vim/PKGBUILD
 MINGW_ARCH=ucrt64 makepkg-mingw -L --cleanbuild --syncdeps --force --noconfirm

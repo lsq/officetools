@@ -37,12 +37,16 @@ rbenv install 3.2.5-1
 #>
 echo $rubyhome --- $env:rubyhome
 $rubyhome = $env:rubyhome
-$rubyversion = [System.iO.Path]::GetFileName($rubyhome)
+(iwr https://www.ruby-lang.org/en/downloads).Content -match "The current stable version is (?<version>[\d.]+)\."
+$rubyversion = $Matches['version']
+#$rubyversion = [System.iO.Path]::GetFileName($rubyhome)
 $rubyroot = [system.iO.Path]::GetDirectoryName($rubyhome)
 iwr https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-$rubyversion/rubyinstaller-$rubyversion-x64.7z -OutFile rubyinstaller-$rubyversion-x64.7z
 Start-Process 7z.exe -ArgumentList "x", ".\rubyinstaller-$rubyversion-x64.7z", "-o$rubyroot" -Wait
 #7z x .\rubyinstaller-$rubyversion-x64.7z  -o$rubyroot
 mv $rubyroot\rubyinstaller-$rubyversion-x64 $rubyhome
+$rver = ($rubyversion -split "\.")[0..1] -join ''
+sed.exe -i "s/(ci.ri2::ruby).*/\\1$rver/" $env:APPVEYOR_BUILD_FOLDER\tools\vim-build.sh
 
 #$env:USER_PATH=[Environment]::GetEnvironmentVariable("PATH", "User") 
 $env:USER_PATH=[Environment]::GetEnvironmentVariable("PATH", "Machine") 
