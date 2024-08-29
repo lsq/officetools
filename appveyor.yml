@@ -12,6 +12,7 @@ environment:
     #secure: 855kciMXrCGEcKW+P87C5nMrvYN47FH/Zjz9yHjZ53yeijLyb6/0oZ4CVv7j0VbE
   #RUBY_VERSION: 26-x64
   rubyhome: c:/Ruby-on-Windows/3.2.5-1
+  APPVEYOR_SAVE_CACHE_ON_ERROR: true
   #APPVEYOR_RDP_PASSWORD:
   matrix:
     - MSYS2_ARCH: x86_64
