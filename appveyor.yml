@@ -95,6 +95,7 @@ build_script:
   - ps: .\tools\scoop_vim_install.ps1
   - ps: $env:CHERE_INVOKING = 'yes'  # Preserve the current working directory
   - ps: $env:MSYSTEM = 'UCRT64'  # Start a 64 bit Mingw environment
+  - ps: $env:rubyhome = $rubyhome
   - ps: C:\msys64\usr\bin\bash -lc "./tools/vim-build.sh"
   #- makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
 
