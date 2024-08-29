@@ -24,6 +24,9 @@ $env:RBENV_ROOT = "C:\Ruby-on-Windows"
 # iwr -useb "https://github.com/ccmywish/rbenv-for-windows/raw/main/tools/install.ps1" | iex
 iex "& {$(irm 'https://github.com/ccmywish/rbenv-for-windows/raw/main/tools/install.ps1')} -RunAsAdmin"
 #new-Item -ItemType junction -Path  $env:RBENV_ROOT\msys64 -Target c:\msys64
+do {
+    sleep 2s
+} until (Test-Path $env:RBENV_ROOT\rbenv\bin\rbenv.ps1)
 sed.exe -i 's|\((Test-Path "$env:RBENV_ROOT\msys64")\)|(\1 -or (Test-Path "c:\msys64" ))|' $env:RBENV_ROOT\rbenv\bin\rbenv.ps1
 & "$env:RBENV_ROOT\rbenv\bin\rbenv.ps1" init
 rbenv global 3
