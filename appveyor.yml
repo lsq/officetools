@@ -98,7 +98,7 @@ build_script:
   #- bash -x texlive.sh
   - ls -al .
   - ps: .\tools\scoop_vim_install.ps1  
-  - ps: C:\msys64\usr\bin\bash -lc "./tools/vim-build.sh"
+  #- ps: C:\msys64\usr\bin\bash -lc "./tools/vim-build.sh"
   #- makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
 
 before_test:
@@ -115,7 +115,7 @@ artifacts:
   - path: tools\vim\gvim_*_x86_64.zip
     name: gvim_x64.zip
   - path: tools\vim\vim-*-x86_64.pkg.tar.zst
-    name: gvim-ucrt-x64.pkg.tar.zst
+    name: gvim-ucrt-x86_64.pkg.tar.zst
     #- path: src-
 
 cache:
@@ -165,6 +165,6 @@ on_success:
 #    - git commit -m "Update Static Site"
 #    - echo %TARGET_BRANCH%
 #   - git push -u origin %TARGET_BRANCH%
-    - appveyor AddMessage "Static Site Updated"
-on_finish:
+#- appveyor AddMessage "Static Site Updated"
+#on_finish:
   #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))

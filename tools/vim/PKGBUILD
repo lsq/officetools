@@ -240,5 +240,5 @@ package() {
   mkdir -p ../vim
   cp -rf ../runtime ../vim/${_versiondir}
   
-  7z a -mx=9 ../../../gvim_${_versiondir}_${arch}.zip ../vim
+  7z a -mx=9 ../../../gvim_${pkgver}_${arch}.zip ../vim
 }
