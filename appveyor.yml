@@ -26,6 +26,8 @@ init:
   #- PATH %rubyhome%\bin;%rubyhome%\..\rbenv;%rubyhome%\..\shims;C:\msys64\%MSYSTEM%\bin;C:\msys64\usr\bin;C:\msys64\bin;%PATH%
     # - set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
   - pwd
+  - ps: Write-Host "$env:APPVEYOR_BUILD_FOLDER"
+  - ps: Write-Host "$env:rubyhome"
   - ls -al .
   - set
     # - copy setup.exe *.xml %APPVEYOR_JOB_ID%
