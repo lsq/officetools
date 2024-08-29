@@ -20,7 +20,7 @@ msys2_references=(
   "cpe: cpe:/a:vim:vim"
   "cpe: cpe:/a:vim_development_group:vim"
 )
-depends=("${MINGW_PACKAGE_PREFIX}-ncurses" "${MINGW_PACKAGE_PREFIX}-ruby" "${MINGW_PACKAGE_PREFIX}-python3.12" "${MINGW_PACKAGE_PREFIX}-lua" "${MINGW_PACKAGE_PREFIX}-libiconv" "libintl" "libxcrypt" "${MINGW_PACKAGE_PREFIX}-perl" "${MINGW_PACKAGE_PREFIX}-gettext-runtime" "${MINGW_PACKAGE_PREFIX}-libsodium" "${MINGW_PACKAGE_PREFIX}-winpty" "${MINGW_PACKAGE_PREFIX}-tcl")
+depends=("${MINGW_PACKAGE_PREFIX}-ncurses" "${MINGW_PACKAGE_PREFIX}-ruby33" "${MINGW_PACKAGE_PREFIX}-python3.12" "${MINGW_PACKAGE_PREFIX}-lua" "${MINGW_PACKAGE_PREFIX}-libiconv" "libintl" "libxcrypt" "${MINGW_PACKAGE_PREFIX}-perl" "${MINGW_PACKAGE_PREFIX}-gettext-runtime" "${MINGW_PACKAGE_PREFIX}-libsodium" "${MINGW_PACKAGE_PREFIX}-winpty" "${MINGW_PACKAGE_PREFIX}-tcl")
 groups=('editors')
 makedepends=("gawk" "${MINGW_PACKAGE_PREFIX}-make" "${MINGW_PACKAGE_PREFIX}-7zip" "${MINGW_PACKAGE_PREFIX}-autotools" "${MINGW_PACKAGE_PREFIX}-cc") # To satisfy python3/dyn feature #3052
 source=(${pkgname}-${pkgver}.tar.gz::https://github.com/vim/vim/archive/v${pkgver}/${pkgbase}-{pkgver}.tar.gz
