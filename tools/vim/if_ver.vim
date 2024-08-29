@@ -2,6 +2,7 @@
 
 redir! > if_ver.txt
 echo "*** Interface versions ***"
+echo $PATH
 echo "\nLua:"
 lua print(_VERSION)
 " echo "\nLuaJIT:"
