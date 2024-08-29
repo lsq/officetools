@@ -67,7 +67,7 @@ prepare() {
   
   # printf rubylib value
   sed -i "/\@echo 'char_u \*all_cflags.*/s/$/\n\techo \"------\$(LUA_LIB) \$(MZSCHEME_LIBDIR) \$(MZSCHEME_LIB) \$(PYTHONLIB) \$(PYTHON3LIB) \$(RUBYLIB)\"\n/"  src/Make_cyg_ming.mak
-  sed -i '/\@echo char_u \*all_cflags.*/s/$/\n\techo \"------\$(LUA_LIB) \$(MZSCHEME_LIBDIR) \$(MZSCHEME_LIB) \$(PYTHONLIB) \$(PYTHON3LIB) \$(RUBYLIB)\"\n/'  src/Make_cyg_ming.mak
+  sed -i '/\@echo char_u \*all_cflags.*/s/$/\n\techo \"+++++++\$(LUA_LIB) \$(MZSCHEME_LIBDIR) \$(MZSCHEME_LIB) \$(PYTHONLIB) \$(PYTHON3LIB) \$(RUBYLIB)\"\n/'  src/Make_cyg_ming.mak
   
   # install xpm header
   cd ${srcdir}/..
