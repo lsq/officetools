@@ -18,9 +18,11 @@ function downGit($repo, $folder){
 downGit "msys2/MSYS2-packages" "vim"
 #downGit "lsq/officetools" "tools/vim"
 
+<#
 # Customize the location you want to install to,
 # preferably without spaces, as it has not been tested
 $env:RBENV_ROOT = "C:\Ruby-on-Windows"
+
 # iwr -useb "https://github.com/ccmywish/rbenv-for-windows/raw/main/tools/install.ps1" | iex
 iex "& {$(irm 'https://github.com/ccmywish/rbenv-for-windows/raw/main/tools/install.ps1')} -RunAsAdmin"
 #new-Item -ItemType junction -Path  $env:RBENV_ROOT\msys64 -Target c:\msys64
@@ -32,3 +34,20 @@ sed.exe -i 's|\((Test-Path \"\$env:RBENV_ROOT\\\msys64\")\)|(\1 -or (Test-Path \
 rbenv global 3
 rbenv update
 rbenv install 3.2.5-1
+#>
+$rubyversion = [System.iO.Path]::GetFileName($rubyhome)
+$rubyroot = [system.iO.Path]::GetDirectoryName($rubyhome)
+iwr https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-$rubyversion/rubyinstaller-$rubyversion-x64.7z -Output rubyinstaller-$rubyversion-x64.7z
+
+7z x .\rubyinstaller-$rubyversion-x64.7z  -o$rubyroot
+mv $rubyroot\rubyinstaller-$rubyversion-x64 $rubyhome
+
+#$env:USER_PATH=[Environment]::GetEnvironmentVariable("PATH", "User") 
+$env:USER_PATH=[Environment]::GetEnvironmentVariable("PATH", "Machine") 
+#// ↓勿直接使用$env:PATH，会触发问题2，用临时变量$env:USER_PATH来过渡一下
+$env:USER_PATH=$env:USER_PATH -replace "c:\\Ruby32\\bin;", "$rubyhome\bin;" #// 先在console中临时替换
+$env:USER_PATH="$rubyhome\bin;$rubyhome\gems\bin;" + $env:USER_PATH
+[Environment]::SetEnvironmentVariable("PATH", $env:USER_PATH, 'Machine')  #   // 使临时替换永久生效
+#(删除PATH中的某一个路径替换为""即可)
+which ruby
+gem install rake
