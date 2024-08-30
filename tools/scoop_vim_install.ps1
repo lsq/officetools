@@ -7,7 +7,7 @@ iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
    foreach-object {
         scoop bucket add "$_"
     }
-scoop install aria2 curl grep sed less touch  ctags global #vim-nightly
+scoop install aria2 curl ctags global #vim-nightly
 function downGit($repo, $folder){
     $json = irm https://api.github.com/repos/$repo/contents/$($folder)?ref=master
     $json | ForEach-Object {
