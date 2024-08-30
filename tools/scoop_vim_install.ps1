@@ -9,12 +9,12 @@ iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
     }
 scoop bucket add lsq https://github.com/lsq/scoopet
 scoop install aria2
-scoop config aria2-enabled true
 scoop config aria2-retry-wait 4
 scoop config aria2-split 16
 scoop config aria2-max-connection-per-server 16
 scoop config aria2-min-split-size 4M 
 scoop config aria2-options @("-m 5")
+scoop config aria2-enabled false
 scoop install curl ctags global racket-bc jq #vim-nightly
 cp ~/scoop\apps\racket\current\lib\libracket*.dll C:\Windows\System32\
 function downGit($repo, $folder){
