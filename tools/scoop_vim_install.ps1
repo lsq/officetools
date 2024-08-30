@@ -21,7 +21,8 @@ $racketInfo = (scoop search racket-bc)
 $racketVer = $racketInfo.Version
 $racketName = $racketInfo.Name
 $rkBucket = $racketInfo.Source
-$racketDownUrl = ((Get-Content -Raw $env:scoop\buckets\$rkBucket\bucket\$racketName.json) | ConvertFrom-Json).architecture."64bit".url -replace '#/dl.7z'
+#$racketDownUrl = ((Get-Content -Raw $env:scoop\buckets\$rkBucket\bucket\$racketName.json) | ConvertFrom-Json).architecture."64bit".url -replace '#/dl.7z'
+$racketDownUrl = "https://users.cs.utah.edu/plt/installers/$racketVer/racket-$racketVer-x86_64-win32-bc.exe"
 iwr $racketDownUrl -OutFile $env:scoop\cache\$racketName-$racketVer.exe
 scoop install racket-bc
 cp ~/scoop\apps\racket\current\lib\libracket*.dll C:\Windows\System32\
