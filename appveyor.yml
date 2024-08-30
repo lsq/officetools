@@ -168,5 +168,5 @@ on_success:
 #    - echo %TARGET_BRANCH%
 #   - git push -u origin %TARGET_BRANCH%
 #- appveyor AddMessage "Static Site Updated"
-#on_finish:
-  #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+on_finish:
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
