@@ -42,6 +42,7 @@ install:
   - ls -al .
   - C:\msys64\usr\bin\bash -lc "pacman --noconfirm -Syuu"
   - C:\msys64\usr\bin\bash -lc "pacman --noconfirm -Syuu"
+  - C:\msys64\usr\bin\bash -lc "pacman --noconfirm mingw-w64-ucrt-x86_64-aria2"
   - pwd
     #- bundle install
   - cygpath -w /home
