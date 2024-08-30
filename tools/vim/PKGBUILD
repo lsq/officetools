@@ -40,6 +40,14 @@ sha256sums=('C10056D8228D9C2AA74BE8EFDB87B3E64714F6FE8E34A9FE8B6F884C2C04A10D'
             'b98b4807d6c2011836191bddce1e28b22c44649e7059af646d25187d13eea549'
             'bdca6069ef0fa995718f4b59fea85e58629259bb5a385d53e52d162d1463d4ff')
 
+pkgver() {
+  #prjInfo=$(curl https://release-monitoring.org/project/5092)
+  #echo $prjInfo
+  #ver=$(echo ${prjInfo} | sed -n '/>Latest version<\/h/{:t N;s|.*>Latest version<\/h.*doap:Version\">\([^<]*\) (.*</div>.*|\1|p;T t;q}')
+  ver=$(curl https://api.github.com/repos/vim/vim/tags | jq -r '.[0].name') 
+  printf "${ver//v/}"
+}
+
 prepare() {
   cd ${srcdir}/${pkgname}-${pkgver}
 
