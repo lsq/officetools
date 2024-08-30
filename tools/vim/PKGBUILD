@@ -111,15 +111,16 @@ build() {
 	BALLOON_EVAL_TERM=yes \
 	PYTHON3=${MINGW_PREFIX} \
     PYTHON3_HOME=${MINGW_PREFIX} \
-    PYTHON3INC=-I${MINGW_PREFIX}/include/python3.12 \
+    PYTHON3INC=-I${MINGW_PREFIX}/include/python${pyapiver} \
     DYNAMIC_PYTHON3=yes \
-	PYTHON3_VER=312 \
-	DYNAMIC_PYTHON3_DLL=libpython3.12.dll \
-	LUA=${MINGW_PREFIX} DYNAMIC_LUA=yes LUA_VER=54 \
-	RUBY=${ruby_home} DYNAMIC_RUBY=yes RUBY_VER=32 RUBY_API_VER_LONG=3.2.0 WINVER=0x601 \
-	PERL=${MINGW_PREFIX} DYNAMIC_PERL=yes PERL_VER=538
-
-  	#TCL=${MINGW_PREFIX} DYNAMIC_TCL=yes TCL_VER=86 TCL_VER_LONG=8.6 
+	PYTHON3_VER=${pyversion} \
+	DYNAMIC_PYTHON3_DLL=libpython${pyapiver}.dll \
+	LUA=${MINGW_PREFIX} DYNAMIC_LUA=yes LUA_VER=$luaversion \
+	RUBY=${rubyhm} DYNAMIC_RUBY=yes RUBY_VER=${rubyversion} RUBY_API_VER_LONG=${rubyapiver} WINVER=0x601 \
+	PERL=${MINGW_PREFIX} DYNAMIC_PERL=yes PERL_VER=$perlversion \
+	MZSCHEME="${racketHome}" DYNAMIC_MZSCHEME=yes MZSCHEME_VER=${mzVer} \
+	TCL=${MINGW_PREFIX} DYNAMIC_TCL=yes TCL_VER=$tclversion TCL_VER_LONG=$tclapiver
+  	
 	#
   
   cd  ${srcdir}/${pkgname}-${pkgver}/runtime/doc
@@ -159,7 +160,7 @@ check() {
   ./gvim.exe -u NONE -c "redir @a | ver | 0put a | wq!" ver.txt
   [ -f ./gvimext.log ] && cat gvimext.log
   [ -f ./ver.txt ] && cat ver.txt && ./vim.exe --version
-  export PATH=$rubyhome/bin:$PATH && ./gvim.exe -u NONE -S "${srcdir}"/../if_ver.vim -c "quit"
+  export PATH=$racketHome:$rubyhm/bin:$PATH && ./gvim.exe -u NONE -S "${srcdir}"/../if_ver.vim -c "quit"
   [ -f ./if_ver.txt ] &&  cat if_ver.txt
 
   #make test

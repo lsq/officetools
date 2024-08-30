@@ -7,7 +7,9 @@ iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
    foreach-object {
         scoop bucket add "$_"
     }
-scoop install aria2 curl ctags global #vim-nightly
+scoop bucket add lsq https://github.com/lsq/scoopet
+scoop install aria2 curl ctags global racket-bc #vim-nightly
+cp ~/scoop\apps\racket\current\lib\libracket*.dll C:\Windows\System32\
 function downGit($repo, $folder){
     $json = irm https://api.github.com/repos/$repo/contents/$($folder)?ref=master
     $json | ForEach-Object {
@@ -46,16 +48,21 @@ Start-Process 7z.exe -ArgumentList "x", ".\rubyinstaller-$rubyversion-1-x64.7z",
 #7z x .\rubyinstaller-$rubyversion-x64.7z  -o$rubyroot
 mv $rubyroot\rubyinstaller-$rubyversion-1-x64 $rubyhome
 $rver = ($rubyversion -split "\.")[0..1] -join ''
-sed.exe -i "s/(ci.ri2::ruby).*/\\1$rver/" $env:APPVEYOR_BUILD_FOLDER\tools\vim-build.sh
+sed.exe -r -i "s/(ci.ri2::ruby).*/\\1$rver/" $env:APPVEYOR_BUILD_FOLDER\tools\vim-build.sh
 
 #$env:USER_PATH=[Environment]::GetEnvironmentVariable("PATH", "User") 
 $env:USER_PATH=[Environment]::GetEnvironmentVariable("PATH", "Machine") 
-#// ↓勿直接使用$env:PATH，会触发问题2，用临时变量$env:USER_PATH来过渡一下
-$env:USER_PATH=$env:USER_PATH -replace "c:\\Ruby32\\bin;", "$rubyhome\bin;" #// 先在console中临时替换
+#// ↓勿直接使用$env:PATH，会触发问题2，用临时变量$env:USER_PATH来过渡一
+$env:USER_PATH=$env:USER_PATH -replace "c:\\Ruby32\\bin;", "$rubyhome\bin;" 
+#// 先在console中临时替
 $env:USER_PATH="$rubyhome\bin;$rubyhome\gems\bin;" + $env:USER_PATH
-[Environment]::SetEnvironmentVariable("PATH", $env:USER_PATH, 'Machine')  #   // 使临时替换永久生效
+[Environment]::SetEnvironmentVariable("PATH", $env:USER_PATH, 'Machine')  #   // 使临时替换永久生
 #(删除PATH中的某一个路径替换为""即可)
 echo $env:PATH
 which ruby
 gem install rake
-
+<#
+$rackethome=$(scoop prefix racket-bc)
+$mzschemeVersion = (Get-Item $rackethome\lib\librack*.dll).Name -replace "libracket" -replace ".dll"
+sed.exe -i "s/(ci.ri2::ruby).*/\\1$rver/" $env:APPVEYOR_BUILD_FOLDER\tools\vim-build.sh
+#>
