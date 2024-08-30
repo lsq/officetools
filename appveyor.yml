@@ -121,8 +121,8 @@ artifacts:
     #- path: src-
 
 cache:
-  - c:\msys64\var\cache\pacman\pkg -> appveyor.yml
-  - c:\Ruby-on-Windows -> tools\scoop_vim_install.ps1
+  - c:\msys64\var\cache\pacman\pkg 
+  - c:\Ruby-on-Windows 
 on_success:
 # https://cygwin.com/cygwin-ug-net/cygpath.html
     - which git | cygpath -w -f -

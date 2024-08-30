@@ -14,7 +14,7 @@ scoop config aria2-split 16
 scoop config aria2-max-connection-per-server 16
 scoop config aria2-min-split-size 4M 
 scoop config aria2-options @("-m 5")
-scoop config aria2-enabled false
+scoop config aria2-enabled true
 scoop install curl ctags global racket-bc jq #vim-nightly
 cp ~/scoop\apps\racket\current\lib\libracket*.dll C:\Windows\System32\
 function downGit($repo, $folder){
