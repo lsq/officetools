@@ -59,4 +59,5 @@ mzVer=$(sed 's|libracket||;s|\.dll||' <<< $(basename $mzlib))
 echo $mzVer
 export racketHome
 export mzVer
+MINGW_ARCH=ucrt64 makepkg-mingw -eo
 MINGW_ARCH=ucrt64 makepkg-mingw -L --cleanbuild --syncdeps --force --noconfirm
