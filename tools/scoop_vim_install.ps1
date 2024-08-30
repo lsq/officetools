@@ -16,12 +16,12 @@ scoop config aria2-min-split-size 4M
 scoop config aria2-options @("-m 5")
 scoop config aria2-enabled true
 scoop install curl ctags global jq #vim-nightly
-$env:scoop = "~/scoop"
+$env:scoop = "$env:USERPROFILE\scoop"
 $racketInfo = (scoop search racket-bc)
 $racketVer = $racketInfo.Version
 $racketName = $racketInfo.Name
 $rkBucket = $racketInfo.Source
-$racketDownUrl = (jq -r '.architecture."64bit".url' $env:scoop\buckets\$rkBucket\bucket\$racketName.json) -replace '#/dl.7z'
+$racketDownUrl = ((Get-Content -Raw $env:scoop\buckets\$rkBucket\bucket\$racketName.json) | ConvertFrom-Json).architecture."64bit".url -replace '#/dl.7z'
 iwr $racketDownUrl -OutFile $env:scoop\cache\$racketName-$racketVer.exe
 scoop install racket-bc
 cp ~/scoop\apps\racket\current\lib\libracket*.dll C:\Windows\System32\
