@@ -57,6 +57,7 @@ echo $rubyhome --- $env:rubyhome
 $rubyhome = $env:rubyhome
 (iwr https://www.ruby-lang.org/en/downloads).Content -match "The current stable version is (?<version>[\d.]+)\."
 $rubyversion = $Matches['version']
+Write-Host $rubyversion
 $rver = ($rubyversion -split "\.")[0..1] -join ''
 
 #$rubyversion = [System.iO.Path]::GetFileName($rubyhome)
@@ -89,6 +90,7 @@ $dlOrNot = $false
 if (Test-Path $rubyhome\bin\ruby.exe) {
     $(ruby -v) -match " (?<inVer>[\d.]+) "
     $inVer =  $Matches['inVer']
+    Write-Host $inVer
     
     if ([System.Version]$rubyversion -gt [System.Version]$inVer) {
 		$dlOrNot = $true
@@ -99,6 +101,9 @@ if ($dlOrNot = $true) {
 	iwr https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-$rubyversion-1/rubyinstaller-$rubyversion-1-x64.7z -OutFile rubyinstaller-$rubyversion-1-x64.7z
 	Start-Process 7z.exe -ArgumentList "x", ".\rubyinstaller-$rubyversion-1-x64.7z", "-o$rubyroot" -Wait
 	#7z x .\rubyinstaller-$rubyversion-x64.7z  -o$rubyroot
+	if (Test-Path $rubyhome) {
+		rm $rubyhome -Recurse -Force
+	}
 	mv $rubyroot\rubyinstaller-$rubyversion-1-x64 $rubyhome
 }
 
