@@ -22,10 +22,10 @@ $racketVer = $racketInfo.Version
 $racketName = $racketInfo.Name
 $rkBucket = $racketInfo.Source
 #$racketDownUrl = ((Get-Content -Raw $env:scoop\buckets\$rkBucket\bucket\$racketName.json) | ConvertFrom-Json).architecture."64bit".url -replace '#/dl.7z'
-$racketDownUrl = "https://users.cs.utah.edu/plt/installers/$racketVer/racket-$racketVer-x86_64-win32-bc.exe"
-iwr $racketDownUrl -OutFile $env:scoop\cache\$racketName-$racketVer.exe
+#$racketDownUrl = "https://users.cs.utah.edu/plt/installers/$racketVer/racket-$racketVer-x86_64-win32-bc.exe"
+#iwr $racketDownUrl -OutFile $env:scoop\cache\$racketName-$racketVer.exe
 scoop install racket-bc
-cp ~/scoop\apps\racket\current\lib\libracket*.dll C:\Windows\System32\
+cp $env:scoop\apps\$racketName\current\lib\libracket*.dll C:\Windows\System32\
 function downGit($repo, $folder){
     $json = irm https://api.github.com/repos/$repo/contents/$($folder)?ref=master
     $json | ForEach-Object {
@@ -57,13 +57,51 @@ echo $rubyhome --- $env:rubyhome
 $rubyhome = $env:rubyhome
 (iwr https://www.ruby-lang.org/en/downloads).Content -match "The current stable version is (?<version>[\d.]+)\."
 $rubyversion = $Matches['version']
+$rver = ($rubyversion -split "\.")[0..1] -join ''
+
 #$rubyversion = [System.iO.Path]::GetFileName($rubyhome)
 $rubyroot = [system.iO.Path]::GetDirectoryName($rubyhome)
-iwr https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-$rubyversion-1/rubyinstaller-$rubyversion-1-x64.7z -OutFile rubyinstaller-$rubyversion-1-x64.7z
-Start-Process 7z.exe -ArgumentList "x", ".\rubyinstaller-$rubyversion-1-x64.7z", "-o$rubyroot" -Wait
-#7z x .\rubyinstaller-$rubyversion-x64.7z  -o$rubyroot
-mv $rubyroot\rubyinstaller-$rubyversion-1-x64 $rubyhome
-$rver = ($rubyversion -split "\.")[0..1] -join ''
+<#
+function Compare-Version {
+    Param (
+        [string]$version1,
+        [string]$version2
+    )
+ 
+    $v1 = $version1 -split '\.'
+    $v2 = $version2 -split '\.'
+ 
+    for ($i = 0; $i -lt [Math]::Max($v1.Length, $v2.Length); $i++) {
+        $part1 = if ($i -lt $v1.Length) { $v1[$i] } else { 0 }
+        $part2 = if ($i -lt $v2.Length) { $v2[$i] } else { 0 }
+ 
+        $compareResult = $part1 -as [int] -compare $part2 -as [int]
+ 
+        if ($compareResult -ne 0) {
+            return $compareResult
+        }
+    }
+ 
+    return 0
+}
+#>
+$dlOrNot = $false
+if (Test-Path $rubyhome\bin\ruby.exe) {
+    $(ruby -v) -match " (?<inVer>[\d.]+) "
+    $inVer =  $Matches['inVer']
+    
+    if ([System.Version]$rubyversion -gt [System.Version]$inVer) {
+		$dlOrNot = $true
+    }
+}
+else { $dlOrNot = $true}
+if ($dlOrNot = $true) {
+	iwr https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-$rubyversion-1/rubyinstaller-$rubyversion-1-x64.7z -OutFile rubyinstaller-$rubyversion-1-x64.7z
+	Start-Process 7z.exe -ArgumentList "x", ".\rubyinstaller-$rubyversion-1-x64.7z", "-o$rubyroot" -Wait
+	#7z x .\rubyinstaller-$rubyversion-x64.7z  -o$rubyroot
+	mv $rubyroot\rubyinstaller-$rubyversion-1-x64 $rubyhome
+}
+
 sed.exe -r -i "s/(ci.ri2::ruby).*/\\1$rver/" $env:APPVEYOR_BUILD_FOLDER\tools\vim-build.sh
 
 #$env:USER_PATH=[Environment]::GetEnvironmentVariable("PATH", "User") 
