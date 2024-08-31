@@ -4,6 +4,8 @@ pacman --noconfirm --sync --needed pactoys
 pacman-key --recv-keys BE8BF1C5
 pacman-key --lsign-key BE8BF1C5
 repman add ci.ri2 "https://github.com/oneclick/rubyinstaller2-packages/releases/download/ci.ri2"
+pacman -Syuu --noconfirm
+pacboy sync --needed --noconfirm ci.ri2::ruby$rubyversion lua:u
 
 #cd ./vim
 #MINGW_ARCH=msys makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
@@ -26,7 +28,6 @@ rubyapiver=$(ruby -v | sed -r -n 's/.* (([0-9]{1,2})\.([0-9]{1,2})\.)[0-9]{1,2} 
 #sed -i "s|RUBY_API_VER_LONG=3.2.0|RUBY_API_VER_LONG=${rubyapiver}|" $APPVEYOR_BUILD_FOLDER/tools/vim/PKGBUILD
 sed -n 's/\r//p' $APPVEYOR_BUILD_FOLDER/tools/vim/PKGBUILD
 export rubyversion rubyapiver rubyhm
-pacboy  sync --noconfirm ci.ri2::ruby$rubyversion
 
 pythonver=$(sed 's/\x0d\x0a//' <<< $(powershell '$webc=(iwr https://www.python.org/downloads/windows).content; $mstatus = $webc -match "Latest Python \d Release - Python (?<version>[\d.]+)"; $Matches["version"]'))
 pypat=$(which python3)
@@ -59,5 +60,21 @@ mzVer=$(sed 's|libracket||;s|\.dll||' <<< $(basename $mzlib))
 echo $mzVer
 export racketHome
 export mzVer
-MINGW_ARCH=ucrt64 makepkg-mingw -eo
+
+pkgver() {
+  #prjInfo=$(curl https://release-monitoring.org/project/5092)
+  #echo $prjInfo
+  #ver=$(echo ${prjInfo} | sed -n '/>Latest version<\/h/{:t N;s|.*>Latest version<\/h.*doap:Version\">\([^<]*\) (.*</div>.*|\1|p;T t;q}')
+  ver=$(curl https://api.github.com/repos/vim/vim/tags | jq -r '.[0].name'|sed 's/v//') 
+  printf "${ver}"
+  #sed -n 's/\r//p' $APPVEYOR_BUILD_FOLDER/tools/vim/PKGBUILD
+}
+olderVer=$(sed -n 's/^pkgver=\(.*\)/\1/p;t e;:e q' PKGBUILD)
+newerVer=$(pkgver)
+if [ $(vercmp $olderVer $newerVer) -ne 0 ]; then
+	sed -i "s/^\(pkgver=\).*/\1$newerVer/;t e;:e q" PKGBUILD
+	chsm=$(makepkg-mingw -g |sed ':t;$!N;s/\n/|/;t t;s/\x27/#/g;q')
+	sed -i '\~^sha256sums=~{:t N;s~.*\x27)~'$chsm'~;T t;s~#~\x27~g;s~|~\n~g; q}' PKGBUILD
+fi
+#MINGW_ARCH=ucrt64 makepkg-mingw -eo
 MINGW_ARCH=ucrt64 makepkg-mingw -L --cleanbuild --syncdeps --force --noconfirm
