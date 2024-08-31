@@ -8,6 +8,7 @@ iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
         scoop bucket add "$_"
     }
 scoop bucket add lsq https://github.com/lsq/scoopet
+scoop update
 scoop install lsq/aria2
 scoop config aria2-retry-wait 4
 scoop config aria2-split 16
