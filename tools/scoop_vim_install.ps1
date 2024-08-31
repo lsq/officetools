@@ -98,6 +98,7 @@ if (Test-Path $rubyhome\bin\ruby.exe) {
 }
 else { $dlOrNot = $true}
 if ($dlOrNot = $true) {
+	Write-Host "Now starting download $rubyversion"
 	iwr https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-$rubyversion-1/rubyinstaller-$rubyversion-1-x64.7z -OutFile rubyinstaller-$rubyversion-1-x64.7z
 	Start-Process 7z.exe -ArgumentList "x", ".\rubyinstaller-$rubyversion-1-x64.7z", "-o$rubyroot" -Wait
 	#7z x .\rubyinstaller-$rubyversion-x64.7z  -o$rubyroot
@@ -107,7 +108,7 @@ if ($dlOrNot = $true) {
 	mv $rubyroot\rubyinstaller-$rubyversion-1-x64 $rubyhome
 }
 
-sed.exe -r -i "s/(ci.ri2::ruby).*/\\1$rver/" $env:APPVEYOR_BUILD_FOLDER\tools\vim-build.sh
+sed.exe -r -i "s/(ci.ri2::ruby).*(:.*)/\\1$rver\\2/" $env:APPVEYOR_BUILD_FOLDER\tools\vim-build.sh
 
 #$env:USER_PATH=[Environment]::GetEnvironmentVariable("PATH", "User") 
 $env:USER_PATH=[Environment]::GetEnvironmentVariable("PATH", "Machine") 

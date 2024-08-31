@@ -5,9 +5,9 @@ pacman-key --recv-keys BE8BF1C5
 pacman-key --lsign-key BE8BF1C5
 repman add ci.ri2 "https://github.com/oneclick/rubyinstaller2-packages/releases/download/ci.ri2"
 pacman -Syuu --noconfirm
-pacman -Sy --needed --noconfirm "ruby$rubyversion"
-pacboy sync --needed --noconfirm lua
-pacboy sync --needed --noconfirm "ruby$rubyversion:u"
+#pacman -Sy --needed --noconfirm "ruby$rubyversion"
+pacboy sync --needed --noconfirm lua:u
+pacboy sync --needed --noconfirm ci.ri2::ruby32:u
 #cd ./vim
 #MINGW_ARCH=msys makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
 cd $APPVEYOR_BUILD_FOLDER/tools/vim
@@ -74,8 +74,8 @@ olderVer=$(sed -n ':t;n;s/pkgver=\(.*\)/\1/;T t;p;q' PKGBUILD)
 newerVer=$(pkgver)
 if [ $(vercmp $olderVer $newerVer) -ne 0 ]; then
 	sed -i "s/^\(pkgver=\).*/\1$newerVer/;t e;:e q" PKGBUILD
-	chsm=$(makepkg-mingw -g |sed ':t;$!N;s/\n/|/;t t;s/\x27/#/g;q')
+	chsm=$(makepkg-mingw -oeg |sed ':t;$!N;s/\n/|/;t t;s/\x27/#/g;q')
 	sed -i '\~^sha256sums=~{:t N;s~.*\x27)~'$chsm'~;T t;s~#~\x27~g;s~|~\n~g; q}' PKGBUILD
 fi
 #MINGW_ARCH=ucrt64 makepkg-mingw -eo
-MINGW_ARCH=ucrt64 makepkg-mingw -L --cleanbuild --syncdeps --force --noconfirm
+MINGW_ARCH=ucrt64 makepkg-mingw -sLf
