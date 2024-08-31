@@ -5,8 +5,8 @@ pacman-key --recv-keys BE8BF1C5
 pacman-key --lsign-key BE8BF1C5
 repman add ci.ri2 "https://github.com/oneclick/rubyinstaller2-packages/releases/download/ci.ri2"
 pacman -Syuu --noconfirm
-pacboy sync --needed --noconfirm ci.ri2::ruby$rubyversion lua:u
-
+pacman -Sy --needed --noconfirm --repo ci.ri2 "ruby$rubyversion"
+pacboy sync --needed --noconfirm lua
 #cd ./vim
 #MINGW_ARCH=msys makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
 cd $APPVEYOR_BUILD_FOLDER/tools/vim
@@ -69,7 +69,7 @@ pkgver() {
   printf "${ver}"
   #sed -n 's/\r//p' $APPVEYOR_BUILD_FOLDER/tools/vim/PKGBUILD
 }
-olderVer=$(sed -n 's/^pkgver=\(.*\)/\1/p;t e;:e q' PKGBUILD)
+olderVer=$(sed -n ':t;n;s/pkgver=\(.*\)/\1/;T t;p;q' PKGBUILD)
 newerVer=$(pkgver)
 if [ $(vercmp $olderVer $newerVer) -ne 0 ]; then
 	sed -i "s/^\(pkgver=\).*/\1$newerVer/;t e;:e q" PKGBUILD
