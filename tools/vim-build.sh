@@ -5,8 +5,9 @@ pacman-key --recv-keys BE8BF1C5
 pacman-key --lsign-key BE8BF1C5
 repman add ci.ri2 "https://github.com/oneclick/rubyinstaller2-packages/releases/download/ci.ri2"
 pacman -Syuu --noconfirm
-pacman -Sy --needed --noconfirm --repo ci.ri2 "ruby$rubyversion"
+pacman -Sy --needed --noconfirm "ruby$rubyversion"
 pacboy sync --needed --noconfirm lua
+pacboy sync --needed --noconfirm "ruby$rubyversion:u"
 #cd ./vim
 #MINGW_ARCH=msys makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
 cd $APPVEYOR_BUILD_FOLDER/tools/vim
