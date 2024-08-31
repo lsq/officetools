@@ -82,4 +82,4 @@ if [ -n $newerVer -a $(vercmp $olderVer $newerVer) -ne 0 ]; then
 	#printf '%s\n' "g/1/s//$chsm/" 'wq' | ed -s sed.txt
 fi
 #MINGW_ARCH=ucrt64 makepkg-mingw -eo
-MINGW_ARCH=ucrt64 makepkg-mingw -sLf
+MINGW_ARCH=ucrt64 makepkg-mingw -sLf --noconfirm
