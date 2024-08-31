@@ -123,8 +123,8 @@ artifacts:
 
 cache:
   - c:\msys64\var\cache\pacman\pkg 
-  - %rubyhome%
-  - %USERPROFILE%\scoop
+  - '%rubyhome%'
+  - '%USERPROFILE%\scoop'
 on_success:
 # https://cygwin.com/cygwin-ug-net/cygpath.html
     - which git | cygpath -w -f -
