@@ -90,14 +90,14 @@ $dlOrNot = $false
 if (Test-Path $rubyhome\bin\ruby.exe) {
     $(ruby -v) -match " (?<inVer>[\d.]+) "
     $inVer =  $Matches['inVer']
-    Write-Host $inVer
+    Write-Host "exist ver:$inVer"
     
     if ([System.Version]$rubyversion -gt [System.Version]$inVer) {
 		$dlOrNot = $true
     }
 }
 else { $dlOrNot = $true}
-if ($dlOrNot = $true) {
+if ($dlOrNot -eq $true) {
 	Write-Host "Now starting download $rubyversion"
 	iwr https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-$rubyversion-1/rubyinstaller-$rubyversion-1-x64.7z -OutFile rubyinstaller-$rubyversion-1-x64.7z
 	Start-Process 7z.exe -ArgumentList "x", ".\rubyinstaller-$rubyversion-1-x64.7z", "-o$rubyroot" -Wait

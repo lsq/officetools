@@ -6,6 +6,7 @@ pacman-key --lsign-key BE8BF1C5
 repman add ci.ri2 "https://github.com/oneclick/rubyinstaller2-packages/releases/download/ci.ri2"
 pacman -Syuu --noconfirm
 #pacman -Sy --needed --noconfirm "ruby$rubyversion"
+pacboy sync --needed --noconfirm ed:
 pacboy sync --needed --noconfirm lua:u
 pacboy sync --needed --noconfirm ci.ri2::ruby32:u
 #cd ./vim
@@ -24,10 +25,10 @@ rbdir=${rbpat%/*}
 rubyhm=${rbdir%/*}
 rubyversion=$(ruby -v | sed -r -n 's/.* (([0-9]{1,2})\.([0-9]{1,2})\.)[0-9]{1,2} .*/\2\3/p')
 rubyapiver=$(ruby -v | sed -r -n 's/.* (([0-9]{1,2})\.([0-9]{1,2})\.)[0-9]{1,2} .*/\10/p')
-#sed -i "s|RUBY=\${ruby_home}|RUBY=${rubyhm}|" $APPVEYOR_BUILD_FOLDER/tools/vim/PKGBUILD
-#sed -i "s|RUBY_VER=32|RUBY_VER=${rubyversion}|" $APPVEYOR_BUILD_FOLDER/tools/vim/PKGBUILD
-#sed -i "s|RUBY_API_VER_LONG=3.2.0|RUBY_API_VER_LONG=${rubyapiver}|" $APPVEYOR_BUILD_FOLDER/tools/vim/PKGBUILD
-sed -n 's/\r//p' $APPVEYOR_BUILD_FOLDER/tools/vim/PKGBUILD
+#sed -i "s|RUBY=\${ruby_home}|RUBY=${rubyhm}|" PKGBUILD
+#sed -i "s|RUBY_VER=32|RUBY_VER=${rubyversion}|" PKGBUILD
+#sed -i "s|RUBY_API_VER_LONG=3.2.0|RUBY_API_VER_LONG=${rubyapiver}|" PKGBUILD
+sed -n 's/\r//p' PKGBUILD
 export rubyversion rubyapiver rubyhm
 
 pythonver=$(sed 's/\x0d\x0a//' <<< $(powershell '$webc=(iwr https://www.python.org/downloads/windows).content; $mstatus = $webc -match "Latest Python \d Release - Python (?<version>[\d.]+)"; $Matches["version"]'))
@@ -37,7 +38,7 @@ pyhm=${rbdir%/*}
 pyversion=$(echo ${pythonver} | sed -r -n 's/.*(([0-9]{1,2})\.([0-9]{1,2})\.)[0-9]{1,2}.*/\2\3/p')
 pyapiver=$(echo ${pythonver} | sed -r -n 's/.*(([0-9]{1,2})\.([0-9]{1,2}))\.[0-9]{1,2}.*/\1/p')
 export pyversion pyapiver pyhm
-#sed -n 's/\r//p' $APPVEYOR_BUILD_FOLDER/tools/vim/PKGBUILD
+#sed -n 's/\r//p' PKGBUILD
 
 luaversion=$(lua -v | sed -r -n 's/.*(([0-9]{1,2})\.([0-9]{1,2})\.)[0-9]{1,2}.*/\2\3/p')
 tclshversionlong=$(tclsh - <<< 'puts $tcl_patchLevel')
@@ -63,19 +64,22 @@ export racketHome
 export mzVer
 
 pkgver() {
-  #prjInfo=$(curl https://release-monitoring.org/project/5092)
-  #echo $prjInfo
-  #ver=$(echo ${prjInfo} | sed -n '/>Latest version<\/h/{:t N;s|.*>Latest version<\/h.*doap:Version\">\([^<]*\) (.*</div>.*|\1|p;T t;q}')
   ver=$(curl https://api.github.com/repos/vim/vim/tags | jq -r '.[0].name'|sed 's/v//') 
+  if [ -z $ver ]; then
+	prjInfo=$(curl https://release-monitoring.org/project/5092)
+	#echo $prjInfo
+	ver=$(echo ${prjInfo} | sed -n '/>Latest version<\/h/{:t N;s|.*>Latest version<\/h.*doap:Version\">\([^<]*\) (.*</div>.*|\1|p;T t;q}')
+  fi
   printf "${ver}"
-  #sed -n 's/\r//p' $APPVEYOR_BUILD_FOLDER/tools/vim/PKGBUILD
+  #sed -n 's/\r//p' PKGBUILD
 }
 olderVer=$(sed -n ':t;n;s/pkgver=\(.*\)/\1/;T t;p;q' PKGBUILD)
 newerVer=$(pkgver)
-if [ $(vercmp $olderVer $newerVer) -ne 0 ]; then
-	sed -i "s/^\(pkgver=\).*/\1$newerVer/;t e;:e q" PKGBUILD
-	chsm=$(makepkg-mingw -oeg |sed ':t;$!N;s/\n/|/;t t;s/\x27/#/g;q')
-	sed -i '\~^sha256sums=~{:t N;s~.*\x27)~'$chsm'~;T t;s~#~\x27~g;s~|~\n~g; q}' PKGBUILD
+if [ -n $newerVer -a $(vercmp $olderVer $newerVer) -ne 0 ]; then
+	sed -i "/^\(pkgver=\).*/{s/^\(pkgver=\).*/\1$newerVer/;}" PKGBUILD
+	chsm=$(makepkg-mingw -oeg |sed ':t;N;$! bt;s/\n/|/g;s/\x27/#/g;')
+	sed -i '\~^sha256sums=~{:t N;s~.*\x27)~'"$chsm"'~;T t;s~#~\x27~g;s~|~\n~g;}' PKGBUILD
+	#printf '%s\n' "g/1/s//$chsm/" 'wq' | ed -s sed.txt
 fi
 #MINGW_ARCH=ucrt64 makepkg-mingw -eo
 MINGW_ARCH=ucrt64 makepkg-mingw -sLf
