@@ -77,8 +77,9 @@ olderVer=$(sed -n ':t;n;s/pkgver=\(.*\)/\1/;T t;p;q' PKGBUILD)
 newerVer=$(pkgver)
 if [ -n $newerVer -a $(vercmp $olderVer $newerVer) -ne 0 ]; then
 	sed -i "/^\(pkgver=\).*/{s/^\(pkgver=\).*/\1$newerVer/;}" PKGBUILD
-	chsm=$(makepkg-mingw -oeg |sed ':t;N;$! bt;s/\n/|/g;s/\x27/#/g;')
-	sed -i '\~^sha256sums=~{:t N;s~.*\x27)~'"$chsm"'~;T t;s~#~\x27~g;s~|~\n~g;}' PKGBUILD
+	updpkgsums
+	#chsm=$(makepkg-mingw -oeg |sed ':t;N;$! bt;s/\n/|/g;s/\x27/#/g;')
+	#sed -i '\~^sha256sums=~{:t N;s~.*\x27)~'"$chsm"'~;T t;s~#~\x27~g;s~|~\n~g;}' PKGBUILD
 	#printf '%s\n' "g/1/s//$chsm/" 'wq' | ed -s sed.txt
 fi
 #MINGW_ARCH=ucrt64 makepkg-mingw -eo

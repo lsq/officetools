@@ -128,6 +128,7 @@ cache:
 on_success:
 # https://cygwin.com/cygwin-ug-net/cygpath.html
     - which git | cygpath -w -f -
+    - ruby -e '3.times { puts "I 3 I I ❤️ Ruby"}'
       #- which hugo | cygpath -w -f -
     # bash -c "cp `which git | cygpath -w -f - | cygpath -u -f -` ."
     #    - git config --global credential.helper store
@@ -171,5 +172,4 @@ on_success:
 #   - git push -u origin %TARGET_BRANCH%
 #- appveyor AddMessage "Static Site Updated"
 on_finish:
-  - sh: ruby -e '3.times { puts "I 3 I I ❤️ Ruby"}'
-  #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
