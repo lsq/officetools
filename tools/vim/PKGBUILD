@@ -2,12 +2,13 @@
 # Maintainer: Francesco Corte <francesco.corte9001@gmail.com>
 
 _realname=vim
-_topver=9.1
-_patchlevel=0698
+pkgver=9.1.0698
+_topver=${pkgver%.*}
+_patchlevel=${pkgver##*.}
 _versiondir="${_realname}${_topver//./}"
 pkgbase="mingw-w64-vim${_topver//./}"
 pkgname="${MINGW_PACKAGE_PREFIX}-vim${_topver//./}"
-pkgver=9.1.0698
+
 pkgrel=1
 pkgdesc='Vi Improved, a highly configurable, improved version of the vi text editor'
 #mingw_arch=('mingw64' 'ucrt64' 'clang64' 'clangarm64')
@@ -122,7 +123,8 @@ build() {
 	RUBY=${rubyhm} DYNAMIC_RUBY=yes RUBY_VER=${rubyversion} RUBY_API_VER_LONG=${rubyapiver} WINVER=0x601 \
 	PERL=${MINGW_PREFIX} DYNAMIC_PERL=yes PERL_VER=$perlversion \
 	MZSCHEME="${racketHome}" DYNAMIC_MZSCHEME=yes MZSCHEME_VER=${mzVer} \
-	TCL=${MINGW_PREFIX} DYNAMIC_TCL=yes TCL_VER=$tclversion TCL_VER_LONG=$tclapiver
+	TCL=${MINGW_PREFIX} DYNAMIC_TCL=yes TCL_VER=$tclversion TCL_VER_LONG=$tclapiver \
+	VIMRUNTIMEDIR=/usr/share/vim/vim${_topver/\.}
   	
 	#
   

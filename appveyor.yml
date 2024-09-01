@@ -117,7 +117,7 @@ artifacts:
   - path: \$(APPVEYOR_JOB_ID)
   - path: tools\vim\gvim_*_x86_64.zip
     name: gvim_x64.zip
-  - path: tools\vim\vim-*-x86_64.pkg.tar.zst
+  - path: tools\vim\mingw-w64-ucrt-x86_64-vim*.pkg.tar.zst
     name: gvim-ucrt-x86_64.pkg.tar.zst
     #- path: src-
 
@@ -171,5 +171,5 @@ on_success:
 #    - echo %TARGET_BRANCH%
 #   - git push -u origin %TARGET_BRANCH%
 #- appveyor AddMessage "Static Site Updated"
-on_finish:
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+#on_finish:
+  #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
