@@ -124,7 +124,7 @@ build() {
 	PERL=${MINGW_PREFIX} DYNAMIC_PERL=yes PERL_VER=$perlversion \
 	MZSCHEME="${racketHome}" DYNAMIC_MZSCHEME=yes MZSCHEME_VER=${mzVer} \
 	TCL=${MINGW_PREFIX} DYNAMIC_TCL=yes TCL_VER=$tclversion TCL_VER_LONG=$tclapiver \
-	VIMRUNTIMEDIR=/usr/share/vim/vim${_topver/\.}
+	VIMRUNTIMEDIR=/${MINGW_PREFIX}/share/vim/vim${_topver/\.}
   	
 	#
   
@@ -173,31 +173,31 @@ check() {
 
 package() {
   
-  #mkdir -p "${pkgdir}"/${MINGW_ARCH}/bin/
-  install -Dm644 "${srcdir}"/${_realname}-${pkgver}/src/vimtutor "${pkgdir}"/${MINGW_ARCH}/bin/vimtutor
-  install -Dm644 "${srcdir}"/${_realname}-${pkgver}/src/*.exe "${pkgdir}"/${MINGW_ARCH}/bin
-  install -Dm644 "${srcdir}"/${_realname}-${pkgver}/src/vimtutor "${pkgdir}"/${MINGW_ARCH}/bin/vimtutor
-  install -Dm644 "${srcdir}"/${_realname}-${pkgver}/src/vim64.dll "${pkgdir}"/${MINGW_ARCH}/bin/vim64.dll
-  install -Dm644 "${srcdir}"/${_realname}-${pkgver}/src/xxd/xxd.exe "${pkgdir}"/${MINGW_ARCH}/bin/xxd.exe
-  install -Dm644 "${srcdir}"/${_realname}-${pkgver}/src/xpm/x64/lib/* "${pkgdir}"/${MINGW_ARCH}/bin
-  mkdir -p "${pkgdir}"/${MINGW_ARCH}/share/vim
-  cp -rf "${srcdir}"/${_realname}-${pkgver}/runtime "${pkgdir}"/${MINGW_ARCH}/share/vim/${_versiondir}
+  #mkdir -p "${pkgdir}"/${MINGW_PREFIX}/bin/
+  install -Dm644 "${srcdir}"/${_realname}-${pkgver}/src/vimtutor "${pkgdir}"/${MINGW_PREFIX}/bin/vimtutor
+  install -Dm644 "${srcdir}"/${_realname}-${pkgver}/src/*.exe "${pkgdir}"/${MINGW_PREFIX}/bin
+  install -Dm644 "${srcdir}"/${_realname}-${pkgver}/src/vimtutor "${pkgdir}"/${MINGW_PREFIX}/bin/vimtutor
+  install -Dm644 "${srcdir}"/${_realname}-${pkgver}/src/vim64.dll "${pkgdir}"/${MINGW_PREFIX}/bin/vim64.dll
+  install -Dm644 "${srcdir}"/${_realname}-${pkgver}/src/xxd/xxd.exe "${pkgdir}"/${MINGW_PREFIX}/bin/xxd.exe
+  install -Dm644 "${srcdir}"/${_realname}-${pkgver}/src/xpm/x64/lib/* "${pkgdir}"/${MINGW_PREFIX}/bin
+  mkdir -p "${pkgdir}"/${MINGW_PREFIX}/share/vim
+  cp -rf "${srcdir}"/${_realname}-${pkgver}/runtime "${pkgdir}"/${MINGW_PREFIX}/share/vim/${_versiondir}
   
   #for x in ex rvi vi.exe
   #do
-  #  cp -f vi.exe ${pkgdir}/${MINGW_ARCH}/bin/${x}
+  #  cp -f vi.exe ${pkgdir}/${MINGW_PREFIX}/bin/${x}
   #done
 
   for y in vimdiff view rview rvim
   do
-    cp -f ${pkgdir}/${MINGW_ARCH}/bin/vim.exe ${pkgdir}/${MINGW_ARCH}/bin/${y}
+    cp -f ${pkgdir}/${MINGW_PREFIX}/bin/vim.exe ${pkgdir}/${MINGW_PREFIX}/bin/${y}
   done
 
-  mkdir -p ${pkgdir}/${MINGW_ARCH}/share/bash-completion/completions
-  cp -f ${srcdir}/vim-completion ${pkgdir}/${MINGW_ARCH}/share/bash-completion/completions/vim
+  mkdir -p ${pkgdir}/${MINGW_PREFIX}/share/bash-completion/completions
+  cp -f ${srcdir}/vim-completion ${pkgdir}/${MINGW_PREFIX}/share/bash-completion/completions/vim
 
   # delete some manpages
-  #find "${pkgdir}"/${MINGW_ARCH}/share/man -type d -name 'man1' 2>/dev/null | \
+  #find "${pkgdir}"/${MINGW_PREFIX}/share/man -type d -name 'man1' 2>/dev/null | \
   #  while read _mandir; do
   #  cd ${_mandir}
   #  rm -f ex.1 # provided by (n)vi
@@ -206,20 +206,20 @@ package() {
 
   # fix FS#17216
   sed -i 's|messages,/var|messages,/var/log/messages.log,/var|' \
-    "${pkgdir}"/${MINGW_ARCH}/share/vim/${_versiondir}/filetype.vim
+    "${pkgdir}"/${MINGW_PREFIX}/share/vim/${_versiondir}/filetype.vim
 
   # patch filetype.vim for better handling of pacman related files
   sed -i "s/rpmsave/pacsave/;s/rpmnew/pacnew/;s/,\*\.ebuild/\0,PKGBUILD*,*.install/" \
-    "${pkgdir}"/${MINGW_ARCH}/share/vim/${_versiondir}/filetype.vim
+    "${pkgdir}"/${MINGW_PREFIX}/share/vim/${_versiondir}/filetype.vim
   sed -i "/find the end/,+3{s/changelog_date_entry_search/changelog_date_end_entry_search/}" \
-    "${pkgdir}"/${MINGW_ARCH}/share/vim/${_versiondir}/ftplugin/changelog.vim
+    "${pkgdir}"/${MINGW_PREFIX}/share/vim/${_versiondir}/ftplugin/changelog.vim
 
   # rc files
   install -Dm644 "${srcdir}"/dot.vimrc "${pkgdir}"/etc/skel/.vimrc
 
   # license
   install -Dm644 "${srcdir}"/vim-${pkgver}/runtime/doc/uganda.txt \
-    "${pkgdir}"/${MINGW_ARCH}/share/licenses/${_realname}/license.txt
+    "${pkgdir}"/${MINGW_PREFIX}/share/licenses/${_realname}/license.txt
   
   cd "${srcdir}"/${_realname}-${pkgver}/src
   cp -rf ../README.txt ../runtime
