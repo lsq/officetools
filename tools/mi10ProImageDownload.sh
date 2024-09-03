@@ -1,4 +1,6 @@
 set -x
+basedir=$(realpath ${0%/*})
+cd $basedir
 mi10Pro="mi10Prov11.0.18.cn"
 echo "scoop install main/aria2" >> ./install-scoop.ps1
 powershell ".\install-scoop.ps1"
