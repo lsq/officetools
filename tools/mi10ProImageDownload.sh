@@ -13,4 +13,6 @@ pacman -Sy dtc zip vim --noconfirm
 export PATH=/c/Program\ Files/Java/jdk21/bin:$PATH
 export JAVA_HOME=/c/Program\ Files/Java/jdk21
 cp $imgdir/images/{boot,recovery,vbmeta}.img Android_boot_image_editor/
+cd Android_boot_image_editor
 ./gradlew unpack
+ls -al
