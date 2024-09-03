@@ -124,7 +124,7 @@ build() {
 	PERL=${MINGW_PREFIX} DYNAMIC_PERL=yes PERL_VER=$perlversion \
 	MZSCHEME="${racketHome}" DYNAMIC_MZSCHEME=yes MZSCHEME_VER=${mzVer} \
 	TCL=${MINGW_PREFIX} DYNAMIC_TCL=yes TCL_VER=$tclversion TCL_VER_LONG=$tclapiver \
-	VIMRUNTIMEDIR=/${MINGW_PREFIX}/share/vim/vim${_topver/\.}
+	VIMRUNTIMEDIR=${MINGW_PREFIX}/share/vim/vim${_topver/\.}
   	
 	#
   
