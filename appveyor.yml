@@ -120,6 +120,8 @@ artifacts:
   - path: tools\vim\mingw-w64-ucrt-x86_64-vim*.pkg.tar.zst
     name: gvim-ucrt-x86_64.pkg.tar.zst
     #- path: src-
+  - path: tools\img
+    name: img.zip
 
 cache:
   - c:\msys64\var\cache\pacman\pkg 
