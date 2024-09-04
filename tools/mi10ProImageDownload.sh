@@ -9,7 +9,7 @@ aria2c "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; ) AppleWebKit/537
 tar xf "$mi10Pro".tgz
 mkdir img
 [ -d `echo cmi_images*` ] && imgdir=$(echo cmi_images*)
-cp ./{boot,recovery,vbmeta}.img ../img
+cp ./{boot,recovery,vbmeta}.img ../../img
 #git clone https://github.com/cfig/Android_boot_image_editor.git
 #pacman -Sy dtc zip vim --noconfirm
 #export PATH=/c/Program\ Files/Java/jdk21/bin:$PATH
