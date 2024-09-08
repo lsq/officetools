@@ -122,7 +122,7 @@ build_script:
   #- makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
   #-------------------------------------------------------------
   #android boot.img
-  - bash -x "./tools/mi10ImageDownload.sh" thyme
+  - bash -x "./tools/mi10ImageDownload.sh" cmi
 
 before_test:
   - which ruby| cygpath -w -f -
