@@ -22,6 +22,17 @@ environment:
  #     MSYSTEM: MINGW32
 # Set path for msys
 init:
+  - ps: |
+      $gittag=((git name-rev $env:APPVEYOR_REPO_COMMIT --tags) -split '/' )[1]
+      if ($gittag.length -ne 0)
+      {
+      if (-not $APPVEYOR_REPO_TAG)
+      {
+      if (-not ($gittag -match '~')){
+        appveyor.exe exit
+        }
+      }
+      }
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
   - PATH %rubyhome%\bin;C:\msys64\%MSYSTEM%\bin;C:\msys64\usr\bin;%PATH%
   # - set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
@@ -84,12 +95,6 @@ install:
   - df -h
   - wmic LogicalDisk get FreeSpace,Size /value
   - wmic DiskDrive get size /value
-before_build:
-  - ps: |
-      if ((((git name-rev $env:APPVEYOR_REPO_COMMIT --tags) -split '/' )[1]).length -ne 0)
-      {
-        appveyor.exe exit
-      }
 
 build_script:
   - echo %path%
