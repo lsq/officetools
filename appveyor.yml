@@ -23,9 +23,10 @@ environment:
 # Set path for msys
 init:
   - ps: |
-      Write-host $APPVEYOR_REPO_TAG
+      Write-host "`$APPVEYOR_REPO_TAG: $APPVEYOR_REPO_TAG"
+      Write-host "`$env:APPVEYOR_REPO_TAG: $env:APPVEYOR_REPO_TAG"
       $tgs = (irm  https://api.github.com/repos/$env:APPVEYOR_ACCOUNT_NAME/$env:APPVEYOR_PROJECT_NAME/tags)
-      if (-not $env:APPVEYOR_REPO_TAG) {
+      if ($env:APPVEYOR_REPO_TAG -eq "false") {
       $tgs | ForEach-Object {$_;if ($_.commit.sha -match $env:APPVEYOR_REPO_COMMIT) {
         echo $_.name skip; appveyor.exe exit
         }

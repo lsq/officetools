@@ -23,7 +23,7 @@ export PATH="$USERPROFILE/scoop/shims":$PATH
 aria2c "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; ) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.6478.61 Chrome/126.0.6478.61 Not/A)Brand/8  Safari/537.36" --allow-overwrite=true --auto-file-renaming=false --retry-wait=4 --split=16 --max-connection-per-server=16 --min-split-size=4M  --no-conf=true --follow-metalink=true --metalink-preferred-protocol=https  --continue --summary-interval=0 --auto-save-interval=1 -d ./  -o "$miImage".tgz "$miDownloadUrl"
 tar xf "$miImage".tgz
 mkdir img
-[ -d `echo ${miImage}*` ] && imgdir=$(echo ${miImage}*) || exit 1
+[ -d `echo ${miImage}_*` ] && imgdir=$(echo ${miImage}_*) || exit 1
 cp $imgdir/images/{boot,recovery,vbmeta}.img ./img
 releaseLog="$miName $imgdir
 \* boot.img
