@@ -6,12 +6,15 @@ case $miCode in
 	"cmi")
 	miDownloadUrl="https://bkt-sgp-miui-ota-update-alisgp.oss-ap-southeast-1.aliyuncs.com/V11.0.18.0.QJACNXM/cmi_images_V11.0.18.0.QJACNXM_20200519.0000.00_10.0_cn_5f67590a81.tgz"
 	miName="mi 10 Pro"
+	;;
 	"thyme")
 	miDownloadUrl="https://bkt-sgp-miui-ota-update-alisgp.oss-ap-southeast-1.aliyuncs.com/V14.0.6.0.TGACNXM/thyme_images_V14.0.6.0.TGACNXM_20230904.0000.00_13.0_cn_c97bf99cf1.tgz"
 	miName="mi 10S"
+	;;
 	*)
 	echo "没有输入正确的小米代码号！"
 	exit 1
+	;;
 esac
 miImage="$miCode"_images
 echo "scoop uninstall aria2 ;scoop install main/aria2;scoop install notepad3-pre" >> ./install-scoop.ps1

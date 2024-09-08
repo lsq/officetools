@@ -84,6 +84,10 @@ install:
   - df -h
   - wmic LogicalDisk get FreeSpace,Size /value
   - wmic DiskDrive get size /value
+before_build:
+  - ps: |
+    if  ((git name-rev $env:APPVEYOR_REPO_COMMIT --tags) -split '/' )[1] -eq "mi10s-v14.06-android13"
+    appveyor.exe exit
 
 build_script:
   - echo %path%
