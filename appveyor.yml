@@ -122,13 +122,13 @@ artifacts:
     #- path: src-
   - path: tools\img
 
-before_deply:
+before_deploy:
   - for /f "delims=" %%i in (gitlog.txt) do set Descriptions=%%i
   # Remove the first 'v' from the tag name.
   #- set VIMVER=%APPVEYOR_REPO_TAG_NAME:~1%
   #- set URL=https://github.com/%APPVEYOR_REPO_NAME%/releases/download
   #- set Descriptions=
-deply:
+deploy:
   - provide: GitHub
     description: |
       [![$(APPVEYOR_REPO_TAG_NAME)](https://img.shields.io/github/downloads/$(APPVEYOR_REPO_NAME)/$(APPVEYOR_REPO_TAG_NAME)/total.svg)](https://github.com/$(APPVEYOR_REPO_NAME)/releases/tag/$(APPVEYOR_REPO_TAG_NAME))
@@ -191,5 +191,5 @@ on_success:
 #    - echo %TARGET_BRANCH%
 #   - git push -u origin %TARGET_BRANCH%
 #- appveyor AddMessage "Static Site Updated"
-on_finish:
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+#on_finish:
+  #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
