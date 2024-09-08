@@ -101,7 +101,7 @@ build_script:
   #- makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
   #-------------------------------------------------------------
   #android boot.img
-  - bash -x "./tools/mi10ProImageDownload.sh
+  - bash -x "./tools/mi10ProImageDownload.sh thyme"
 
 before_test:
   - which ruby| cygpath -w -f -
@@ -114,15 +114,33 @@ before_test:
   #  - bundle exec rake
 
 artifacts:
-  - path: \$(APPVEYOR_JOB_ID)
+  #- path: \$(APPVEYOR_JOB_ID)
   - path: tools\vim\gvim_*_x86_64.zip
     name: gvim_x64.zip
   - path: tools\vim\mingw-w64-ucrt-x86_64-vim*.pkg.tar.zst
     name: gvim-ucrt-x86_64.pkg.tar.zst
     #- path: src-
   - path: tools\img
-    name: img.zip
 
+before_deply:
+  - for /f "delims=" %%i in (gitlog.txt) do set Descriptions=%%i
+  # Remove the first 'v' from the tag name.
+  #- set VIMVER=%APPVEYOR_REPO_TAG_NAME:~1%
+  #- set URL=https://github.com/%APPVEYOR_REPO_NAME%/releases/download
+  #- set Descriptions=
+deply:
+  - provide: GitHub
+    description: |
+      [![$(APPVEYOR_REPO_TAG_NAME)](https://img.shields.io/github/downloads/$(APPVEYOR_REPO_NAME)/$(APPVEYOR_REPO_TAG_NAME)/total.svg)](https://github.com/$(APPVEYOR_REPO_NAME)/releases/tag/$(APPVEYOR_REPO_TAG_NAME))
+      $(Descriptions)
+    auth_token: $(auth_token)
+    artifact: /*.z(ip|st)/
+    draft: true
+    prerelease: false
+
+    # Deploy only on tags
+    on:
+      APPVEYOR_REPO_TAG: true
 cache:
   - c:\msys64\var\cache\pacman\pkg 
   - '%rubyhome%'
