@@ -19,8 +19,7 @@ echo "\nRuby:"
 ruby print RUBY_VERSION
 echo "\nTcl:"
 tcl puts [info patchlevel]
-echo "\n"
-echo "\n $VIMRUNTIME"
+echo "\n$VIMRUNTIME:"
 echo $VIMRUNTIME
 echo "\n"
 redir END
