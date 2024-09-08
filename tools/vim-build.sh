@@ -88,11 +88,12 @@ libsodiumVer=$(pacman -Qi mingw-w64-ucrt-x86_64-libsodium | grep -Po '^(版本|V
 VIMVER=$newerVer
 VIMVERMAJOR=$(awk -F'.' '{print $1$2}' <<< $newerVer)
 interfaceInfo=$(cat src/vim-${VIMVER}/src/if_ver.txt)
+URL="https://github.com/$APPVEYOR_REPO_NAME/releases/download"
 releaseLog="### Files:
 #### :unlock: Unsigned Files:
-      * [![gvim_$(VIMVER)_x64.zip](https://img.shields.io/github/downloads/$(APPVEYOR_REPO_NAME)/$(APPVEYOR_REPO_TAG_NAME)/gvim_$(VIMVER)_x64.zip.svg?label=downloads&logo=vim)]($(URL)/$(APPVEYOR_REPO_TAG_NAME)/gvim_$(VIMVER)_x86_64.zip)
+      * [![gvim_$(VIMVER)_x64.zip](https://img.shields.io/github/downloads/${APPVEYOR_REPO_NAME}/${APPVEYOR_REPO_TAG_NAME}/gvim_${VIMVER}_x64.zip.svg?label=downloads&logo=vim)](${URL}/${APPVEYOR_REPO_TAG_NAME}/gvim_${VIMVER}_x86_64.zip)
         64-bit zip archive
-      * [![gvim_$(VIMVER)_x64.zip](https://img.shields.io/github/downloads/$(APPVEYOR_REPO_NAME)/$(APPVEYOR_REPO_TAG_NAME)/gvim_$(VIMVER)_x64.zip.svg?label=downloads&logo=vim)]($(URL)/$(APPVEYOR_REPO_TAG_NAME)/mingw-w64-ucrt-x86_64-vim$(VIMVERMAJOR)-$(VIMVER)-1-any.pkg.tar.zst)
+      * [![gvim_$(VIMVER)_x64.zip](https://img.shields.io/github/downloads/${APPVEYOR_REPO_NAME}/${APPVEYOR_REPO_TAG_NAME}/mingw-w64-ucrt-x86_64-vim${VIMVERMAJOR}-${VIMVER}-1-any.pkg.tar.zst.svg?label=downloads&logo=vim)](${URL}/${APPVEYOR_REPO_TAG_NAME}/mingw-w64-ucrt-x86_64-vim${VIMVERMAJOR}-${VIMVER}-1-any.pkg.tar.zst)
         64-bit ucrt installer archive
 
       <details>
