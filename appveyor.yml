@@ -23,13 +23,10 @@ environment:
 # Set path for msys
 init:
   - ps: |
-      $gittag=((git name-rev $env:APPVEYOR_REPO_COMMIT --tags) -split '/' )[1]
-      if ($gittag.length -ne 0)
-      {
-      if (-not $APPVEYOR_REPO_TAG)
-      {
-      if (-not ($gittag -match '~')){
-        appveyor.exe exit
+      $tgs = (irm  https://api.github.com/repos/$env:APPVEYOR_ACCOUNT_NAME/$env:APPVEYOR_PROJECT_NAME/tags)
+      if (-not $APPVEYOR_REPO_TAG) {
+      $tgs | ForEach-Object {$_;if ($_.commit.sha -match $env:APPVEYOR_REPO_COMMIT) {
+        echo $_.name skip; appveyor.exe exit
         }
       }
       }
@@ -95,7 +92,18 @@ install:
   - df -h
   - wmic LogicalDisk get FreeSpace,Size /value
   - wmic DiskDrive get size /value
-
+#before_build:
+#  - ps: |
+#      $gittag=((git name-rev $env:APPVEYOR_REPO_COMMIT --tags) -split '/' )[1]
+#      if ($gittag.length -ne 0)
+#      {
+#      if (-not $APPVEYOR_REPO_TAG)
+#      {
+#      if (-not ($gittag -match '~')){
+#        appveyor.exe exit
+#        }
+#      }
+#      }
 build_script:
   - echo %path%
   - which gem| cygpath -w -f -
