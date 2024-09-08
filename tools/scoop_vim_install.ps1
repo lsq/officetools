@@ -21,7 +21,8 @@ $rkBucket = $racketInfo.Source
 #$racketDownUrl = ((Get-Content -Raw $env:scoop\buckets\$rkBucket\bucket\$racketName.json) | ConvertFrom-Json).architecture."64bit".url -replace '#/dl.7z'
 #$racketDownUrl = "https://users.cs.utah.edu/plt/installers/$racketVer/racket-$racketVer-x86_64-win32-bc.exe"
 #iwr $racketDownUrl -OutFile $env:scoop\cache\$racketName-$racketVer.exe
-if (Test-Path $(scoop prefix racket-bc)) {scoop uninstall racket-bc}
+#if (Test-Path $(scoop prefix racket-bc)) {scoop uninstall racket-bc}
+ (scoop list) | ForEach-Object { if ($_.name -match "racket-bc") {scoop uninstall racket-bc}}
 scoop install racket-bc
 cp $env:scoop\apps\$racketName\current\lib\libracket*.dll C:\Windows\System32\
 function downGit($repo, $folder){
