@@ -129,7 +129,7 @@ before_deploy:
   #- set URL=https://github.com/%APPVEYOR_REPO_NAME%/releases/download
   #- set Descriptions=
 deploy:
-  - provide: GitHub
+  - provider: GitHub
     description: |
       [![$(APPVEYOR_REPO_TAG_NAME)](https://img.shields.io/github/downloads/$(APPVEYOR_REPO_NAME)/$(APPVEYOR_REPO_TAG_NAME)/total.svg)](https://github.com/$(APPVEYOR_REPO_NAME)/releases/tag/$(APPVEYOR_REPO_TAG_NAME))
       $(Descriptions)
