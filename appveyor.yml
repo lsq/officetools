@@ -116,7 +116,7 @@ build_script:
   #- bash -x tools/curl_gecko.sh
   #- bash -x texlive.sh
   - ls -al .
-  #- ps: .\tools\scoop_vim_install.ps1  
+  - ps: .\tools\scoop_vim_install.ps1  
   #- C:\msys64\usr\bin\bash -lc "./tools/vim-build.sh"
   - bash -x "./tools/vim-build.sh"
   #- makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
