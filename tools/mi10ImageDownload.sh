@@ -24,7 +24,7 @@ aria2c "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; ) AppleWebKit/537
 tar xf "$miImage".tgz
 mkdir img
 [ -d `echo ${miImage}_*` ] && imgdir=$(echo ${miImage}_*) || exit 1
-cp $imgdir/images/{boot,recovery,vbmeta}.img ./img
+cp $imgdir/images/{boot,recovery,vbmeta,vendor_boot}.img ./img
 releaseLog="$miName $imgdir
 \* boot.img
 \* recovery.img
