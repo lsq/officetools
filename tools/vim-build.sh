@@ -88,7 +88,7 @@ MINGW_ARCH=ucrt64 makepkg-mingw -sLf --noconfirm
 libsodiumVer=$(pacman -Qi mingw-w64-ucrt-x86_64-libsodium | grep -Po '^(版本|Version)\s*: \K.+')
 VIMVER=$newerVer
 VIMVERMAJOR=$(awk -F'.' '{print $1$2}' <<< $newerVer)
-interfaceInfo=$(cat src/vim-${VIMVER}/src/if_ver.txt|sed -r -n 's/\s*(.*):\s*$/\* \1:/;2!p')
+interfaceInfo=$(cat src/vim-${VIMVER}/src/if_ver.txt|sed -r -n 's/\s*(.*):\s*$/\* \1:/;3!p')
 URL="https://github.com/$APPVEYOR_REPO_NAME/releases/download"
 releaseLog="### Files:
 #### :unlock: Unsigned Files:
