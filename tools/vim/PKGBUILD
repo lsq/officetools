@@ -73,7 +73,7 @@ prepare() {
   sed -i "/\@echo \x27char_u \*all_cflags.*/s/$/\n\t@echo \x27------\"\$(LUA_LIB) \$(MZSCHEME_LIBDIR) \$(MZSCHEME_LIB) \$(PYTHONLIB) \$(PYTHON3LIB) \$(RUBYLIB)\"\x27 >> lb.txt\n/"  src/Make_cyg_ming.mak
   sed -i '/\@echo char_u \*all_cflags.*/s/$/\n\t@echo -+-+-+-+-+-\"\$(LUA_LIB) \$(MZSCHEME_LIBDIR) \$(MZSCHEME_LIB) \$(PYTHONLIB) \$(PYTHON3LIB) \$(RUBYLIB)\" >> lb.txt\n/'  src/Make_cyg_ming.mak
   # patch window ucrt build used for mingw64 shell enviroment;
-  sed -i '/p = exe_name;/s/^.*$/{if ((p = mch_getenv((char_u \*)"SHELL")) != NULL \&\& \*p != NUL) {p = default_vimruntime_dir;}else{p = exe_name;}}/' src/misc1.c
+  sed -i '/p = exe_name;/s/^.*$/{if ((p = mch_getenv((char_u \*)"SHELL")) != NULL \&\& \*p != NUL \&\& access(default_vimruntime_dir, F_OK) == 0) {p = default_vimruntime_dir;}else{p = exe_name;}}/' src/misc1.c
   
   # install xpm header
   cd ${srcdir}/..
