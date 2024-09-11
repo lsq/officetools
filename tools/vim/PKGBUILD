@@ -73,7 +73,7 @@ prepare() {
   sed -i "/\@echo \x27char_u \*all_cflags.*/s/$/\n\t@echo \x27------\"\$(LUA_LIB) \$(MZSCHEME_LIBDIR) \$(MZSCHEME_LIB) \$(PYTHONLIB) \$(PYTHON3LIB) \$(RUBYLIB)\"\x27 >> lb.txt\n/"  src/Make_cyg_ming.mak
   sed -i '/\@echo char_u \*all_cflags.*/s/$/\n\t@echo -+-+-+-+-+-\"\$(LUA_LIB) \$(MZSCHEME_LIBDIR) \$(MZSCHEME_LIB) \$(PYTHONLIB) \$(PYTHON3LIB) \$(RUBYLIB)\" >> lb.txt\n/'  src/Make_cyg_ming.mak
   # patch window ucrt build used for mingw64 shell enviroment;
-  sed -i '/p = exe_name;/s/^.*$/{if ((p = mch_getenv((char_u \*)"SHELL")) != NULL \&\& \*p != NUL \&\& access(default_vimruntime_dir, F_OK) == 0) {p = default_vimruntime_dir;}else{p = exe_name;}}/' src/misc1.c
+  sed -i '/p = exe_name;/s/^.*$/{char_u \*phf;char_u \*p_shell;int exe_len;if (exe_name != NULL \&\& \*exe_name != NUL){char_u \*exe_pend;exe_pend = gettail(exe_name);exe_len = STRLEN(exe_name) - STRLEN(exe_pend); phf = alloc(exe_len + 4);if (phf != NULL){STRNCPY(phf, exe_name, exe_len);STRCPY(phf + exe_len, (char_u \*)"doc");}};if ((p_shell = mch_getenv((char_u \*)"SHELL")) != NULL \&\& \*p_shell != NUL \&\& phf != NULL  \&\& \*phf != NUL \&\& access(phf, F_OK) != 0 \&\& access(default_vimruntime_dir, F_OK) == 0) {p = default_vimruntime_dir;}else{p = exe_name;}}/' src/misc1.c
   
   # install xpm header
   cd ${srcdir}/..
