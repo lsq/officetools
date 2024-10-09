@@ -2,7 +2,7 @@
 # Maintainer: Francesco Corte <francesco.corte9001@gmail.com>
 
 _realname=vim
-pkgver=9.1.0698
+pkgver=9.1.0766
 _topver=${pkgver%.*}
 _patchlevel=${pkgver##*.}
 _versiondir="${_realname}${_topver//./}"
@@ -24,10 +24,10 @@ msys2_references=(
   "cpe: cpe:/a:vim:vim"
   "cpe: cpe:/a:vim_development_group:vim"
 )
-depends=("${MINGW_PACKAGE_PREFIX}-ncurses" "${MINGW_PACKAGE_PREFIX}-ruby33>=3.3.4" "${MINGW_PACKAGE_PREFIX}-python3.12>=3.12.0" "${MINGW_PACKAGE_PREFIX}-lua>=5.4.0" "${MINGW_PACKAGE_PREFIX}-libiconv" "libintl" "libxcrypt" "${MINGW_PACKAGE_PREFIX}-perl>=5.38.0" "${MINGW_PACKAGE_PREFIX}-gettext-runtime" "${MINGW_PACKAGE_PREFIX}-libsodium" "${MINGW_PACKAGE_PREFIX}-winpty" "${MINGW_PACKAGE_PREFIX}-tcl>=8.6.0")
+depends=("${MINGW_PACKAGE_PREFIX}-ncurses" "${MINGW_PACKAGE_PREFIX}-ruby33>=3.3.4" "${MINGW_PACKAGE_PREFIX}-python${pyapiver}>=${pyapiver}.0" "${MINGW_PACKAGE_PREFIX}-lua>=5.4.0" "${MINGW_PACKAGE_PREFIX}-libiconv" "libintl" "libxcrypt" "${MINGW_PACKAGE_PREFIX}-perl>=5.38.0" "${MINGW_PACKAGE_PREFIX}-gettext-runtime" "${MINGW_PACKAGE_PREFIX}-libsodium" "${MINGW_PACKAGE_PREFIX}-winpty" "${MINGW_PACKAGE_PREFIX}-tcl>=8.6.0")
 groups=('editors')
 makedepends=("gawk" "${MINGW_PACKAGE_PREFIX}-make" "${MINGW_PACKAGE_PREFIX}-7zip" "${MINGW_PACKAGE_PREFIX}-autotools" "${MINGW_PACKAGE_PREFIX}-cc") # To satisfy python3/dyn feature #3052
-source=(${_realname}-${pkgver}.tar.gz::https://github.com/vim/vim/archive/v${pkgver}/${pkgbase}-{pkgver}.tar.gz
+source=(${_realname}-${pkgver}.tar.gz::https://github.com/vim/vim/archive/v${pkgver}/${_realname}-${pkgver}.tar.gz
         'dot.vimrc'
         '7.3-cygwin-mouse.patch'
         '7.3-virc.patch'
@@ -80,7 +80,7 @@ prepare() {
   sed -i '/^#endif/{N;s#^\(\#endif\)\n\s\+vim_snprintf((char \*)newcmd, cmdlen, "%s %s %s",$#\1#;T e;N;s#^\(\#endif\n\).*$#\1{char_u \*p_shell; p_shell = mch_getenv((char_u \*)"SHELL");if (p_shell != NULL \&\& \*p_shell != NUL) { p_shcf = (char_u \*)"-c";} vim_snprintf((char \*)newcmd, cmdlen, "%s %s %s", p_sh, p_shcf, cmd); }#;:e}' src/os_win32.c
   
   # patch  garbled GETTEXT messages
-  sed -i '/\s\+(void)bind_textdomain_codeset(VIMPACKAGE,/s/^/    SetConsoleOutputCP(CP_UTF8);\n/' mbyte.c 
+  sed -i '/\s\+(void)bind_textdomain_codeset(VIMPACKAGE,/s/^/    SetConsoleOutputCP(CP_UTF8);\n/' src/mbyte.c 
   
   # install xpm header
   cd ${srcdir}/..
@@ -192,6 +192,7 @@ package() {
   install -Dm644 "${srcdir}"/${_realname}-${pkgver}/src/xpm/x64/lib/* "${pkgdir}"/${MINGW_PREFIX}/bin
   rm -rf "${pkgdir}"/${MINGW_PREFIX}/bin/{un,}install.exe
   mkdir -p "${pkgdir}"/${MINGW_PREFIX}/share/vim
+  rm -rf "${srcdir}"/${_realname}-${pkgver}/runtime/syntax/{testdir,generator}
   cp -rf "${srcdir}"/${_realname}-${pkgver}/runtime "${pkgdir}"/${MINGW_PREFIX}/share/vim/${_versiondir}
   
   #for x in ex rvi vi.exe

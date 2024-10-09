@@ -36,9 +36,18 @@ pythonver=$(sed 's/\x0d\x0a//' <<< $(powershell '$webc=(iwr https://www.python.o
 pypat=$(which python3)
 pydir=${rbpat%/*}
 pyhm=${rbdir%/*}
-pyversion=$(echo ${pythonver} | sed -r -n 's/.*(([0-9]{1,2})\.([0-9]{1,2})\.)[0-9]{1,2}.*/\2\3/p')
-pyapiver=$(echo ${pythonver} | sed -r -n 's/.*(([0-9]{1,2})\.([0-9]{1,2}))\.[0-9]{1,2}.*/\1/p')
-export pyversion pyapiver pyhm
+pymajor=$(echo ${pythonver} | sed -r -n 's/.*(([0-9]{1,2})\.([0-9]{1,2})\.)[0-9]{1,2}.*/\2/p')
+pyminor=$(echo ${pythonver} | sed -r -n 's/.*(([0-9]{1,2})\.([0-9]{1,2})\.)[0-9]{1,2}.*/\3/p')
+pyversion=$(echo ${pythonver} | sed -r -n 's/.*(([0-9]{1,2})\.([0-9]{1,2})\.)[0-9]{1,2}.*/\2\3/p') # 313
+pyapiver=$(echo ${pythonver} | sed -r -n 's/.*(([0-9]{1,2})\.([0-9]{1,2}))\.[0-9]{1,2}.*/\1/p') # 3.13
+if pacboy find "python${pyapiver}:u"; then
+	pacboy find "python${pyapiver}:u"
+else 
+	pyversion=$(($pyversion -1))
+	pyapiver=${pymajor}.$((pyminor - 1))
+	pacboy find "python${pyapiver}:u" || { echo python $pyapiver not find && exit 1; }
+fi
+export pyversion pyapiver
 #sed -n 's/\r//p' PKGBUILD
 
 luaversion=$(lua -v | sed -r -n 's/.*(([0-9]{1,2})\.([0-9]{1,2})\.)[0-9]{1,2}.*/\2\3/p')
@@ -104,3 +113,4 @@ ${interfaceInfo}
 </details>
 "
 echo "$releaseLog" | sed -e ':a;N;$!ba;s/\n/\\n/g' > $basedir/../gitlog.txt
+cat $basedir/../gitlog.txt
