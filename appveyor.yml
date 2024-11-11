@@ -1,7 +1,7 @@
 version: 1.0.{build}
-#image: Visual Studio 2022
+image: Visual Studio 2022
 #image: Visual Studio 2019
-image: Visual Studio 2017
+#image: Visual Studio 2017
 #image: Ubuntu1804
 environment:
   TARGET_BRANCH:
@@ -122,7 +122,7 @@ build_script:
   - ls -al .
   - ps: .\tools\scoop_vim_install.ps1  
   #- C:\msys64\usr\bin\bash -lc "./tools/vim-build.sh"
-  #- bash -x "./tools/vim-build.sh"
+  - bash -x "./tools/vim-build.sh"
   #- makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
   #-------------------------------------------------------------
   #android boot.img
