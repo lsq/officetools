@@ -9,6 +9,7 @@ pacman -Syuu --noconfirm
 #pacman -Sy --needed --noconfirm "ruby$rubyversion"
 pacboy sync --needed --noconfirm ed:
 pacboy sync --needed --noconfirm lua:u
+pacboy sync --needed --noconfirm libsodium:u
 pacboy sync --needed --noconfirm ci.ri2::ruby32:u
 #cd ./vim
 #MINGW_ARCH=msys makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
