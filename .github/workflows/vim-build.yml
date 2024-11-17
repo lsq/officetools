@@ -24,24 +24,22 @@ jobs:
         fail-fast: false
 
     steps:
-      
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - uses: msys2/setup-msys2@v2
+        with:
+          install: mingw-w64-${{ matrix.toolchain }}-toolchain base-devel binutils
+          update: true
 
-    - uses: msys2/setup-msys2@v2
-      with:
-        install: mingw-w64-${{ matrix.toolchain }}-toolchain base-devel binutils
-        update: true
+      - name: Build vim
+        run: set
 
-    - name: Build vim
-      run: set
-
-    - name: Upload to Release
-      uses: softprops/action-gh-release@v1
-      with:
-        files: |
-          ./DeviceTree.zip
-        name: TWRP_Device_Tree-${{ github.run_id }}
-        tag_name: ${{ github.run_id }}
-        body: DeviceTree for twrp
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload to Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            ./DeviceTree.zip
+          name: TWRP_Device_Tree-${{ github.run_id }}
+          tag_name: ${{ github.run_id }}
+          body: DeviceTree for twrp
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
