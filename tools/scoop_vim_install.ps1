@@ -54,6 +54,9 @@ rbenv install 3.2.5-1
 #>
 echo $rubyhome --- $env:rubyhome
 $rubyhome = $env:rubyhome
+if ($rubyhome -eq $null) {
+    $rubyhome="c:\Ruby-on-Windows"
+}
 (iwr https://www.ruby-lang.org/en/downloads).Content -match "The current stable version is (?<version>[\d.]+)\."
 $rubyversion = $Matches['version']
 Write-Host $rubyversion
