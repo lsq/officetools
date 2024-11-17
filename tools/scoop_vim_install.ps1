@@ -85,8 +85,8 @@ C:\msys64\usr\bin\bash.exe -lc "pacman --noconfirm -Sy mingw-w64-ucrt-x86_64-ari
 . $PSScriptRoot\install-scoop.ps1
 iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
 ni $HOME/vimfiles/autoload/plug.vim -Force
-scoop install lsq/aria2
-#scoop install aria2
+#scoop install lsq/aria2
+scoop install aria2
 which aria2c
 scoop config aria2-retry-wait 4
 scoop config aria2-split 16
