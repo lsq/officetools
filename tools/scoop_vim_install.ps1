@@ -199,6 +199,7 @@ if ($env:GITHUB_ACTIONS -eq $null) {
 }
 else {
     $build_folder=$env:GITHUB_WORKSPACE
+    Write-Host $(cat $env:GITHUB_PATH)
 }
 sed.exe -r -i "s/(ci.ri2::ruby).*(:.*)/\\1$rver\\2/" $build_folder\tools\vim-build.sh
 
