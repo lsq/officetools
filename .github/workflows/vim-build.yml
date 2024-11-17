@@ -28,7 +28,9 @@ jobs:
       - uses: msys2/setup-msys2@v2
         with:
           msystem: ${{ matrix.msystem }}
-          install: mingw-w64-${{ matrix.toolchain }}-toolchain base-devel binutils
+          install: mingw-w64-${{ matrix.toolchain }}-toolchain base-devel binutils mingw-w64-ucrt-x86_64-ca-certificates
+          pacboy: >-
+            aria2:p
           update: true
 
       - name: Install scoop tools
