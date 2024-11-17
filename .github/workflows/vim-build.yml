@@ -31,16 +31,21 @@ jobs:
           update: true
 
       - name: Build vim
-        shell: cmd
-        run: set
-
-      - name: Upload to Release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: |
-            ./DeviceTree.zip
-          name: TWRP_Device_Tree-${{ github.run_id }}
-          tag_name: ${{ github.run_id }}
-          body: DeviceTree for twrp
+        shell: msys2 {0}
+        run: bash -x tools/vim-build.sh
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MINGW_ARCH: ${{ matrix.msystem }}
+          PKGEXT: ".pkg.tar.xz"
+        #shell: cmd
+        #run: set
+
+      #- name: Upload to Release
+      #  uses: softprops/action-gh-release@v1
+      #  with:
+      #    files: |
+      #      ./DeviceTree.zip
+      #    name: TWRP_Device_Tree-${{ github.run_id }}
+      #    tag_name: ${{ github.run_id }}
+      #    body: DeviceTree for twrp
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
