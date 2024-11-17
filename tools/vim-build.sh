@@ -14,7 +14,7 @@ pacboy sync --needed --noconfirm ci.ri2::ruby32:u
 #cd ./vim
 #MINGW_ARCH=msys makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
 #cd $APPVEYOR_BUILD_FOLDER/tools/vim
-cd ${basedir}/tools/vim
+cd ${basedir}/vim
 #export LUA_PREFIX=/ucrt64
 #export rubyhome=/c/Ruby-on-Windows/3.2.5-1
 echo $PATH

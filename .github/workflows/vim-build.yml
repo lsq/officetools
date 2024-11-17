@@ -30,6 +30,10 @@ jobs:
           install: mingw-w64-${{ matrix.toolchain }}-toolchain base-devel binutils
           update: true
 
+      -name: Install scoop tools
+        shell: pwsh
+        run: .\tools\scoop_vim_install.ps1
+        
       - name: Build vim
         shell: msys2 {0}
         run: bash -x tools/vim-build.sh
