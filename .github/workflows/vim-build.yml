@@ -31,6 +31,7 @@ jobs:
           update: true
 
       - name: Build vim
+        shell: cmd
         run: set
 
       - name: Upload to Release
