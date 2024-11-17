@@ -1,3 +1,4 @@
+Get-ChildItem Env:
 C:\msys64\usr\bin\bash.exe -lc "pacman --noconfirm -Syuu"
 C:\msys64\usr\bin\bash.exe -lc "pacman --noconfirm -Syuu"
 C:\msys64\usr\bin\bash.exe -lc "pacman --noconfirm -Sy mingw-w64-ucrt-x86_64-aria2"
@@ -110,7 +111,14 @@ if ($dlOrNot -eq $true) {
 	mv $rubyroot\rubyinstaller-$rubyversion-1-x64 $rubyhome
 }
 
-sed.exe -r -i "s/(ci.ri2::ruby).*(:.*)/\\1$rver\\2/" $env:APPVEYOR_BUILD_FOLDER\tools\vim-build.sh
+pwd
+if ($env:GITHUB_ACTIONS -eq $null) {
+    $build_folder=$env:APPVEYOR_BUILD_FOLDER
+}
+else {
+    $build_folder=$env:GITHUB_WORKSPACE
+}
+sed.exe -r -i "s/(ci.ri2::ruby).*(:.*)/\\1$rver\\2/" $build_folder\tools\vim-build.sh
 
 #$env:USER_PATH=[Environment]::GetEnvironmentVariable("PATH", "User") 
 $env:USER_PATH=[Environment]::GetEnvironmentVariable("PATH", "Machine") 
