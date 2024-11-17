@@ -6,7 +6,7 @@ function aria2Download {
             [String] $out
          )
 
-        aria2c -d $url -o $out "--user-agent=Scoop/1.0 (+http://scoop.sh/) PowerShell/7.5 (Windows NT 10.0; Win64; x64; Core)" --allow-overwrite=true --auto-file-renaming=false --retry-wait=4 --split=16 --max-connection-per-server=16 --min-split-size=4M --console-log-level=warn --enable-color=false --no-conf=true --follow-metalink=true --metalink-preferred-protocol=https  --continue --summary-interval=0 --auto-save-interval=1  $url
+        aria2c -d $dir -o $out "--user-agent=Scoop/1.0 (+http://scoop.sh/) PowerShell/7.5 (Windows NT 10.0; Win64; x64; Core)" --allow-overwrite=true --auto-file-renaming=false --retry-wait=4 --split=16 --max-connection-per-server=16 --min-split-size=4M --console-log-level=warn --enable-color=false --no-conf=true --follow-metalink=true --metalink-preferred-protocol=https  --continue --summary-interval=0 --auto-save-interval=1 --min-tls-version=TLSv1.2 $url
 }
 
 function Get-Env {
