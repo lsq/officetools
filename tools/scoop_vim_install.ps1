@@ -124,8 +124,10 @@ sed.exe -r -i "s/(ci.ri2::ruby).*(:.*)/\\1$rver\\2/" $build_folder\tools\vim-bui
 $env:USER_PATH=[Environment]::GetEnvironmentVariable("PATH", "Machine") 
 #// ↓勿直接使用$env:PATH，会触发问题2，用临时变量$env:USER_PATH来过渡一
 $env:USER_PATH=$env:USER_PATH -replace "c:\\Ruby32\\bin;", "$rubyhome\bin;" 
+$env:USER_PATH=$env:USER_PATH -replace "c:\\mingw64\\bin;", "c:\\ucrt64\\bin;",
 #// 先在console中临时替
 $env:USER_PATH="$rubyhome\bin;$rubyhome\gems\bin;" + $env:USER_PATH
+echo $env:USER_PATH
 [Environment]::SetEnvironmentVariable("PATH", $env:USER_PATH, 'Machine')  #   // 使临时替换永久生
 #(删除PATH中的某一个路径替换为""即可)
 echo $env:PATH
