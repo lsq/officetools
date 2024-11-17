@@ -3,7 +3,7 @@ function aria2Download {
     param(
             [String] $url,
             [String] $dir,
-            [String] $outhttps://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-3.3.6-1/rubyinstaller-3.3.6-1-x64.7z
+            [String] $out
          )
 
         aria2c -d $url -o $out "--user-agent=Scoop/1.0 (+http://scoop.sh/) PowerShell/7.5 (Windows NT 10.0; Win64; x64; Core)" --allow-overwrite=true --auto-file-renaming=false --retry-wait=4 --split=16 --max-connection-per-server=16 --min-split-size=4M --console-log-level=warn --enable-color=false --no-conf=true --follow-metalink=true --metalink-preferred-protocol=https  --continue --summary-interval=0 --auto-save-interval=1  $url
