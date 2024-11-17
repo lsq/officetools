@@ -87,6 +87,7 @@ iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
 ni $HOME/vimfiles/autoload/plug.vim -Force
 #scoop install lsq/aria2
 scoop install aria2
+which aria2c
 scoop config aria2-retry-wait 4
 scoop config aria2-split 16
 scoop config aria2-max-connection-per-server 16
