@@ -173,7 +173,7 @@ cache:
 on_success:
 # https://cygwin.com/cygwin-ug-net/cygpath.html
     - which git | cygpath -w -f -
-    - ruby -e '3.times { puts "I 3 I I ❤️ Ruby"}'
+    - ruby -e '3.times { puts "I ❤️ Ruby"}'
       #- which hugo | cygpath -w -f -
     # bash -c "cp `which git | cygpath -w -f - | cygpath -u -f -` ."
     #    - git config --global credential.helper store

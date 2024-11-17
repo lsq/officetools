@@ -13,7 +13,8 @@ pacboy sync --needed --noconfirm libsodium:u
 pacboy sync --needed --noconfirm ci.ri2::ruby32:u
 #cd ./vim
 #MINGW_ARCH=msys makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
-cd $APPVEYOR_BUILD_FOLDER/tools/vim
+#cd $APPVEYOR_BUILD_FOLDER/tools/vim
+cd ${basedir}/tools/vim
 #export LUA_PREFIX=/ucrt64
 #export rubyhome=/c/Ruby-on-Windows/3.2.5-1
 echo $PATH
@@ -99,12 +100,18 @@ libsodiumVer=$(pacman -Qi mingw-w64-ucrt-x86_64-libsodium | grep -Po '^(版本|V
 VIMVER=$newerVer
 VIMVERMAJOR=$(awk -F'.' '{print $1$2}' <<< $newerVer)
 interfaceInfo=$(cat src/vim-${VIMVER}/src/if_ver.txt|sed -r -n 's/\s*(.*):\s*$/\* \1:/;3!p')
-URL="https://github.com/$APPVEYOR_REPO_NAME/releases/download"
+if [ -z $APPVEYOR_REPO_NAME ]; then
+    CI_REPO_NAME=$GITHUB
+else
+    CI_REPO_NAME=$APPVEYOR_REPO_NAME
+    CI_REPO_TAG_NAME=$APPVEYOR_REPO_TAG_NAME
+fi
+URL="https://github.com/$CI_REPO_NAME/releases/download"
 releaseLog="### Files:
 #### :unlock: Unsigned Files:
-* [![gvim_${VIMVER}_x64.zip](https://img.shields.io/github/downloads/${APPVEYOR_REPO_NAME}/${APPVEYOR_REPO_TAG_NAME}/gvim_${VIMVER}_x64.zip.svg?label=downloads&logo=vim)](${URL}/${APPVEYOR_REPO_TAG_NAME}/gvim_${VIMVER}_x86_64.zip)
+* [![gvim_${VIMVER}_x64.zip](https://img.shields.io/github/downloads/${CI_REPO_NAME}/${CI_REPO_TAG_NAME}/gvim_${VIMVER}_x64.zip.svg?label=downloads&logo=vim)](${URL}/${CI_REPO_TAG_NAME}/gvim_${VIMVER}_x86_64.zip)
         64-bit zip archive
-* [![gvim_${VIMVER}_x64.zip](https://img.shields.io/github/downloads/${APPVEYOR_REPO_NAME}/${APPVEYOR_REPO_TAG_NAME}/mingw-w64-ucrt-x86_64-vim${VIMVERMAJOR}-${VIMVER}-1-any.pkg.tar.zst.svg?label=downloads&logo=vim)](${URL}/${APPVEYOR_REPO_TAG_NAME}/mingw-w64-ucrt-x86_64-vim${VIMVERMAJOR}-${VIMVER}-1-any.pkg.tar.zst)
+* [![gvim_${VIMVER}_x64.zip](https://img.shields.io/github/downloads/${CI_REPO_NAME}/${CI_REPO_TAG_NAME}/mingw-w64-ucrt-x86_64-vim${VIMVERMAJOR}-${VIMVER}-1-any.pkg.tar.zst.svg?label=downloads&logo=vim)](${URL}/${CI_REPO_TAG_NAME}/mingw-w64-ucrt-x86_64-vim${VIMVERMAJOR}-${VIMVER}-1-any.pkg.tar.zst)
         64-bit ucrt installer archive
 
 <details>
