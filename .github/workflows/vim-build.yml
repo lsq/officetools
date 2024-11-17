@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       IMG_URL:    
-      description: 'IMG_URL'
-      required: false
-      default: ''
+        description: 'IMG_URL'
+        required: false
+        default: ''
 
 jobs:
   build:
