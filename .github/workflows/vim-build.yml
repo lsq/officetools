@@ -33,6 +33,7 @@ jobs:
             aria2:p
             ca-certificates
           update: true
+          path-type: inherit
 
       - name: Install scoop tools
         shell: pwsh

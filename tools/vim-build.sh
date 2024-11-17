@@ -8,9 +8,10 @@ repman add ci.ri2 "https://github.com/oneclick/rubyinstaller2-packages/releases/
 pacman -Syuu --noconfirm
 #pacman -Sy --needed --noconfirm "ruby$rubyversion"
 pacboy sync --needed --noconfirm ed:
-pacboy sync --needed --noconfirm lua:u
-pacboy sync --needed --noconfirm libsodium:u
-pacboy sync --needed --noconfirm ci.ri2::ruby32:u
+pacboy sync --needed --noconfirm lua:p
+pacboy sync --needed --noconfirm jq:p
+pacboy sync --needed --noconfirm libsodium:p
+pacboy sync --needed --noconfirm ci.ri2::ruby32:p
 #cd ./vim
 #MINGW_ARCH=msys makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
 #cd $APPVEYOR_BUILD_FOLDER/tools/vim
@@ -42,12 +43,12 @@ pymajor=$(echo ${pythonver} | sed -r -n 's/.*(([0-9]{1,2})\.([0-9]{1,2})\.)[0-9]
 pyminor=$(echo ${pythonver} | sed -r -n 's/.*(([0-9]{1,2})\.([0-9]{1,2})\.)[0-9]{1,2}.*/\3/p')
 pyversion=$(echo ${pythonver} | sed -r -n 's/.*(([0-9]{1,2})\.([0-9]{1,2})\.)[0-9]{1,2}.*/\2\3/p') # 313
 pyapiver=$(echo ${pythonver} | sed -r -n 's/.*(([0-9]{1,2})\.([0-9]{1,2}))\.[0-9]{1,2}.*/\1/p') # 3.13
-if pacboy find "python${pyapiver}:u"; then
-	pacboy find "python${pyapiver}:u"
+if pacboy find "python${pyapiver}:p"; then
+	pacboy find "python${pyapiver}:p"
 else 
 	pyversion=$(($pyversion -1))
 	pyapiver=${pymajor}.$((pyminor - 1))
-	pacboy find "python${pyapiver}:u" || { echo python $pyapiver not find && exit 1; }
+	pacboy find "python${pyapiver}:p" || { echo python $pyapiver not find && exit 1; }
 fi
 export pyversion pyapiver
 #sed -n 's/\r//p' PKGBUILD
