@@ -85,8 +85,8 @@ C:\msys64\usr\bin\bash.exe -lc "pacman --noconfirm -Sy mingw-w64-ucrt-x86_64-ari
 . $PSScriptRoot\install-scoop.ps1
 iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
 ni $HOME/vimfiles/autoload/plug.vim -Force
-#scoop install lsq/aria2
-scoop install aria2
+scoop install lsq/aria2
+#scoop install aria2
 which aria2c
 scoop config aria2-retry-wait 4
 scoop config aria2-split 16
@@ -210,9 +210,14 @@ $env:USER_PATH=$env:USER_PATH -replace "c:\\mingw64\\bin;", "c:\\ucrt64\\bin;"
 #// 先在console中临时替
 $env:USER_PATH="$rubyhome\bin;$rubyhome\gems\bin;" + $env:USER_PATH
 echo $env:USER_PATH
-Write-Env 'PATH' "$env:USER_PATH" -global
+#Write-Env 'PATH' "$env:USER_PATH" 
 #[Environment]::SetEnvironmentVariable("PATH", $env:USER_PATH, 'Machine')  #   // 使临时替换永久生
 #(删除PATH中的某一个路径替换为""即可)
+$userEnvP = Get-Env 'PATH'
+echo $userEnvP
+$env:PATH = "$rubyhome\bin;$rubyhome\gems\bin;$env:PATH"
+echo $env:PATH
+Write-Env 'PATH' "$env:USER_PATH" -global
 echo $env:PATH
 which ruby
 gem install rake
