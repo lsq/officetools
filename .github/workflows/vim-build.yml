@@ -28,7 +28,7 @@ jobs:
       - uses: msys2/setup-msys2@v2
         with:
           msystem: ${{ matrix.msystem }}
-          install: mingw-w64-${{ matrix.toolchain }}-toolchain base-devel binutils 
+          install: mingw-w64-${{ matrix.toolchain }}-toolchain base-devel binutils git
           pacboy: >-
             aria2:p
             ca-certificates

@@ -204,6 +204,7 @@ else {
     echo "$env:USERPROFILE\scoop\shims;" >> $env:GITHUB_PATH
     echo "$rubyhome\bin;$rubyhome\gems\bin;" >> $env:GITHUB_PATH
     Write-Host $(cat $env:GITHUB_PATH)
+    echo "rubyhome=$rubyhome" >> $env:GITHUB_ENV
 }
 echo $build_folder
 sed.exe -r -i "s/(ci.ri2::ruby).*(:.*)/\\1$rver\\2/" $build_folder\tools\vim-build.sh
