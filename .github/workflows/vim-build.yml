@@ -35,6 +35,13 @@ jobs:
           update: true
           path-type: inherit
 
+      - name: Set vim build tag
+        #if: ${{ "${{github.event.inputs.IMG_URL}}" }}
+        if: github.event.inputs.IMG_URL != ''
+        shell: msys2 {0}
+        run:
+          echo "vimTag=${{ github.event.inputs.IMG_URL }}" >> $GITHUB_ENV
+
       - name: Install scoop tools
         shell: pwsh
         run: .\tools\scoop_vim_install.ps1
@@ -42,7 +49,6 @@ jobs:
       - name: Build vim
         shell: msys2 {0}
         run: |
-          [ -n "${{github.event.inputs.IMG_URL}}" ] && echo "vimTag=${{ github.event.inputs.IMG_URL }}" >> $GITHUB_ENV
           bash -x tools/vim-build.sh && ls tools/vim/
         env:
           MINGW_ARCH: ${{ matrix.msystem }}
