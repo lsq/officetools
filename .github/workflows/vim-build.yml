@@ -41,7 +41,7 @@ jobs:
         
       - name: Build vim
         shell: msys2 {0}
-        run: bash -x tools/vim-build.sh
+        run: bash -x tools/vim-build.sh && ls tools/vim/
         env:
           MINGW_ARCH: ${{ matrix.msystem }}
           PKGEXT: ".pkg.tar.xz"
@@ -56,9 +56,9 @@ jobs:
             tools/vim/mingw-w64-ucrt-x86_64-vim*.pkg.tar.zst
       #      ./DeviceTree.zip
       #    name: TWRP_Device_Tree-${{ github.run_id }}
-          name: $env:tagName
+          name: $tagName
       #    tag_name: ${{ github.run_id }}
-          tag_name: $env:tagName
+          tag_name: $tagName
       #    body: DeviceTree for twrp
           body_path: gitlog.txt
         env:
