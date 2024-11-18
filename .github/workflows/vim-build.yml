@@ -41,7 +41,9 @@ jobs:
         
       - name: Build vim
         shell: msys2 {0}
-        run: bash -x tools/vim-build.sh && ls tools/vim/
+        run: |
+          [ -n "${{github.event.inputs.IMG_URL}}" ] && echo "vimTag=${{ github.event.inputs.IMG_URL }}" >> $GITHUB_ENV
+          bash -x tools/vim-build.sh && ls tools/vim/
         env:
           MINGW_ARCH: ${{ matrix.msystem }}
           PKGEXT: ".pkg.tar.xz"

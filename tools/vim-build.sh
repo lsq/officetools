@@ -83,6 +83,9 @@ pkgver() {
 	#echo $prjInfo
 	ver=$(echo ${prjInfo} | sed -n '/>Latest version<\/h/{:t N;s|.*>Latest version<\/h.*doap:Version\">\([^<]*\) (.*</div>.*|\1|p;T t;q}')
   fi
+  if [ -n $GITHUB_ACTIONS -a -n $vimTag ]; then
+        ver=$vimTag
+  fi
   printf "${ver}"
   #sed -n 's/\r//p' PKGBUILD
 }
