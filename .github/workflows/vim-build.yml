@@ -53,12 +53,12 @@ jobs:
         with:
           files: |
             tools/vim/gvim_*_x86_64.zip
-            tools/vim/mingw-w64-ucrt-x86_64-vim*.pkg.tar.zst
+            tools/vim/mingw-w64-ucrt-x86_64-vim*.pkg.tar.xz
       #      ./DeviceTree.zip
       #    name: TWRP_Device_Tree-${{ github.run_id }}
-          name: $tagName
+          name: ${{env.tagName}}
       #    tag_name: ${{ github.run_id }}
-          tag_name: $tagName
+          tag_name: ${{env.tagName}}
       #    body: DeviceTree for twrp
           body_path: gitlog.txt
         env:

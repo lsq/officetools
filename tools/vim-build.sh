@@ -110,7 +110,8 @@ else
     CI_REPO_TAG_NAME=$APPVEYOR_REPO_TAG_NAME
 fi
 URL="https://github.com/$CI_REPO_NAME/releases/download"
-releaseLog="### Files:
+releaseLog="[![${CI_REPO_NAME}](https://img.shields.io/github/downloads/${CI_REPO_NAME}/${CI_REPO_TAG_NAME}/total.svg)](https://github.com/${CI_REPO_NAME}/releases/tag/${CI_REPO_TAG_NAME}
+### Files:
 #### :unlock: Unsigned Files:
 * [![gvim_${VIMVER}_x64.zip](https://img.shields.io/github/downloads/${CI_REPO_NAME}/${CI_REPO_TAG_NAME}/gvim_${VIMVER}_x64.zip.svg?label=downloads&logo=vim)](${URL}/${CI_REPO_TAG_NAME}/gvim_${VIMVER}_x86_64.zip)
         64-bit zip archive
@@ -123,5 +124,7 @@ ${interfaceInfo}
 * [libsodium](https://download.libsodium.org/libsodium/) ${libsodiumVer}
 </details>
 "
-echo "$releaseLog" | sed -e ':a;N;$!ba;s/\n/\\n/g' > $basedir/../gitlog.txt
+if [ -n $APPVEYOR_REPO_NAME ]; then
+    echo "$releaseLog" | sed -e ':a;N;$!ba;s/\n/\\n/g' > $basedir/../gitlog.txt
+fi
 cat $basedir/../gitlog.txt

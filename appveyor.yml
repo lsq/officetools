@@ -156,7 +156,6 @@ before_deploy:
 deploy:
   - provider: GitHub
     description: |
-      [![$(APPVEYOR_REPO_TAG_NAME)](https://img.shields.io/github/downloads/$(APPVEYOR_REPO_NAME)/$(APPVEYOR_REPO_TAG_NAME)/total.svg)](https://github.com/$(APPVEYOR_REPO_NAME)/releases/tag/$(APPVEYOR_REPO_TAG_NAME))
       $(Descriptions)
     auth_token: $(auth_token)
     artifact: /.*\.z(ip|st)/
