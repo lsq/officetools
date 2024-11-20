@@ -15,5 +15,5 @@ pwd
 ls
 makepkg -sfL
 '@  | Out-File -FilePath  ci-build.sh -Encoding utf8NoBOM
-$cygPath = $(cygpath -u $PSScriptRoot)
+$cygPath = $(cygpath -u $(pwd))
 C:\msys64\usr\bin\bash -lc "./ci-build.sh $cygPath"
