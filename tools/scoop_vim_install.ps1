@@ -1,5 +1,5 @@
 Get-ChildItem Env:
-Import-Module .\utils.psm1
+Import-Module $PSScriptRoot\utils.psm1
 C:\msys64\usr\bin\bash.exe -lc "pacman --noconfirm -Syuu"
 C:\msys64\usr\bin\bash.exe -lc "pacman --noconfirm -Syuu"
 C:\msys64\usr\bin\bash.exe -lc "pacman --noconfirm -Sy mingw-w64-ucrt-x86_64-aria2"

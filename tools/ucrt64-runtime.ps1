@@ -1,4 +1,4 @@
-Improt-Module $PSScriptRoot\utils.psm1
+Import-Module $PSScriptRoot\utils.psm1
 
 $currentDirectory = (Get-Location).Path
 Write-Host "Current directory: $currentDirectory"
