@@ -11,6 +11,8 @@ $env:MSYSTEM = 'msys'  # Start a 64 bit Mingw environment
 @'
 basedir="$1"
 cd "$basedir" || exit 1
+pwd
+ls
 makepkg -sfL
 '@  | Out-File -FilePath  ci-build.sh -Encoding utf8NoBOM
 $cygPath = $(cygpath -u $PSScriptRoot)
