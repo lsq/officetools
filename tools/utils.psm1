@@ -78,9 +78,18 @@ function Write-Env {
     Publish-Env
 }
 function downGit($repo, $folder){
-	$json = irm https://api.github.com/repos/$repo/contents/$($folder)?ref=master
-		$json | ForEach-Object {
-			echo $_.path
-			iwr -useb $($_).download_url | ni $_.path -Force
+    $json = irm https://api.github.com/repos/$repo/contents/$($folder)?ref=master
+    $json | ForEach-Object {
+		$downloadUrl = $($_).download_url
+		$savePath = $($_).path
+		$type = $($_).type
+		if ($type -eq "file") {
+			echo "$downloadUrl to $savePath"
+			iwr -useb $downloadUrl | ni $savePath -Force
 		}
+		else
+		{
+			downGit $repo $savePath
+		}
+    }
 }

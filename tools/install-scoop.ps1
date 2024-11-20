@@ -8,5 +8,6 @@ which scoop
         if ($_ -eq "main") { scoop bucket rm main }
         scoop bucket add "$_"
     }
+scoop bucket rm lsq
 scoop bucket add lsq https://github.com/lsq/scoopet
 scoop update

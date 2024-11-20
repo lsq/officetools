@@ -16,7 +16,7 @@ scoop config aria2-max-connection-per-server 16
 scoop config aria2-min-split-size 4M 
 scoop config aria2-options @("-m 5")
 scoop config aria2-enabled true
-scoop install curl ctags global jq #vim-nightly
+scoop install curl ctags global jq notepad3 #vim-nightly
     $env:scoop = "$env:USERPROFILE\scoop"
 $racketInfo = (scoop search racket-bc)
     $racketVer = $racketInfo.Version
