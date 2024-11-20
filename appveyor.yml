@@ -122,7 +122,8 @@ build_script:
   - ls -al .
   - ps: .\tools\scoop_vim_install.ps1  
   #- C:\msys64\usr\bin\bash -lc "./tools/vim-build.sh"
-  - bash -x "./tools/vim-build.sh"
+  #- bash -x "./tools/vim-build.sh"
+  - ps: .\tools\ucrt64-runtime.ps1
   #- makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
   #-------------------------------------------------------------
   #android boot.img
@@ -216,5 +217,5 @@ on_success:
 #    - echo %TARGET_BRANCH%
 #   - git push -u origin %TARGET_BRANCH%
 #- appveyor AddMessage "Static Site Updated"
-#on_finish:
-  #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+on_finish:
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
