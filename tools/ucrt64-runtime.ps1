@@ -13,9 +13,9 @@ basedir="$1"
 cd "$basedir" || exit 1
 pwd
 ls
-./update-patches.sh
-#makepkg -sfL --noconfirm --skipchecksums
-makepkg -sfL --noconfirm 
+#./update-patches.sh
+makepkg -sfL --noconfirm --skipchecksums
+#makepkg -sfL --noconfirm 
 '@  | Out-File -FilePath  ci-build.sh -Encoding utf8NoBOM
 $cygPath = $(cygpath -u $(pwd))
 C:\msys64\usr\bin\bash -lc "./ci-build.sh $cygPath"
