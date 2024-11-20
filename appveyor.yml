@@ -120,10 +120,10 @@ build_script:
   #- bash -x tools/curl_gecko.sh
   #- bash -x texlive.sh
   - ls -al .
-  - ps: .\tools\scoop_vim_install.ps1  
+  - pwsh: .\tools\scoop_vim_install.ps1  
   #- C:\msys64\usr\bin\bash -lc "./tools/vim-build.sh"
   #- bash -x "./tools/vim-build.sh"
-  - ps: .\tools\ucrt64-runtime.ps1
+  - pwsh: .\tools\ucrt64-runtime.ps1
   #- makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
   #-------------------------------------------------------------
   #android boot.img
