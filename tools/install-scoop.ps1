@@ -27,7 +27,7 @@ scoop config aria2-options @("-m 5")
 scoop config aria2-enabled true
 scoop install curl ctags global jq notepad3 #vim-nightly
 
-Get-ChildItem Env:
+#Get-ChildItem Env:
 C:\msys64\usr\bin\bash.exe -lc "pacman --noconfirm -Syuu"
 C:\msys64\usr\bin\bash.exe -lc "pacman --noconfirm -Syuu"
 C:\msys64\usr\bin\bash.exe -lc "pacman --noconfirm -Sy mingw-w64-ucrt-x86_64-aria2"
