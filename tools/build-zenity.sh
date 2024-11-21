@@ -6,7 +6,7 @@ tar -C ./ -xf "$tarPath"
 mv usr ucrt64
 cp -r ucrt64 /
 rm -rf /ucrt64/include/regex.h
-pacboy sync --overwrite '*' --noconfirm gettext-runtime:p gettext-tools:p gcc:p help2man: libadwaita:p meson:p gtk4:p yelp-tools:p
+pacboy sync --overwrite "\*" --noconfirm gettext-runtime:p gettext-tools:p gcc:p help2man: libadwaita:p meson:p gtk4:p yelp-tools:p
 git clone https://github.com/GNOME/zenity.git
 cd zenity || exit 1
 meson -Dwebkitgtk=false build/
