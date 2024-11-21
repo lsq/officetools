@@ -17,7 +17,7 @@ cat > patch_pkgbuild.sed <<'EOF'
 3s/^$/_realname=runtime/
 4s/=.*/=mingw-w64-${_realname}/
 5s/=.*/=(${MINGW_PACKAGE_PREFIX}-${_realname})/
-9s/x86_64/any/
+9s/x86_64.*/any')\n#mingw_arch=('mingw64' 'ucrt64' 'clang64' 'clangarm64')\nmingw_arch=('ucrt64')/
 18s/perl/${MINGW_PACKAGE_PREFIX}-perl/
 19s/gcc/${MINGW_PACKAGE_PREFIX}-gcc/
 23s/zlib-devel/${MINGW_PACKAGE_PREFIX}-zlib/
