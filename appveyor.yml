@@ -120,14 +120,17 @@ build_script:
   #- bash -x tools/curl_gecko.sh
   #- bash -x texlive.sh
   - ls -al .
-  - pwsh: .\tools\scoop_vim_install.ps1  
+  - pwsh: .\tools\install-scoop.ps1 
+  #-----------------vim build--------------------
+  #- pwsh: .\tools\vim_dependence.ps1
   #- C:\msys64\usr\bin\bash -lc "./tools/vim-build.sh"
   #- bash -x "./tools/vim-build.sh"
-  - bash -x "./tools/build-zenity.sh"
-  #- pwsh: .\tools\ucrt64-runtime.ps1
   #- makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
   #-------------------------------------------------------------
-  #android boot.img
+  #- pwsh: .\tools\ucrt64-runtime.ps1
+  #-------------------------------------------------------------
+  - bash -x "./tools/build-zenity.sh"
+  #--------------- android boot.img -----------------------
   #- bash -x "./tools/mi10ImageDownload.sh" cmi
 
 before_test:

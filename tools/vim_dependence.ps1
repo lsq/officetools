@@ -1,27 +1,13 @@
-Get-ChildItem Env:
 Import-Module $PSScriptRoot\utils.psm1
-C:\msys64\usr\bin\bash.exe -lc "pacman --noconfirm -Syuu"
-C:\msys64\usr\bin\bash.exe -lc "pacman --noconfirm -Syuu"
-C:\msys64\usr\bin\bash.exe -lc "pacman --noconfirm -Sy mingw-w64-ucrt-x86_64-aria2"
+
 #Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-. $PSScriptRoot\install-scoop.ps1
-iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
-ni $HOME/vimfiles/autoload/plug.vim -Force
-#scoop install lsq/aria2
-scoop install aria2
-which aria2c
-scoop config aria2-retry-wait 4
-scoop config aria2-split 16
-scoop config aria2-max-connection-per-server 16
-scoop config aria2-min-split-size 4M 
-scoop config aria2-options @("-m 5")
-scoop config aria2-enabled true
-scoop install curl ctags global jq notepad3 #vim-nightly
-    $env:scoop = "$env:USERPROFILE\scoop"
+#. $PSScriptRoot\install-scoop.ps1
+
+$env:scoop = "$env:USERPROFILE\scoop"
 $racketInfo = (scoop search racket-bc)
-    $racketVer = $racketInfo.Version
-    $racketName = $racketInfo.Name
-    $rkBucket = $racketInfo.Source
+$racketVer = $racketInfo.Version
+$racketName = $racketInfo.Name
+$rkBucket = $racketInfo.Source
 #$racketDownUrl = ((Get-Content -Raw $env:scoop\buckets\$rkBucket\bucket\$racketName.json) | ConvertFrom-Json).architecture."64bit".url -replace '#/dl.7z'
 #$racketDownUrl = "https://users.cs.utah.edu/plt/installers/$racketVer/racket-$racketVer-x86_64-win32-bc.exe"
 #iwr $racketDownUrl -OutFile $env:scoop\cache\$racketName-$racketVer.exe
