@@ -36,7 +36,7 @@ s/${CHOST}/${MINGW_CHOST}/g
 254,262d
 264,272s/\/usr/\/${MINGW_PREFIX}/g
 EOF
-sed -i -f patch_pkgbuild.sed PKGBUILD
+#sed -i -f patch_pkgbuild.sed PKGBUILD
 #./update-patches.sh
 makepkg -sfL --noconfirm --skipchecksums
 #makepkg -sfL --noconfirm 
