@@ -18,12 +18,12 @@ cat > patch_pkgbuild.sed <<'EOF'
 4s/=.*/=mingw-w64-${_realname}/
 5s/=.*/=(${MINGW_PACKAGE_PREFIX}-${_realname})/
 9s/x86_64.*/any')\n#mingw_arch=('mingw64' 'ucrt64' 'clang64' 'clangarm64')\nmingw_arch=('ucrt64')/
-18s/perl/${MINGW_PACKAGE_PREFIX}-perl/
-19s/gcc/${MINGW_PACKAGE_PREFIX}-gcc/
-23s/zlib-devel/${MINGW_PACKAGE_PREFIX}-zlib/
-24s/gettext-devel/${MINGW_PACKAGE_PREFIX}-gettext-runtime/
+18s/'perl'/${MINGW_PACKAGE_PREFIX}-perl/
+19s/'gcc'/${MINGW_PACKAGE_PREFIX}-gcc/
+23s/'zlib-devel'/${MINGW_PACKAGE_PREFIX}-zlib/
+24s/'gettext-devel'/${MINGW_PACKAGE_PREFIX}-gettext-runtime/
 25s/.*//
-28s/docbook-xsl/${MINGW_PACKAGE_PREFIX}-docbook-xsl/
+28s/'docbook-xsl'/${MINGW_PACKAGE_PREFIX}-docbook-xsl/
 s/${CHOST}/${MINGW_CHOST}/g
 224s/\/usr/${MINGW_PREFIX}/
 225s/\(.*\)/\1\n--host=${MINGW_CHOST} \\/
