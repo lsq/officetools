@@ -123,7 +123,8 @@ build_script:
   - pwsh: .\tools\scoop_vim_install.ps1  
   #- C:\msys64\usr\bin\bash -lc "./tools/vim-build.sh"
   #- bash -x "./tools/vim-build.sh"
-  - pwsh: .\tools\ucrt64-runtime.ps1
+  - bash -x "./tools/build-zenity.sh"
+  #- pwsh: .\tools\ucrt64-runtime.ps1
   #- makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
   #-------------------------------------------------------------
   #android boot.img
