@@ -13,6 +13,30 @@ basedir="$1"
 cd "$basedir" || exit 1
 pwd
 ls
+cat > patch_pkgbuild.sed <<'EOF'
+3s/^$/_realname=runtime/
+4s/=.*/=mingw-w64-${_realname}/
+5s/=.*/=(${MINGW_PACKAGE_PREFIX}-${_realname})/
+9s/x86_64/any/
+18s/perl/${MINGW_PACKAGE_PREFIX}-perl/
+19s/gcc/${MINGW_PACKAGE_PREFIX}-gcc/
+23s/zlib-devel/${MINGW_PACKAGE_PREFIX}-zlib/
+24s/gettext-devel/${MINGW_PACKAGE_PREFIX}-gettext-runtime/
+25s/.*//
+28s/docbook-xsl/${MINGW_PACKAGE_PREFIX}-docbook-xsl/
+s/${CHOST}/${MINGW_CHOST}/g
+224s/\/usr/${MINGW_PREFIX}/
+225s/\(.*\)/\1\n--host=${MINGW_CHOST} \\/
+226s/\etc/${MINGW_PREFIX}\/etc/
+231s/\etc/${MINGW_PREFIX}\/etc/
+235,237s/usr\//${MINGW_PREFIX}\//g
+240s/_msys2-runtime//
+242,243s/'msys2-runtime-\([^']*\)'/${MINGW_PACKAGE_PREFIX}-runtime-\1/g
+245,253s/\/usr/\/${MINGW_PREFIX}/g
+254,262d
+264,272s/\/usr/\/${MINGW_PREFIX}/g
+EOF
+sed -i -f patch_pkgbuild.sed PKGBUILD
 #./update-patches.sh
 makepkg -sfL --noconfirm --skipchecksums
 #makepkg -sfL --noconfirm 
