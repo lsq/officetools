@@ -45,7 +45,7 @@ jobs:
       - name: Install scoop tools
         shell: pwsh
         run: |
-          ..\..\tools\install-scoop.ps1
+          .\tools\install-scoop.ps1
           .\tools\vim_dependence.ps1
         
       - name: Build vim
