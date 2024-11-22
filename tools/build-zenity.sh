@@ -18,7 +18,8 @@ cat > langinfo.h << 'EOF'
 #define CODESET 1
 typedef int nl_item;
 
-static char *nl_langinfo(nl_item item)
+//static char *nl_langinfo(nl_item item)
+char *nl_langinfo(nl_item item)
 {
     static char empty[8] = "";
     static char ascii[8] = "ASCII";
@@ -31,10 +32,7 @@ static char *nl_langinfo(nl_item item)
 }
 
 EOF
-sed -i '\|#endif /* !_LANGINFO_H_ */|
-r langinfo.h
-N
-}' /ucrt64/include/langinfo.h
+sed -i '\|#endif /\* !_LANGINFO_H_ \*/|e cat langinfo.h' /ucrt64/include/langinfo.h
 tail -20 /ucrt64/include/langinfo.h
 
 # prepare kill function
@@ -58,7 +56,7 @@ int kill(pid_t pid, int sig)
 }
 
 //ULONG_PTR GetParentProcessId() // By Napalm @ NetCore2K
-ULONG_PTR getppid() // By Napalm @ NetCore2K
+pid_t getppid() // By Napalm @ NetCore2K
 {
  ULONG_PTR pbi[6];
  ULONG ulSize = 0;
@@ -69,9 +67,9 @@ ULONG_PTR getppid() // By Napalm @ NetCore2K
  if(NtQueryInformationProcess){
   if(NtQueryInformationProcess(GetCurrentProcess(), 0,
     &pbi, sizeof(pbi), &ulSize) >= 0 && ulSize == sizeof(pbi))
-     return pbi[5];
+     return (pid_t)pbi[5];
  }
- return (ULONG_PTR)-1;
+ return (pid_t)-1;
 }
 
 
