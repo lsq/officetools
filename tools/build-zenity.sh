@@ -35,7 +35,9 @@ char *nl_langinfo(nl_item item)
 EOF
 sed -i 's!typedef __nl_item nl_item;! typedef int nl_item;!' /ucrt64/include/langinfo.h
 sed -i '\|#endif /\* !_LANGINFO_H_ \*/|e cat langinfo.h' /ucrt64/include/langinfo.h
-    sed -i 's!\(#include <sys/_types.h>\)!//\1!' /ucrt64/include/langinfo.h
+sed -i 's!\(#include <sys/_types.h>\)!//\1!' /ucrt64/include/langinfo.h
+#sed -n -r -e '/(re\.(sub|compile)\()(\x27[^\x27]*\x27)/{=;p}' -e 's//\1r\3/p' /ucrt64/bin/itstool-script.py
+sed -n -r 's/(re\.(sub|compile)\()(\x27[^\x27]*\x27)/\1r\3/p' /ucrt64/bin/itstool-script.py
 tail -20 /ucrt64/include/langinfo.h
 
 # prepare kill function
