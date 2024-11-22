@@ -9,14 +9,15 @@ rm -rf /ucrt64/include/regex.h
 pacman --noconfirm --sync --needed  mingw-w64-ucrt-x86_64-gettext-runtime \
 mingw-w64-ucrt-x86_64-gettext-tools mingw-w64-ucrt-x86_64-gcc help2man mingw-w64-ucrt-x86_64-libadwaita mingw-w64-ucrt-x86_64-meson \
 mingw-w64-ucrt-x86_64-gtk4 mingw-w64-ucrt-x86_64-yelp-tools --overwrite '*' 
-cp -r ucrt64 /
+#cp -r ucrt64 /
+cp -r ucrt64/include/langinfo.h /ucrt64/include
 
 # prepare nl_langinfo function
 
 cat > langinfo.h << 'EOF'
 #include <stdlib.h>
 #define CODESET 1
-typedef int nl_item;
+#typedef int nl_item;
 
 //static char *nl_langinfo(nl_item item)
 char *nl_langinfo(nl_item item)
@@ -32,7 +33,9 @@ char *nl_langinfo(nl_item item)
 }
 
 EOF
+sed -i 's!typedef __nl_item nl_item;! typedef int nl_item;!' /ucrt64/include/langinfo.h
 sed -i '\|#endif /\* !_LANGINFO_H_ \*/|e cat langinfo.h' /ucrt64/include/langinfo.h
+    sed -i 's!\(#include <sys/_types.h>\)!//\1!' /ucrt64/include/langinfo.h
 tail -20 /ucrt64/include/langinfo.h
 
 # prepare kill function
