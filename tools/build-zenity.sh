@@ -37,8 +37,8 @@ sed -i 's!typedef __nl_item nl_item;! typedef int nl_item;!' /ucrt64/include/lan
 sed -i '\|#endif /\* !_LANGINFO_H_ \*/|e cat langinfo.h' /ucrt64/include/langinfo.h
 sed -i 's!\(#include <sys/_types.h>\)!//\1!' /ucrt64/include/langinfo.h
 # https://stackoverflow.com/questions/24509214/how-to-escape-single-quote-in-sed
-#sed -n -r -e '/(re\.(sub|compile)\()(\x27[^\x27]*\x27)/{=;p}' -e 's//\1r\3/p' /ucrt64/bin/itstool-script.py
-sed -n -r 's/(re\.(sub|compile)\()(\x27[^\x27]*\x27)/\1r\3/p' /ucrt64/bin/itstool-script.py
+sed -i -r 's/(re\.(sub|compile)\()(\x27[^\x27]*\x27)/\1r\3/' /ucrt64/bin/itstool-script.py
+sed -n -r -e '/(re\.(sub|compile)\(r)(\x27[^\x27]*\x27)/{=;p}' -e 's//\1r\3/p' /ucrt64/bin/itstool-script.py
 tail -20 /ucrt64/include/langinfo.h
 
 # prepare kill function
