@@ -17,7 +17,7 @@ cp -r ucrt64/include/langinfo.h /ucrt64/include
 cat > langinfo.h << 'EOF'
 #include <stdlib.h>
 #define CODESET 1
-#typedef int nl_item;
+//typedef int nl_item;
 
 //static char *nl_langinfo(nl_item item)
 char *nl_langinfo(nl_item item)
