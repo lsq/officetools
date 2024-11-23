@@ -11,10 +11,15 @@ const {join} = require('path');
  */
 module.exports = {
   //cacheDirectory: join(__dirname, '.cache', 'puppeteer'),
-  executablePath: '',
+  executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\chrome.exe',
 };
 EOF
+cat > .npmrc << 'EOF'
+PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+PUPPETEER_EXECUTABLE_PATH='C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+EOF
 sed -i '/"puppeteer": /s/21/23/' package.json
+npm install
 npm ci
 npm install -g
 
