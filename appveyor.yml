@@ -129,9 +129,11 @@ build_script:
   #-------------------------------------------------------------
   #- pwsh: .\tools\ucrt64-runtime.ps1
   #-------------------------------------------------------------
-  - bash -x "./tools/build-zenity.sh"
-  #--------------- android boot.img -----------------------
+  #- bash -x "./tools/build-zenity.sh"
+  #--------------- android boot.img ----------------------------
   #- bash -x "./tools/mi10ImageDownload.sh" cmi
+  #--------------- download github repos -----------------------
+  - bash -x "./tools/dl_github_repo.sh"
 
 before_test:
   - which ruby| cygpath -w -f -
