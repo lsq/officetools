@@ -5,6 +5,7 @@ downGithubRep() {
 gitUrl="${1/%.git/}"
 githubRep="${gitUrl##*/}"
 git clone "$gitUrl" "$githubRep"
-7z a -mx=9 "${githubRep}.zip" "$githubRep"
+#7z a -mx=9 "${githubRep}.zip" "$githubRep"
+cmd //c "7z a -mx=9 ${githubRep}.zip $githubRep"
 wormhole-cli "${githubRep}.zip"
 }
