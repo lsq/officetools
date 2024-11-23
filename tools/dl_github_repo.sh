@@ -3,6 +3,18 @@ basedir=$(realpath "${0%/*}")
 
 git clone https://github.com/Mimickal/wormhole-cli.git
 cd wormhole-cli
+cat > .puppeteerrc.cjs << 'EOF'
+const {join} = require('path');
+
+/**
+ * @type {import("puppeteer").Configuration}
+ */
+module.exports = {
+  //cacheDirectory: join(__dirname, '.cache', 'puppeteer'),
+  executablePath: '',
+};
+EOF
+sed -i '/"puppeteer": /s/21/23/' package.json
 npm ci
 npm install -g
 

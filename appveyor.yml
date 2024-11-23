@@ -120,7 +120,7 @@ build_script:
   #- bash -x tools/curl_gecko.sh
   #- bash -x texlive.sh
   - ls -al .
-  - pwsh: .\tools\install-scoop.ps1 
+  #- pwsh: .\tools\install-scoop.ps1 
   #-----------------vim build--------------------
   #- pwsh: .\tools\vim_dependence.ps1
   #- C:\msys64\usr\bin\bash -lc "./tools/vim-build.sh"
