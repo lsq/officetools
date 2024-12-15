@@ -122,9 +122,10 @@ build_script:
   - ls -al .
   #- pwsh: .\tools\install-scoop.ps1
   #-----------------vim build--------------------
+  - pwsh: .\tools\install-scoop.ps1
   - pwsh: .\tools\vim_dependence.ps1
   #- C:\msys64\usr\bin\bash -lc "./tools/vim-build.sh"
-  - pwsh: bash -x "./tools/vim-build.sh"
+  - bash -x "./tools/vim-build.sh"
   #- makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
   #-------------------------------------------------------------
   #- pwsh: .\tools\ucrt64-runtime.ps1
