@@ -13,8 +13,8 @@ pacboy sync --needed --noconfirm ed:
 pacboy sync --needed --noconfirm mingw-w64-ucrt-x86_64-lua
 pacboy sync --needed --noconfirm mingw-w64-ucrt-x86_64-jq
 pacboy sync --needed --noconfirm mingw-w64-ucrt-x86_64-libsodium
-pacboy sync --needed --noconfirm tcl
-pacboy sync --needed --noconfirm ci.ri2::ruby32
+pacboy sync --needed --noconfirm mingw-w64-ucrt-x86_64-tcl
+pacboy sync --needed --noconfirm ci.ri2::ruby33:u
 #cd ./vim
 #MINGW_ARCH=msys makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
 #cd $APPVEYOR_BUILD_FOLDER/tools/vim
