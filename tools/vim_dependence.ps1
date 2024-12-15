@@ -3,6 +3,7 @@ Import-Module $PSScriptRoot\utils.psm1
 #Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 #. $PSScriptRoot\install-scoop.ps1
 
+. $PSScriptRoot\install-scoop.ps1
 $env:scoop = "$env:USERPROFILE\scoop"
 $racketInfo = (scoop search racket-bc)
 $racketVer = $racketInfo.Version
