@@ -13,6 +13,7 @@ pacboy sync --needed --noconfirm ed:
 pacboy sync --needed --noconfirm lua
 pacboy sync --needed --noconfirm jq
 pacboy sync --needed --noconfirm libsodium
+pacboy sync --needed --noconfirm tcl
 pacboy sync --needed --noconfirm ci.ri2::ruby32
 #cd ./vim
 #MINGW_ARCH=msys makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
