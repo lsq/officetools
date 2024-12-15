@@ -141,4 +141,4 @@ $msys2Home=$(bash -lc 'echo $HOME' | cygpath -w -f -)
 @"
 export PATH="${scoop_shims_dir}:`$PATH"
 "@ >> scoop.env
-sed.exe -i '1e cat scoop.env' $PSScriptRoot\vim-build.sh
+sed.exe -i '2e cat scoop.env' $PSScriptRoot\vim-build.sh

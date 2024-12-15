@@ -1,6 +1,6 @@
 set -x
 basedir=$(realpath "${0%/*}")
-echo "$MSYSTEM"
+echo "MSYSTEM:$MSYSTEM\nMINGW_PACKAGE_PREFIX:$MINGW_PACKAGE_PREFIX"
 pacman --noconfirm --sync --needed pactoys
 pacman-key --recv-keys BE8BF1C5
 pacman-key --lsign-key BE8BF1C5
@@ -10,10 +10,10 @@ repman add ci.ri2 "https://github.com/oneclick/rubyinstaller2-packages/releases/
 pacman -Syuu --noconfirm
 #pacman -Sy --needed --noconfirm "ruby$rubyversion"
 pacboy sync --needed --noconfirm ed:
-pacboy sync --needed --noconfirm lua:p
-pacboy sync --needed --noconfirm jq:p
-pacboy sync --needed --noconfirm libsodium:p
-pacboy sync --needed --noconfirm ci.ri2::ruby32:p
+pacboy sync --needed --noconfirm lua
+pacboy sync --needed --noconfirm jq
+pacboy sync --needed --noconfirm libsodium
+pacboy sync --needed --noconfirm ci.ri2::ruby32
 #cd ./vim
 #MINGW_ARCH=msys makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
 #cd $APPVEYOR_BUILD_FOLDER/tools/vim
