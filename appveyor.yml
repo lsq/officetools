@@ -20,8 +20,8 @@ environment:
     - MSYS2_ARCH: x86_64
       MSYSTEM: UCRT64
   #    MSYSTEM: MINGW64
- #   - MSYS2_ARCH: i686
- #     MSYSTEM: MINGW32
+  #   - MSYS2_ARCH: i686
+  #     MSYSTEM: MINGW32
 # Set path for msys
 init:
   - ps: |
@@ -44,14 +44,14 @@ init:
   - set
   # - copy setup.exe *.xml %APPVEYOR_JOB_ID%
   # System upgrade (must be run twice, separately, to finalize). Disabled
-  # for now due to build time and resource usage (500MB bw, 2.7GB disk)    
-  - ps: $env:CHERE_INVOKING = 'yes'  # Preserve the current working directory
-  - ps: $env:MSYSTEM = 'UCRT64'  # Start a 64 bit Mingw environment
+  # for now due to build time and resource usage (500MB bw, 2.7GB disk)
+  - ps: $env:CHERE_INVOKING = 'yes' # Preserve the current working directory
+  - ps: $env:MSYSTEM = 'UCRT64' # Start a 64 bit Mingw environment
 
 # Fetch dependencies, build and run tests
 #clone_script:
 install:
-  - ls -al  
+  - ls -al
   - pwd
     #- bundle install
   - cygpath -w /home
@@ -87,7 +87,7 @@ install:
     #- set
     #  - which set
     # - set
-    #- git config -l 
+    #- git config -l
     # - git config --global -l
     #- cat ~/.git-credentials
     #  - cmd: git clone --recursive  --branch=master https://github.com/lsq/blogsr.git C:\projects\blogsr
@@ -120,11 +120,11 @@ build_script:
   #- bash -x tools/curl_gecko.sh
   #- bash -x texlive.sh
   - ls -al .
-  #- pwsh: .\tools\install-scoop.ps1 
+  #- pwsh: .\tools\install-scoop.ps1
   #-----------------vim build--------------------
-  #- pwsh: .\tools\vim_dependence.ps1
+  - pwsh: .\tools\vim_dependence.ps1
   #- C:\msys64\usr\bin\bash -lc "./tools/vim-build.sh"
-  #- bash -x "./tools/vim-build.sh"
+  - bash -x "./tools/vim-build.sh"
   #- makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
   #-------------------------------------------------------------
   #- pwsh: .\tools\ucrt64-runtime.ps1
@@ -133,7 +133,7 @@ build_script:
   #--------------- android boot.img ----------------------------
   #- bash -x "./tools/mi10ImageDownload.sh" cmi
   #--------------- download github repos -----------------------
-  - bash -x "./tools/dl_github_repo.sh"
+  #- bash -x "./tools/dl_github_repo.sh"
 
 before_test:
   - which ruby| cygpath -w -f -
@@ -173,43 +173,43 @@ deploy:
     on:
       APPVEYOR_REPO_TAG: true
 cache:
-  - c:\msys64\var\cache\pacman\pkg 
-  - '%rubyhome%'
+  - c:\msys64\var\cache\pacman\pkg
+  - "%rubyhome%"
   - '%USERPROFILE%\scoop'
 on_success:
-# https://cygwin.com/cygwin-ug-net/cygpath.html
-    - which git | cygpath -w -f -
-    #- ruby -e '3.times { puts "I ❤️ Ruby"}'
-    - ruby -e '3.times { puts "I Love Ruby"}'
-      #- which hugo | cygpath -w -f -
-    # bash -c "cp `which git | cygpath -w -f - | cygpath -u -f -` ."
-    #    - git config --global credential.helper store
-#    - echo %access_token%
-#    - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
-#    - ps: dir "$env:USERPROFILE\.git-credentials"
-#    - ps: cat "$env:USERPROFILE\.git-credentials"
-#    - echo ------------
-#    - ls -al ~/
-    - cygpath -w /home
-#    - cat ~/.git-credentials
-#    - cp 
-#    - echo "%GIT_USER_EMAIL%"
-#    - echo "%GIT_USER_NAME%"
-#    - echo "$($env:GIT_USER_NAME)"
-#    - git config --global user.email "%GIT_USER_EMAIL%"
-#    - git config --global user.name "%GIT_USER_NAME%"
-#    - ps: cat ~/.gitconfig
-#    - ps: dir ~/.gitconfig
-#    - git config -l
-#    - git clone -q --branch=%TARGET_BRANCH% %STATIC_SITE_REPO% %TEMP%\static-site
-#    - cd %TEMP%\static-site
-    - ls -al .
+  # https://cygwin.com/cygwin-ug-net/cygpath.html
+  - which git | cygpath -w -f -
+  #- ruby -e '3.times { puts "I ❤️ Ruby"}'
+  - ruby -e '3.times { puts "I Love Ruby"}'
+    #- which hugo | cygpath -w -f -
+  # bash -c "cp `which git | cygpath -w -f - | cygpath -u -f -` ."
+  #    - git config --global credential.helper store
+  #    - echo %access_token%
+  #    - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
+  #    - ps: dir "$env:USERPROFILE\.git-credentials"
+  #    - ps: cat "$env:USERPROFILE\.git-credentials"
+  #    - echo ------------
+  #    - ls -al ~/
+  - cygpath -w /home
+  #    - cat ~/.git-credentials
+  #    - cp
+  #    - echo "%GIT_USER_EMAIL%"
+  #    - echo "%GIT_USER_NAME%"
+  #    - echo "$($env:GIT_USER_NAME)"
+  #    - git config --global user.email "%GIT_USER_EMAIL%"
+  #    - git config --global user.name "%GIT_USER_NAME%"
+  #    - ps: cat ~/.gitconfig
+  #    - ps: dir ~/.gitconfig
+  #    - git config -l
+  #    - git clone -q --branch=%TARGET_BRANCH% %STATIC_SITE_REPO% %TEMP%\static-site
+  #    - cd %TEMP%\static-site
+  - ls -al .
 #    - del * /f /q
 #    - for /d %%p IN (*) do rmdir "%%p" /s /q
 #    - SETLOCAL EnableDelayedExpansion & robocopy "%APPVEYOR_BUILD_FOLDER%\public" "%TEMP%\static-site" /e & IF !ERRORLEVEL! EQU 1 (exit 0) ELSE (IF !ERRORLEVEL! EQU 3 (exit 0) ELSE (exit 1))
 #    - rm -rf *
 #    - ls -al .
-#    - ls "%APPVEYOR_BUILD_FOLDER%\public" 
+#    - ls "%APPVEYOR_BUILD_FOLDER%\public"
 #    - cp -rf %APPVEYOR_BUILD_FOLDER%/public/* %TEMP%/static-site
 #    - SETLOCAL EnableDelayedExpansion & robocopy "%APPVEYOR_BUILD_FOLDER%\public" "%TEMP%\static-site" /e & IF !ERRORLEVEL! EQU 1 (exit 0) ELSE (IF !ERRORLEVEL! EQU 3 (exit 0) ELSE (exit 1))
 #    - cp -rf "%APPVEYOR_BUILD_FOLDER%\public\*" "%TEMP%\static-site"
