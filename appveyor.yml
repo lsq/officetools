@@ -123,6 +123,7 @@ build_script:
   #- pwsh: .\tools\install-scoop.ps1
   #-----------------vim build--------------------
   - pwsh: .\tools\install-scoop.ps1
+  - pwsh: C:\msys64\usr\bin\bash -lc 'echo $PATH'
   - pwsh: .\tools\vim_dependence.ps1
   #- C:\msys64\usr\bin\bash -lc "./tools/vim-build.sh"
   - bash -x "./tools/vim-build.sh"
