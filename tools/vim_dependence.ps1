@@ -122,12 +122,12 @@ echo $env:USER_PATH
 #Write-Env 'PATH' "$env:USER_PATH" 
 [Environment]::SetEnvironmentVariable("PATH", $env:USER_PATH, 'Machine')  #   // 使临时替换永久生
 #(删除PATH中的某一个路径替换为""即可)
-$userEnvP = Get-Env 'PATH'
-echo $userEnvP
-$env:PATH = "$rubyhome\bin;$rubyhome\gems\bin;$env:PATH"
-echo $env:PATH
-Write-Env 'PATH' "$env:USER_PATH" -global
-echo $env:PATH
+#$userEnvP = Get-Env 'PATH'
+#echo $userEnvP
+#$env:PATH = "$rubyhome\bin;$rubyhome\gems\bin;$env:PATH"
+#echo $env:PATH
+#Write-Env 'PATH' "$env:USER_PATH" -global
+#echo $env:PATH
 which ruby
 gem install rake
     <#
