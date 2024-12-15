@@ -139,6 +139,6 @@ $scoop_shims_dir = $(which scoop) -replace 'scoop$',''
 #$msys2Root = $(which pacman | cygpath.exe -w -f -) -replace '\\usr\\bin\\pacman.exe',''
 $msys2Home=$(bash -lc 'echo $HOME' | cygpath -w -f -)
 @"
-export PATH="$scoop_shims_dir:`$PATH"
+export PATH="${scoop_shims_dir}:`$PATH"
 "@ >> scoop.env
 sed.exe -i '1e cat scoop.env' $PSScriptRoot\vim-build.sh
