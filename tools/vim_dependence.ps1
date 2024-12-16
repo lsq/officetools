@@ -109,7 +109,7 @@ else {
     echo "rubyhome=$rubyhome" >> $env:GITHUB_ENV
 }
 echo $build_folder
-sed.exe -r -i "s/(ci.ri2::ruby).*(:.*)/\\1$rver\\2/" $build_folder\tools\vim-build.sh
+sed.exe -r -i "s/(ci.ri2::ruby)[^:]*(:.*)/\\1$rver\\2/" $build_folder\tools\vim-build.sh
 
 #$env:USER_PATH=[Environment]::GetEnvironmentVariable("PATH", "User") 
 $env:USER_PATH=[Environment]::GetEnvironmentVariable("PATH", "Machine") 
