@@ -80,7 +80,8 @@ prepare() {
     sed -i '/^#endif/{N;s#^\(\#endif\)\n\s\+vim_snprintf((char \*)newcmd, cmdlen, "%s %s %s",$#\1#;T e;N;s#^\(\#endif\n\).*$#\1{char_u \*p_shell; p_shell = mch_getenv((char_u \*)"SHELL");if (p_shell != NULL \&\& \*p_shell != NUL) { p_shcf = (char_u \*)"-c";} vim_snprintf((char \*)newcmd, cmdlen, "%s %s %s", p_sh, p_shcf, cmd); }#;:e}' src/os_win32.c
 
     # patch  garbled GETTEXT messages
-    sed -i '/\s\+(void)bind_textdomain_codeset(VIMPACKAGE,/s/^/     SetConsoleCP(CP_UTF8);\n   SetConsoleOutputCP(CP_UTF8);\n/' src/mbyte.c
+    #sed -i '/\s\+(void)bind_textdomain_codeset(VIMPACKAGE,/s/^/     SetConsoleCP(CP_UTF8);\n   SetConsoleOutputCP(CP_UTF8);\n/' src/mbyte.c
+    sed -i '/\s\+(void)bind_textdomain_codeset(VIMPACKAGE,/s/^/   SetConsoleOutputCP(CP_UTF8);\n/' src/mbyte.c
 
     # install xpm header
     cd "${srcdir}"/.. || exit 1
