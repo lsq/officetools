@@ -16,7 +16,7 @@ pacboy sync --needed --noconfirm lua:u
 pacboy sync --needed --noconfirm jq:u
 pacboy sync --needed --noconfirm mingw-w64-ucrt-x86_64-libsodium
 pacboy sync --needed --noconfirm mingw-w64-ucrt-x86_64-tcl
-pacboy sync --needed --noconfirm ci.ri2::ruby33:u
+#pacboy sync --needed --noconfirm ci.ri2::ruby33:u
 #cd ./vim
 #MINGW_ARCH=msys makepkg-mingw --cleanbuild --syncdeps --force --noconfirm
 #cd $APPVEYOR_BUILD_FOLDER/tools/vim
@@ -38,6 +38,7 @@ rubyapiver=$(ruby -v | sed -r -n 's/.* (([0-9]{1,2})\.([0-9]{1,2})\.)[0-9]{1,2} 
 #sed -i "s|RUBY_VER=32|RUBY_VER=${rubyversion}|" PKGBUILD
 #sed -i "s|RUBY_API_VER_LONG=3.2.0|RUBY_API_VER_LONG=${rubyapiver}|" PKGBUILD
 sed -n 's/\r//p' PKGBUILD
+sed -i -r 's/(ruby)[^>]*(>=)([^"]*)/\1'$rubyversion'\2'$rubyapiver'/' PKGBUILD
 export rubyversion rubyapiver rubyhm
 
 pythonver=$(sed 's/\x0d\x0a//' <<<$(powershell '$webc=(iwr https://www.python.org/downloads/windows).content; $mstatus = $webc -match "Latest Python \d Release - Python (?<version>[\d.]+)"; $Matches["version"]'))
