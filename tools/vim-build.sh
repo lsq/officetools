@@ -104,6 +104,7 @@ if [ -n "$newerVer" ] && [ $(vercmp "$olderVer" "$newerVer") -ne 0 ]; then
     #sed -i '\~^sha256sums=~{:t N;s~.*\x27)~'"$chsm"'~;T t;s~#~\x27~g;s~|~\n~g;}' PKGBUILD
     #printf '%s\n' "g/1/s//$chsm/" 'wq' | ed -s sed.txt
 fi
+export MSYS=winsymlinks:lnk
 #MINGW_ARCH=ucrt64 makepkg-mingw -eo
 MINGW_ARCH=ucrt64 makepkg-mingw -sLf --noconfirm
 libsodiumVer=$(pacman -Qi mingw-w64-ucrt-x86_64-libsodium | grep -Po '^(版本|Version)\s*: \K.+')
